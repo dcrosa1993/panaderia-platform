@@ -1,0 +1,14 @@
+{
+  "name": "panaderia-platform",
+  "private": true,
+  "packageManager": "pnpm@12.11.2",
+  "scripts": {
+    "dev:web": "pnpm --filter ./apps/web start",
+    "dev:api": "pnpm --filter ./apps/api start:dev",
+    "build:web": "pnpm --filter ./apps/web build",
+    "build:api": "pnpm --filter ./apps/api build",
+    "build": "pnpm build:web && pnpm build:api",
+    "test:web": "pnpm --filter ./apps/web test",
+    "test:api": "pnpm --filter ./apps/api test"
+  }
+}
