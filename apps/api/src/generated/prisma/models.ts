@@ -11,4 +11,7 @@
 export type * from './models/User.js'
 export type * from './models/Business.js'
 export type * from './models/Membership.js'
+export type * from './models/MeasurementUnit.js'
+export type * from './models/Ingredient.js'
+export type * from './models/IngredientPrice.js'
 export type * from './commonInputTypes.js'

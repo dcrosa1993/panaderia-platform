@@ -8,5 +8,6 @@ import { BusinessesService } from './businesses.service.js';
   imports: [AuthModule],
   controllers: [BusinessesController],
   providers: [BusinessesService],
+  exports: [BusinessesService]
 })
 export class BusinessesModule {}

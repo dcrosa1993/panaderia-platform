@@ -14,6 +14,12 @@ enum MembershipRole {
   MEMBER
 }
 
+enum MeasurementDimension {
+  MASS
+  VOLUME
+  COUNT
+}
+
 model User {
   id           String       @id @default(cuid())
   fullName     String       @db.VarChar(120)
@@ -33,6 +39,7 @@ model Business {
   name         String       @db.VarChar(160)
 
   memberships  Membership[]
+  ingredients  Ingredient[]
 
   createdAt    DateTime     @default(now()) @db.Timestamptz(3)
   updatedAt    DateTime     @updatedAt @db.Timestamptz(3)
@@ -54,4 +61,63 @@ model Membership {
   @@unique([userId, businessId])
   @@index([businessId])
   @@map("memberships")
+}
+
+
+model MeasurementUnit {
+  id             String               @id @default(cuid())
+  code           String               @unique @db.VarChar(20)
+  name           String               @db.VarChar(80)
+  symbol         String               @db.VarChar(12)
+  dimension      MeasurementDimension
+  factorToBase   Decimal              @db.Decimal(20, 8)
+  isBase         Boolean              @default(false)
+  isActive       Boolean              @default(true)
+
+  baseIngredients Ingredient[]        @relation("IngredientBaseUnit")
+  purchasePrices  IngredientPrice[]   @relation("IngredientPurchaseUnit")
+
+  createdAt      DateTime             @default(now()) @db.Timestamptz(3)
+  updatedAt      DateTime             @updatedAt @db.Timestamptz(3)
+
+  @@index([dimension, isActive])
+  @@map("measurement_units")
+}
+
+model Ingredient {
+  id             String             @id @default(cuid())
+  businessId     String
+  name           String             @db.VarChar(160)
+  normalizedName String             @db.VarChar(160)
+  description    String?            @db.VarChar(500)
+  baseUnitId     String
+  isActive       Boolean            @default(true)
+
+  business       Business           @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  baseUnit       MeasurementUnit    @relation("IngredientBaseUnit", fields: [baseUnitId], references: [id], onDelete: Restrict)
+  prices         IngredientPrice[]
+
+  createdAt      DateTime           @default(now()) @db.Timestamptz(3)
+  updatedAt      DateTime           @updatedAt @db.Timestamptz(3)
+
+  @@unique([businessId, normalizedName])
+  @@index([businessId, isActive])
+  @@map("ingredients")
+}
+
+model IngredientPrice {
+  id              String           @id @default(cuid())
+  ingredientId    String
+  purchaseQuantity Decimal         @db.Decimal(18, 6)
+  purchaseUnitId  String
+  totalPrice      Decimal          @db.Decimal(18, 4)
+  effectiveFrom   DateTime         @default(now()) @db.Timestamptz(3)
+
+  ingredient      Ingredient       @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  purchaseUnit    MeasurementUnit  @relation("IngredientPurchaseUnit", fields: [purchaseUnitId], references: [id], onDelete: Restrict)
+
+  createdAt       DateTime         @default(now()) @db.Timestamptz(3)
+
+  @@index([ingredientId, effectiveFrom])
+  @@map("ingredient_prices")
 }

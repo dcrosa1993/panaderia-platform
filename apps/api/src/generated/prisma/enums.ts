@@ -16,3 +16,12 @@ export const MembershipRole = {
 } as const
 
 export type MembershipRole = (typeof MembershipRole)[keyof typeof MembershipRole]
+
+
+export const MeasurementDimension = {
+  MASS: 'MASS',
+  VOLUME: 'VOLUME',
+  COUNT: 'COUNT'
+} as const
+
+export type MeasurementDimension = (typeof MeasurementDimension)[keyof typeof MeasurementDimension]

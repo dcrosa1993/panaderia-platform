@@ -1,10 +1,10 @@
-
 import { Routes } from '@angular/router';
 import { authGuard, guestGuard } from './core/auth/auth.guard';
 import { HomePage } from './features/home/home-page';
 import { LoginPage } from './features/auth/login-page';
 import { RegisterPage } from './features/auth/register-page';
 import { MainLayout } from './features/layout/main-layout';
+import { IngredientsPage } from './features/ingredients/ingredients-page';
 
 export const routes: Routes = [
   {
@@ -38,6 +38,11 @@ export const routes: Routes = [
         path: '',
         component: HomePage,
         title: 'Inicio | Panadería',
+      },
+      {
+        path: 'ingredients',
+        component: IngredientsPage,
+        title: 'Ingredientes | Panadería',
       },
     ],
   },

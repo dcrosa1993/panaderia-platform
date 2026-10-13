@@ -121,6 +121,19 @@ export class AuthService {
     }
   }
 
+  addBusinessToSession(business: BusinessSummary): void {
+    const current = this.businesses();
+
+    if (!current.some((item) => item.id === business.id)) {
+      this.businesses.set([...current, business]);
+    }
+
+    this.activeBusinessId.set(business.id);
+
+    this.writeActiveBusinessId(business.id);
+    this.writeSession();
+  }
+
   private saveSession(response: AuthResponse): void {
     this.accessToken.set(response.accessToken);
     this.user.set(response.user);

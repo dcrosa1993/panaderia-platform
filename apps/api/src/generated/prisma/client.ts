@@ -56,3 +56,18 @@ export type Business = Prisma.BusinessModel
  * 
  */
 export type Membership = Prisma.MembershipModel
+/**
+ * Model MeasurementUnit
+ * 
+ */
+export type MeasurementUnit = Prisma.MeasurementUnitModel
+/**
+ * Model Ingredient
+ * 
+ */
+export type Ingredient = Prisma.IngredientModel
+/**
+ * Model IngredientPrice
+ * 
+ */
+export type IngredientPrice = Prisma.IngredientPriceModel
