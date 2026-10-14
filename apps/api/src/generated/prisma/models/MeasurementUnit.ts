@@ -258,6 +258,8 @@ export type MeasurementUnitWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"MeasurementUnit"> | Date | string
   baseIngredients?: Prisma.IngredientListRelationFilter
   purchasePrices?: Prisma.IngredientPriceListRelationFilter
+  productsByProductionUnit?: Prisma.ProductListRelationFilter
+  productsByTargetWeight?: Prisma.ProductListRelationFilter
 }
 
 export type MeasurementUnitOrderByWithRelationInput = {
@@ -273,6 +275,8 @@ export type MeasurementUnitOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   baseIngredients?: Prisma.IngredientOrderByRelationAggregateInput
   purchasePrices?: Prisma.IngredientPriceOrderByRelationAggregateInput
+  productsByProductionUnit?: Prisma.ProductOrderByRelationAggregateInput
+  productsByTargetWeight?: Prisma.ProductOrderByRelationAggregateInput
 }
 
 export type MeasurementUnitWhereUniqueInput = Prisma.AtLeast<{
@@ -291,6 +295,8 @@ export type MeasurementUnitWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"MeasurementUnit"> | Date | string
   baseIngredients?: Prisma.IngredientListRelationFilter
   purchasePrices?: Prisma.IngredientPriceListRelationFilter
+  productsByProductionUnit?: Prisma.ProductListRelationFilter
+  productsByTargetWeight?: Prisma.ProductListRelationFilter
 }, "id" | "code">
 
 export type MeasurementUnitOrderByWithAggregationInput = {
@@ -340,6 +346,8 @@ export type MeasurementUnitCreateInput = {
   updatedAt?: Date | string
   baseIngredients?: Prisma.IngredientCreateNestedManyWithoutBaseUnitInput
   purchasePrices?: Prisma.IngredientPriceCreateNestedManyWithoutPurchaseUnitInput
+  productsByProductionUnit?: Prisma.ProductCreateNestedManyWithoutProductionUnitInput
+  productsByTargetWeight?: Prisma.ProductCreateNestedManyWithoutTargetWeightUnitInput
 }
 
 export type MeasurementUnitUncheckedCreateInput = {
@@ -355,6 +363,8 @@ export type MeasurementUnitUncheckedCreateInput = {
   updatedAt?: Date | string
   baseIngredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutBaseUnitInput
   purchasePrices?: Prisma.IngredientPriceUncheckedCreateNestedManyWithoutPurchaseUnitInput
+  productsByProductionUnit?: Prisma.ProductUncheckedCreateNestedManyWithoutProductionUnitInput
+  productsByTargetWeight?: Prisma.ProductUncheckedCreateNestedManyWithoutTargetWeightUnitInput
 }
 
 export type MeasurementUnitUpdateInput = {
@@ -370,6 +380,8 @@ export type MeasurementUnitUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   baseIngredients?: Prisma.IngredientUpdateManyWithoutBaseUnitNestedInput
   purchasePrices?: Prisma.IngredientPriceUpdateManyWithoutPurchaseUnitNestedInput
+  productsByProductionUnit?: Prisma.ProductUpdateManyWithoutProductionUnitNestedInput
+  productsByTargetWeight?: Prisma.ProductUpdateManyWithoutTargetWeightUnitNestedInput
 }
 
 export type MeasurementUnitUncheckedUpdateInput = {
@@ -385,6 +397,8 @@ export type MeasurementUnitUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   baseIngredients?: Prisma.IngredientUncheckedUpdateManyWithoutBaseUnitNestedInput
   purchasePrices?: Prisma.IngredientPriceUncheckedUpdateManyWithoutPurchaseUnitNestedInput
+  productsByProductionUnit?: Prisma.ProductUncheckedUpdateManyWithoutProductionUnitNestedInput
+  productsByTargetWeight?: Prisma.ProductUncheckedUpdateManyWithoutTargetWeightUnitNestedInput
 }
 
 export type MeasurementUnitCreateManyInput = {
@@ -478,6 +492,11 @@ export type MeasurementUnitScalarRelationFilter = {
   isNot?: Prisma.MeasurementUnitWhereInput
 }
 
+export type MeasurementUnitNullableScalarRelationFilter = {
+  is?: Prisma.MeasurementUnitWhereInput | null
+  isNot?: Prisma.MeasurementUnitWhereInput | null
+}
+
 export type EnumMeasurementDimensionFieldUpdateOperationsInput = {
   set?: $Enums.MeasurementDimension
 }
@@ -522,6 +541,36 @@ export type MeasurementUnitUpdateOneRequiredWithoutPurchasePricesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MeasurementUnitUpdateToOneWithWhereWithoutPurchasePricesInput, Prisma.MeasurementUnitUpdateWithoutPurchasePricesInput>, Prisma.MeasurementUnitUncheckedUpdateWithoutPurchasePricesInput>
 }
 
+export type MeasurementUnitCreateNestedOneWithoutProductsByProductionUnitInput = {
+  create?: Prisma.XOR<Prisma.MeasurementUnitCreateWithoutProductsByProductionUnitInput, Prisma.MeasurementUnitUncheckedCreateWithoutProductsByProductionUnitInput>
+  connectOrCreate?: Prisma.MeasurementUnitCreateOrConnectWithoutProductsByProductionUnitInput
+  connect?: Prisma.MeasurementUnitWhereUniqueInput
+}
+
+export type MeasurementUnitCreateNestedOneWithoutProductsByTargetWeightInput = {
+  create?: Prisma.XOR<Prisma.MeasurementUnitCreateWithoutProductsByTargetWeightInput, Prisma.MeasurementUnitUncheckedCreateWithoutProductsByTargetWeightInput>
+  connectOrCreate?: Prisma.MeasurementUnitCreateOrConnectWithoutProductsByTargetWeightInput
+  connect?: Prisma.MeasurementUnitWhereUniqueInput
+}
+
+export type MeasurementUnitUpdateOneRequiredWithoutProductsByProductionUnitNestedInput = {
+  create?: Prisma.XOR<Prisma.MeasurementUnitCreateWithoutProductsByProductionUnitInput, Prisma.MeasurementUnitUncheckedCreateWithoutProductsByProductionUnitInput>
+  connectOrCreate?: Prisma.MeasurementUnitCreateOrConnectWithoutProductsByProductionUnitInput
+  upsert?: Prisma.MeasurementUnitUpsertWithoutProductsByProductionUnitInput
+  connect?: Prisma.MeasurementUnitWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MeasurementUnitUpdateToOneWithWhereWithoutProductsByProductionUnitInput, Prisma.MeasurementUnitUpdateWithoutProductsByProductionUnitInput>, Prisma.MeasurementUnitUncheckedUpdateWithoutProductsByProductionUnitInput>
+}
+
+export type MeasurementUnitUpdateOneWithoutProductsByTargetWeightNestedInput = {
+  create?: Prisma.XOR<Prisma.MeasurementUnitCreateWithoutProductsByTargetWeightInput, Prisma.MeasurementUnitUncheckedCreateWithoutProductsByTargetWeightInput>
+  connectOrCreate?: Prisma.MeasurementUnitCreateOrConnectWithoutProductsByTargetWeightInput
+  upsert?: Prisma.MeasurementUnitUpsertWithoutProductsByTargetWeightInput
+  disconnect?: Prisma.MeasurementUnitWhereInput | boolean
+  delete?: Prisma.MeasurementUnitWhereInput | boolean
+  connect?: Prisma.MeasurementUnitWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MeasurementUnitUpdateToOneWithWhereWithoutProductsByTargetWeightInput, Prisma.MeasurementUnitUpdateWithoutProductsByTargetWeightInput>, Prisma.MeasurementUnitUncheckedUpdateWithoutProductsByTargetWeightInput>
+}
+
 export type MeasurementUnitCreateWithoutBaseIngredientsInput = {
   id?: string
   code: string
@@ -534,6 +583,8 @@ export type MeasurementUnitCreateWithoutBaseIngredientsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   purchasePrices?: Prisma.IngredientPriceCreateNestedManyWithoutPurchaseUnitInput
+  productsByProductionUnit?: Prisma.ProductCreateNestedManyWithoutProductionUnitInput
+  productsByTargetWeight?: Prisma.ProductCreateNestedManyWithoutTargetWeightUnitInput
 }
 
 export type MeasurementUnitUncheckedCreateWithoutBaseIngredientsInput = {
@@ -548,6 +599,8 @@ export type MeasurementUnitUncheckedCreateWithoutBaseIngredientsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   purchasePrices?: Prisma.IngredientPriceUncheckedCreateNestedManyWithoutPurchaseUnitInput
+  productsByProductionUnit?: Prisma.ProductUncheckedCreateNestedManyWithoutProductionUnitInput
+  productsByTargetWeight?: Prisma.ProductUncheckedCreateNestedManyWithoutTargetWeightUnitInput
 }
 
 export type MeasurementUnitCreateOrConnectWithoutBaseIngredientsInput = {
@@ -578,6 +631,8 @@ export type MeasurementUnitUpdateWithoutBaseIngredientsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   purchasePrices?: Prisma.IngredientPriceUpdateManyWithoutPurchaseUnitNestedInput
+  productsByProductionUnit?: Prisma.ProductUpdateManyWithoutProductionUnitNestedInput
+  productsByTargetWeight?: Prisma.ProductUpdateManyWithoutTargetWeightUnitNestedInput
 }
 
 export type MeasurementUnitUncheckedUpdateWithoutBaseIngredientsInput = {
@@ -592,6 +647,8 @@ export type MeasurementUnitUncheckedUpdateWithoutBaseIngredientsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   purchasePrices?: Prisma.IngredientPriceUncheckedUpdateManyWithoutPurchaseUnitNestedInput
+  productsByProductionUnit?: Prisma.ProductUncheckedUpdateManyWithoutProductionUnitNestedInput
+  productsByTargetWeight?: Prisma.ProductUncheckedUpdateManyWithoutTargetWeightUnitNestedInput
 }
 
 export type MeasurementUnitCreateWithoutPurchasePricesInput = {
@@ -606,6 +663,8 @@ export type MeasurementUnitCreateWithoutPurchasePricesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   baseIngredients?: Prisma.IngredientCreateNestedManyWithoutBaseUnitInput
+  productsByProductionUnit?: Prisma.ProductCreateNestedManyWithoutProductionUnitInput
+  productsByTargetWeight?: Prisma.ProductCreateNestedManyWithoutTargetWeightUnitInput
 }
 
 export type MeasurementUnitUncheckedCreateWithoutPurchasePricesInput = {
@@ -620,6 +679,8 @@ export type MeasurementUnitUncheckedCreateWithoutPurchasePricesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   baseIngredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutBaseUnitInput
+  productsByProductionUnit?: Prisma.ProductUncheckedCreateNestedManyWithoutProductionUnitInput
+  productsByTargetWeight?: Prisma.ProductUncheckedCreateNestedManyWithoutTargetWeightUnitInput
 }
 
 export type MeasurementUnitCreateOrConnectWithoutPurchasePricesInput = {
@@ -650,6 +711,8 @@ export type MeasurementUnitUpdateWithoutPurchasePricesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   baseIngredients?: Prisma.IngredientUpdateManyWithoutBaseUnitNestedInput
+  productsByProductionUnit?: Prisma.ProductUpdateManyWithoutProductionUnitNestedInput
+  productsByTargetWeight?: Prisma.ProductUpdateManyWithoutTargetWeightUnitNestedInput
 }
 
 export type MeasurementUnitUncheckedUpdateWithoutPurchasePricesInput = {
@@ -664,6 +727,168 @@ export type MeasurementUnitUncheckedUpdateWithoutPurchasePricesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   baseIngredients?: Prisma.IngredientUncheckedUpdateManyWithoutBaseUnitNestedInput
+  productsByProductionUnit?: Prisma.ProductUncheckedUpdateManyWithoutProductionUnitNestedInput
+  productsByTargetWeight?: Prisma.ProductUncheckedUpdateManyWithoutTargetWeightUnitNestedInput
+}
+
+export type MeasurementUnitCreateWithoutProductsByProductionUnitInput = {
+  id?: string
+  code: string
+  name: string
+  symbol: string
+  dimension: $Enums.MeasurementDimension
+  factorToBase: runtime.Decimal | runtime.DecimalJsLike | number | string
+  isBase?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  baseIngredients?: Prisma.IngredientCreateNestedManyWithoutBaseUnitInput
+  purchasePrices?: Prisma.IngredientPriceCreateNestedManyWithoutPurchaseUnitInput
+  productsByTargetWeight?: Prisma.ProductCreateNestedManyWithoutTargetWeightUnitInput
+}
+
+export type MeasurementUnitUncheckedCreateWithoutProductsByProductionUnitInput = {
+  id?: string
+  code: string
+  name: string
+  symbol: string
+  dimension: $Enums.MeasurementDimension
+  factorToBase: runtime.Decimal | runtime.DecimalJsLike | number | string
+  isBase?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  baseIngredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutBaseUnitInput
+  purchasePrices?: Prisma.IngredientPriceUncheckedCreateNestedManyWithoutPurchaseUnitInput
+  productsByTargetWeight?: Prisma.ProductUncheckedCreateNestedManyWithoutTargetWeightUnitInput
+}
+
+export type MeasurementUnitCreateOrConnectWithoutProductsByProductionUnitInput = {
+  where: Prisma.MeasurementUnitWhereUniqueInput
+  create: Prisma.XOR<Prisma.MeasurementUnitCreateWithoutProductsByProductionUnitInput, Prisma.MeasurementUnitUncheckedCreateWithoutProductsByProductionUnitInput>
+}
+
+export type MeasurementUnitCreateWithoutProductsByTargetWeightInput = {
+  id?: string
+  code: string
+  name: string
+  symbol: string
+  dimension: $Enums.MeasurementDimension
+  factorToBase: runtime.Decimal | runtime.DecimalJsLike | number | string
+  isBase?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  baseIngredients?: Prisma.IngredientCreateNestedManyWithoutBaseUnitInput
+  purchasePrices?: Prisma.IngredientPriceCreateNestedManyWithoutPurchaseUnitInput
+  productsByProductionUnit?: Prisma.ProductCreateNestedManyWithoutProductionUnitInput
+}
+
+export type MeasurementUnitUncheckedCreateWithoutProductsByTargetWeightInput = {
+  id?: string
+  code: string
+  name: string
+  symbol: string
+  dimension: $Enums.MeasurementDimension
+  factorToBase: runtime.Decimal | runtime.DecimalJsLike | number | string
+  isBase?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  baseIngredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutBaseUnitInput
+  purchasePrices?: Prisma.IngredientPriceUncheckedCreateNestedManyWithoutPurchaseUnitInput
+  productsByProductionUnit?: Prisma.ProductUncheckedCreateNestedManyWithoutProductionUnitInput
+}
+
+export type MeasurementUnitCreateOrConnectWithoutProductsByTargetWeightInput = {
+  where: Prisma.MeasurementUnitWhereUniqueInput
+  create: Prisma.XOR<Prisma.MeasurementUnitCreateWithoutProductsByTargetWeightInput, Prisma.MeasurementUnitUncheckedCreateWithoutProductsByTargetWeightInput>
+}
+
+export type MeasurementUnitUpsertWithoutProductsByProductionUnitInput = {
+  update: Prisma.XOR<Prisma.MeasurementUnitUpdateWithoutProductsByProductionUnitInput, Prisma.MeasurementUnitUncheckedUpdateWithoutProductsByProductionUnitInput>
+  create: Prisma.XOR<Prisma.MeasurementUnitCreateWithoutProductsByProductionUnitInput, Prisma.MeasurementUnitUncheckedCreateWithoutProductsByProductionUnitInput>
+  where?: Prisma.MeasurementUnitWhereInput
+}
+
+export type MeasurementUnitUpdateToOneWithWhereWithoutProductsByProductionUnitInput = {
+  where?: Prisma.MeasurementUnitWhereInput
+  data: Prisma.XOR<Prisma.MeasurementUnitUpdateWithoutProductsByProductionUnitInput, Prisma.MeasurementUnitUncheckedUpdateWithoutProductsByProductionUnitInput>
+}
+
+export type MeasurementUnitUpdateWithoutProductsByProductionUnitInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  dimension?: Prisma.EnumMeasurementDimensionFieldUpdateOperationsInput | $Enums.MeasurementDimension
+  factorToBase?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  isBase?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  baseIngredients?: Prisma.IngredientUpdateManyWithoutBaseUnitNestedInput
+  purchasePrices?: Prisma.IngredientPriceUpdateManyWithoutPurchaseUnitNestedInput
+  productsByTargetWeight?: Prisma.ProductUpdateManyWithoutTargetWeightUnitNestedInput
+}
+
+export type MeasurementUnitUncheckedUpdateWithoutProductsByProductionUnitInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  dimension?: Prisma.EnumMeasurementDimensionFieldUpdateOperationsInput | $Enums.MeasurementDimension
+  factorToBase?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  isBase?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  baseIngredients?: Prisma.IngredientUncheckedUpdateManyWithoutBaseUnitNestedInput
+  purchasePrices?: Prisma.IngredientPriceUncheckedUpdateManyWithoutPurchaseUnitNestedInput
+  productsByTargetWeight?: Prisma.ProductUncheckedUpdateManyWithoutTargetWeightUnitNestedInput
+}
+
+export type MeasurementUnitUpsertWithoutProductsByTargetWeightInput = {
+  update: Prisma.XOR<Prisma.MeasurementUnitUpdateWithoutProductsByTargetWeightInput, Prisma.MeasurementUnitUncheckedUpdateWithoutProductsByTargetWeightInput>
+  create: Prisma.XOR<Prisma.MeasurementUnitCreateWithoutProductsByTargetWeightInput, Prisma.MeasurementUnitUncheckedCreateWithoutProductsByTargetWeightInput>
+  where?: Prisma.MeasurementUnitWhereInput
+}
+
+export type MeasurementUnitUpdateToOneWithWhereWithoutProductsByTargetWeightInput = {
+  where?: Prisma.MeasurementUnitWhereInput
+  data: Prisma.XOR<Prisma.MeasurementUnitUpdateWithoutProductsByTargetWeightInput, Prisma.MeasurementUnitUncheckedUpdateWithoutProductsByTargetWeightInput>
+}
+
+export type MeasurementUnitUpdateWithoutProductsByTargetWeightInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  dimension?: Prisma.EnumMeasurementDimensionFieldUpdateOperationsInput | $Enums.MeasurementDimension
+  factorToBase?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  isBase?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  baseIngredients?: Prisma.IngredientUpdateManyWithoutBaseUnitNestedInput
+  purchasePrices?: Prisma.IngredientPriceUpdateManyWithoutPurchaseUnitNestedInput
+  productsByProductionUnit?: Prisma.ProductUpdateManyWithoutProductionUnitNestedInput
+}
+
+export type MeasurementUnitUncheckedUpdateWithoutProductsByTargetWeightInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  dimension?: Prisma.EnumMeasurementDimensionFieldUpdateOperationsInput | $Enums.MeasurementDimension
+  factorToBase?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  isBase?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  baseIngredients?: Prisma.IngredientUncheckedUpdateManyWithoutBaseUnitNestedInput
+  purchasePrices?: Prisma.IngredientPriceUncheckedUpdateManyWithoutPurchaseUnitNestedInput
+  productsByProductionUnit?: Prisma.ProductUncheckedUpdateManyWithoutProductionUnitNestedInput
 }
 
 
@@ -674,11 +899,15 @@ export type MeasurementUnitUncheckedUpdateWithoutPurchasePricesInput = {
 export type MeasurementUnitCountOutputType = {
   baseIngredients: number
   purchasePrices: number
+  productsByProductionUnit: number
+  productsByTargetWeight: number
 }
 
 export type MeasurementUnitCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   baseIngredients?: boolean | MeasurementUnitCountOutputTypeCountBaseIngredientsArgs
   purchasePrices?: boolean | MeasurementUnitCountOutputTypeCountPurchasePricesArgs
+  productsByProductionUnit?: boolean | MeasurementUnitCountOutputTypeCountProductsByProductionUnitArgs
+  productsByTargetWeight?: boolean | MeasurementUnitCountOutputTypeCountProductsByTargetWeightArgs
 }
 
 /**
@@ -705,6 +934,20 @@ export type MeasurementUnitCountOutputTypeCountPurchasePricesArgs<ExtArgs extend
   where?: Prisma.IngredientPriceWhereInput
 }
 
+/**
+ * MeasurementUnitCountOutputType without action
+ */
+export type MeasurementUnitCountOutputTypeCountProductsByProductionUnitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductWhereInput
+}
+
+/**
+ * MeasurementUnitCountOutputType without action
+ */
+export type MeasurementUnitCountOutputTypeCountProductsByTargetWeightArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductWhereInput
+}
+
 
 export type MeasurementUnitSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -719,6 +962,8 @@ export type MeasurementUnitSelect<ExtArgs extends runtime.Types.Extensions.Inter
   updatedAt?: boolean
   baseIngredients?: boolean | Prisma.MeasurementUnit$baseIngredientsArgs<ExtArgs>
   purchasePrices?: boolean | Prisma.MeasurementUnit$purchasePricesArgs<ExtArgs>
+  productsByProductionUnit?: boolean | Prisma.MeasurementUnit$productsByProductionUnitArgs<ExtArgs>
+  productsByTargetWeight?: boolean | Prisma.MeasurementUnit$productsByTargetWeightArgs<ExtArgs>
   _count?: boolean | Prisma.MeasurementUnitCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["measurementUnit"]>
 
@@ -765,6 +1010,8 @@ export type MeasurementUnitOmit<ExtArgs extends runtime.Types.Extensions.Interna
 export type MeasurementUnitInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   baseIngredients?: boolean | Prisma.MeasurementUnit$baseIngredientsArgs<ExtArgs>
   purchasePrices?: boolean | Prisma.MeasurementUnit$purchasePricesArgs<ExtArgs>
+  productsByProductionUnit?: boolean | Prisma.MeasurementUnit$productsByProductionUnitArgs<ExtArgs>
+  productsByTargetWeight?: boolean | Prisma.MeasurementUnit$productsByTargetWeightArgs<ExtArgs>
   _count?: boolean | Prisma.MeasurementUnitCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MeasurementUnitIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -775,6 +1022,8 @@ export type $MeasurementUnitPayload<ExtArgs extends runtime.Types.Extensions.Int
   objects: {
     baseIngredients: Prisma.$IngredientPayload<ExtArgs>[]
     purchasePrices: Prisma.$IngredientPricePayload<ExtArgs>[]
+    productsByProductionUnit: Prisma.$ProductPayload<ExtArgs>[]
+    productsByTargetWeight: Prisma.$ProductPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1183,6 +1432,8 @@ export interface Prisma__MeasurementUnitClient<T, Null = never, ExtArgs extends 
   readonly [Symbol.toStringTag]: "PrismaPromise"
   baseIngredients<T extends Prisma.MeasurementUnit$baseIngredientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MeasurementUnit$baseIngredientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IngredientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   purchasePrices<T extends Prisma.MeasurementUnit$purchasePricesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MeasurementUnit$purchasePricesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IngredientPricePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  productsByProductionUnit<T extends Prisma.MeasurementUnit$productsByProductionUnitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MeasurementUnit$productsByProductionUnitArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  productsByTargetWeight<T extends Prisma.MeasurementUnit$productsByTargetWeightArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MeasurementUnit$productsByTargetWeightArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1660,6 +1911,54 @@ export type MeasurementUnit$purchasePricesArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.IngredientPriceScalarFieldEnum | Prisma.IngredientPriceScalarFieldEnum[]
+}
+
+/**
+ * MeasurementUnit.productsByProductionUnit
+ */
+export type MeasurementUnit$productsByProductionUnitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Product
+   */
+  select?: Prisma.ProductSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Product
+   */
+  omit?: Prisma.ProductOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductInclude<ExtArgs> | null
+  where?: Prisma.ProductWhereInput
+  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
+  cursor?: Prisma.ProductWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
+}
+
+/**
+ * MeasurementUnit.productsByTargetWeight
+ */
+export type MeasurementUnit$productsByTargetWeightArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Product
+   */
+  select?: Prisma.ProductSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Product
+   */
+  omit?: Prisma.ProductOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProductInclude<ExtArgs> | null
+  where?: Prisma.ProductWhereInput
+  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
+  cursor?: Prisma.ProductWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
 }
 
 /**

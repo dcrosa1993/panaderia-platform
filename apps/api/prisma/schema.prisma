@@ -40,6 +40,7 @@ model Business {
 
   memberships  Membership[]
   ingredients  Ingredient[]
+  products Product[]
 
   createdAt    DateTime     @default(now()) @db.Timestamptz(3)
   updatedAt    DateTime     @updatedAt @db.Timestamptz(3)
@@ -76,6 +77,8 @@ model MeasurementUnit {
 
   baseIngredients Ingredient[]        @relation("IngredientBaseUnit")
   purchasePrices  IngredientPrice[]   @relation("IngredientPurchaseUnit")
+  productsByProductionUnit Product[] @relation("ProductProductionUnit")
+  productsByTargetWeight   Product[] @relation("ProductTargetWeightUnit")
 
   createdAt      DateTime             @default(now()) @db.Timestamptz(3)
   updatedAt      DateTime             @updatedAt @db.Timestamptz(3)
@@ -120,4 +123,28 @@ model IngredientPrice {
 
   @@index([ingredientId, effectiveFrom])
   @@map("ingredient_prices")
+}
+
+
+model Product {
+  id                   String          @id @default(cuid())
+  businessId           String
+  name                 String          @db.VarChar(160)
+  normalizedName       String          @db.VarChar(160)
+  description          String?         @db.VarChar(500)
+  productionUnitId     String
+  targetFinishedWeight Decimal?        @db.Decimal(18, 6)
+  targetWeightUnitId   String?
+  isActive             Boolean         @default(true)
+
+  business             Business        @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  productionUnit       MeasurementUnit @relation("ProductProductionUnit", fields: [productionUnitId], references: [id], onDelete: Restrict)
+  targetWeightUnit     MeasurementUnit? @relation("ProductTargetWeightUnit", fields: [targetWeightUnitId], references: [id], onDelete: Restrict)
+
+  createdAt            DateTime        @default(now()) @db.Timestamptz(3)
+  updatedAt            DateTime        @updatedAt @db.Timestamptz(3)
+
+  @@unique([businessId, normalizedName])
+  @@index([businessId, isActive])
+  @@map("products")
 }

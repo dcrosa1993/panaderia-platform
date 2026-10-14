@@ -5,6 +5,7 @@ import { LoginPage } from './features/auth/login-page';
 import { RegisterPage } from './features/auth/register-page';
 import { MainLayout } from './features/layout/main-layout';
 import { IngredientsPage } from './features/ingredients/ingredients-page';
+import { ProductsPage } from './features/products/products-page';
 
 export const routes: Routes = [
   {
@@ -43,6 +44,11 @@ export const routes: Routes = [
         path: 'ingredients',
         component: IngredientsPage,
         title: 'Ingredientes | Panadería',
+      },
+      {
+        path: 'products',
+        component: ProductsPage,
+        title: 'Productos | Panadería',
       },
     ],
   },

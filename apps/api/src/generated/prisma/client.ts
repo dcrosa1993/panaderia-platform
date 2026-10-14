@@ -71,3 +71,8 @@ export type Ingredient = Prisma.IngredientModel
  * 
  */
 export type IngredientPrice = Prisma.IngredientPriceModel
+/**
+ * Model Product
+ * 
+ */
+export type Product = Prisma.ProductModel
