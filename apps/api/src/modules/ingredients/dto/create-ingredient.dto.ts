@@ -1,4 +1,3 @@
-
 import { Transform, Type } from 'class-transformer';
 import {
   IsNotEmpty,
@@ -12,9 +11,7 @@ import {
 
 export class CreateIngredientPriceDto {
   @Transform(({ value }) =>
-    typeof value === 'string'
-      ? value.trim().replace(',', '.')
-      : value,
+    typeof value === 'string' ? value.trim().replace(',', '.') : value,
   )
   @IsString()
   @Matches(/^\d{1,12}(?:\.\d{1,6})?$/, {
@@ -28,9 +25,7 @@ export class CreateIngredientPriceDto {
   purchaseUnitId!: string;
 
   @Transform(({ value }) =>
-    typeof value === 'string'
-      ? value.trim().replace(',', '.')
-      : value,
+    typeof value === 'string' ? value.trim().replace(',', '.') : value,
   )
   @IsString()
   @Matches(/^\d{1,14}(?:\.\d{1,4})?$/, {
@@ -40,17 +35,13 @@ export class CreateIngredientPriceDto {
 }
 
 export class CreateIngredientDto {
-  @Transform(({ value }) =>
-    typeof value === 'string' ? value.trim() : value,
-  )
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsString()
   @MinLength(2)
   @MaxLength(160)
   name!: string;
 
-  @Transform(({ value }) =>
-    typeof value === 'string' ? value.trim() : value,
-  )
+  @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsOptional()
   @IsString()
   @MaxLength(500)
@@ -60,6 +51,14 @@ export class CreateIngredientDto {
   @IsNotEmpty()
   @MaxLength(30)
   baseUnitId!: string;
+
+  @Transform(({ value }) =>
+    typeof value === 'string' ? value.trim().replace(',', '.') : value,
+  )
+  @IsOptional()
+  @IsString()
+  @Matches(/^\d{1,6}(?:\.\d{1,6})?$/)
+  densityGramsPerMl?: string | null;
 
   @ValidateNested()
   @Type(() => CreateIngredientPriceDto)

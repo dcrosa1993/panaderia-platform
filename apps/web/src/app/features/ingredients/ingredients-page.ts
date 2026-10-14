@@ -95,6 +95,15 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
               (input)="setSearch($event)"
             />
           </div>
+          <label class="mt-3 flex items-center gap-2 text-sm text-slate-600">
+            <input
+              type="checkbox"
+              [checked]="includeInactive()"
+              (change)="setIncludeInactive($event)"
+              class="size-4 accent-emerald-700"
+            />
+            Mostrar ingredientes archivados
+          </label>
         </div>
 
         <nz-table
@@ -185,9 +194,34 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
                     nzType="default"
                     nzSize="small"
                     type="button"
+                    [disabled]="!ingredient.isActive"
                     (click)="openPriceModal(ingredient)"
                   >
                     Actualizar precio
+                  </button>
+
+                  @if (ingredient.baseUnit.dimension === 'VOLUME') {
+                    <button
+                      nz-button
+                      nzType="default"
+                      nzSize="small"
+                      type="button"
+                      (click)="openDensityModal(ingredient)"
+                    >
+                      {{ ingredient.densityGramsPerMl ? 'Editar densidad' : 'Configurar densidad' }}
+                    </button>
+                  }
+
+                  <button
+                    nz-button
+                    nzType="default"
+                    nzSize="small"
+                    type="button"
+                    [nzLoading]="isUpdatingIngredient(ingredient.id)"
+                    [disabled]="isUpdatingIngredient(ingredient.id)"
+                    (click)="toggleIngredientStatus(ingredient)"
+                  >
+                    {{ ingredient.isActive ? 'Archivar' : 'Reactivar' }}
                   </button>
                 </td>
               </tr>
@@ -268,6 +302,40 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
               }
             </nz-select>
           </div>
+
+          @if (requiresDensity()) {
+            <div class="rounded-xl border border-blue-100 bg-blue-50/50 p-4">
+              <label
+                for="ingredientDensity"
+                class="mb-2 block text-sm font-semibold text-slate-700"
+              >
+                Densidad (g/ml)
+              </label>
+
+              <input
+                nz-input
+                id="ingredientDensity"
+                type="text"
+                inputmode="decimal"
+                formControlName="densityGramsPerMl"
+                placeholder="Ej. 1.000"
+              />
+
+              <p class="mt-2 text-xs leading-5 text-slate-600">
+                Es necesaria para convertir las cantidades de las recetas, calculadas por peso, al
+                volumen que debes medir.
+              </p>
+
+              @if (
+                createForm.controls.densityGramsPerMl.touched &&
+                createForm.controls.densityGramsPerMl.invalid
+              ) {
+                <p class="mt-1 text-xs text-red-600">
+                  Introduce una densidad positiva, por ejemplo 1.000 para agua.
+                </p>
+              }
+            </div>
+          }
 
           <div class="rounded-xl border border-blue-100 bg-blue-50/50 p-4">
             <h3 class="mb-3 text-sm font-semibold text-slate-900">Precio de compra inicial</h3>
@@ -353,6 +421,69 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
             </button>
           </div>
         </form>
+      </ng-container>
+    </nz-modal>
+
+    <nz-modal
+      [nzVisible]="densityVisible()"
+      nzTitle="Configurar densidad"
+      [nzFooter]="null"
+      [nzMaskClosable]="false"
+      [nzClosable]="!savingDensity()"
+      (nzOnCancel)="closeDensityModal()"
+    >
+      <ng-container *nzModalContent>
+        @if (densityIngredient(); as ingredient) {
+          <p class="mb-4 text-sm leading-6 text-slate-600">
+            Configura la densidad de {{ ingredient.name }} para convertir correctamente sus
+            cantidades en las recetas.
+          </p>
+
+          @if (densityError()) {
+            <nz-alert class="mb-4 block" nzType="error" nzShowIcon [nzMessage]="densityError()!" />
+          }
+
+          <form [formGroup]="densityForm" (ngSubmit)="saveDensity()" class="space-y-4" novalidate>
+            <div>
+              <label
+                for="editIngredientDensity"
+                class="mb-2 block text-sm font-semibold text-slate-700"
+              >
+                Densidad (g/ml)
+              </label>
+
+              <input
+                nz-input
+                id="editIngredientDensity"
+                type="text"
+                inputmode="decimal"
+                formControlName="densityGramsPerMl"
+                placeholder="Ej. 1.000"
+              />
+            </div>
+
+            <div class="flex justify-end gap-2 border-t border-slate-100 pt-4">
+              <button
+                nz-button
+                type="button"
+                [disabled]="savingDensity()"
+                (click)="closeDensityModal()"
+              >
+                Cancelar
+              </button>
+
+              <button
+                nz-button
+                nzType="primary"
+                type="submit"
+                [nzLoading]="savingDensity()"
+                [disabled]="densityForm.invalid || savingDensity()"
+              >
+                Guardar densidad
+              </button>
+            </div>
+          </form>
+        }
       </ng-container>
     </nz-modal>
 
@@ -526,6 +657,18 @@ export class IngredientsPage {
 
   readonly selectedBaseDimension = signal<MeasurementDimension | null>(null);
 
+  readonly includeInactive = signal(false);
+  readonly updatingIngredientIds = signal<string[]>([]);
+
+  readonly densityVisible = signal(false);
+  readonly savingDensity = signal(false);
+  readonly densityError = signal<string | null>(null);
+  readonly densityIngredient = signal<Ingredient | null>(null);
+
+  readonly densityForm = this.fb.nonNullable.group({
+    densityGramsPerMl: ['', [Validators.required, Validators.pattern(/^\d{1,6}(?:[.,]\d{1,6})?$/)]],
+  });
+
   readonly filteredIngredients = computed(() => {
     const term = this.searchTerm().trim().toLocaleLowerCase();
 
@@ -549,6 +692,8 @@ export class IngredientsPage {
     return this.units().filter((unit) => dimension !== null && unit.dimension === dimension);
   });
 
+  readonly requiresDensity = computed(() => this.selectedBaseDimension() === 'VOLUME');
+
   readonly pricePurchaseUnits = computed(() => {
     const dimension = this.selectedIngredient()?.baseUnit.dimension ?? null;
 
@@ -559,6 +704,7 @@ export class IngredientsPage {
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(160)]],
     description: ['', [Validators.maxLength(500)]],
     baseUnitId: ['', [Validators.required]],
+    densityGramsPerMl: ['', [Validators.pattern(/^\d{1,6}(?:[.,]\d{1,6})?$/)]],
     purchaseQuantity: [
       '25',
       [
@@ -570,7 +716,7 @@ export class IngredientsPage {
     purchaseUnitId: ['', [Validators.required]],
     totalPrice: [
       '',
-      [Validators.required, Validators.pattern(/^\d{1,14}(?:\.\d{1,4})?$/), Validators.min(0.0001)],
+      [Validators.required, Validators.pattern(/^\d{1,14}(?:\.\d{1,4})?$/), Validators.min(0)],
     ],
   });
 
@@ -586,7 +732,7 @@ export class IngredientsPage {
     purchaseUnitId: ['', [Validators.required]],
     totalPrice: [
       '',
-      [Validators.required, Validators.pattern(/^\d{1,14}(?:\.\d{1,4})?$/), Validators.min(0.0001)],
+      [Validators.required, Validators.pattern(/^\d{1,14}(?:\.\d{1,4})?$/), Validators.min(0)],
     ],
   });
 
@@ -603,7 +749,7 @@ export class IngredientsPage {
         return;
       }
 
-      this.loadIngredients(businessId);
+      this.loadIngredients(businessId, this.includeInactive());
     });
 
     this.createForm.controls.baseUnitId.valueChanges
@@ -629,6 +775,7 @@ export class IngredientsPage {
               purchaseUnit?.dimension === baseUnit.dimension ? purchaseUnit.id : baseUnit.id,
           });
         }
+        this.syncDensityValidators();
       },
       error: (error: unknown) => {
         this.loadingUnits.set(false);
@@ -639,6 +786,68 @@ export class IngredientsPage {
 
   setSearch(event: Event): void {
     this.searchTerm.set((event.target as HTMLInputElement).value);
+  }
+
+  setIncludeInactive(event: Event): void {
+    const includeInactive = (event.target as HTMLInputElement).checked;
+
+    this.includeInactive.set(includeInactive);
+
+    const businessId = this.auth.activeBusinessId();
+
+    if (businessId) {
+      this.loadIngredients(businessId, includeInactive);
+    }
+  }
+
+  isUpdatingIngredient(ingredientId: string): boolean {
+    return this.updatingIngredientIds().includes(ingredientId);
+  }
+
+  toggleIngredientStatus(ingredient: Ingredient): void {
+    const businessId = this.auth.activeBusinessId();
+
+    if (!businessId || this.isUpdatingIngredient(ingredient.id)) {
+      return;
+    }
+
+    const nextIsActive = !ingredient.isActive;
+
+    this.updatingIngredientIds.update((ids) => [...ids, ingredient.id]);
+
+    this.ingredientsApi
+      .update(businessId, ingredient.id, {
+        isActive: nextIsActive,
+      })
+      .pipe(
+        finalize(() => {
+          this.updatingIngredientIds.update((ids) => ids.filter((id) => id !== ingredient.id));
+        }),
+      )
+      .subscribe({
+        next: (updatedIngredient) => {
+          if (this.auth.activeBusinessId() !== businessId) {
+            return;
+          }
+
+          this.ingredients.update((current) => {
+            const updated = current.map((item) =>
+              item.id === updatedIngredient.id ? updatedIngredient : item,
+            );
+
+            return this.includeInactive() ? updated : updated.filter((item) => item.isActive);
+          });
+
+          this.message.success(
+            nextIsActive
+              ? 'Ingrediente reactivado correctamente.'
+              : 'Ingrediente archivado correctamente.',
+          );
+        },
+        error: (error: unknown) => {
+          this.message.error(apiErrorMessage(error));
+        },
+      });
   }
 
   formatMoney(value: string): string {
@@ -677,6 +886,7 @@ export class IngredientsPage {
       name: '',
       description: '',
       baseUnitId: baseUnit.id,
+      densityGramsPerMl: '',
       purchaseQuantity: '25',
       purchaseUnitId: purchaseUnit.dimension === baseUnit.dimension ? purchaseUnit.id : baseUnit.id,
       totalPrice: '',
@@ -708,6 +918,11 @@ export class IngredientsPage {
 
     const value = this.createForm.getRawValue();
 
+    if (this.requiresDensity() && Number(value.densityGramsPerMl.replace(',', '.')) <= 0) {
+      this.createError.set('La densidad debe ser mayor que cero.');
+      return;
+    }
+
     this.createError.set(null);
     this.savingCreate.set(true);
 
@@ -716,6 +931,9 @@ export class IngredientsPage {
         name: value.name.trim(),
         description: value.description.trim() || undefined,
         baseUnitId: value.baseUnitId,
+        densityGramsPerMl: value.densityGramsPerMl.trim()
+          ? value.densityGramsPerMl.trim().replace(',', '.')
+          : undefined,
         initialPrice: {
           purchaseQuantity: value.purchaseQuantity,
           purchaseUnitId: value.purchaseUnitId,
@@ -755,6 +973,75 @@ export class IngredientsPage {
     });
 
     this.loadPriceHistory(ingredient.id);
+  }
+
+  openDensityModal(ingredient: Ingredient): void {
+    this.densityIngredient.set(ingredient);
+    this.densityError.set(null);
+    this.densityForm.reset({
+      densityGramsPerMl: ingredient.densityGramsPerMl ?? '',
+    });
+    this.densityVisible.set(true);
+  }
+
+  closeDensityModal(): void {
+    if (this.savingDensity()) {
+      return;
+    }
+
+    this.densityVisible.set(false);
+    this.densityIngredient.set(null);
+    this.densityError.set(null);
+  }
+
+  saveDensity(): void {
+    if (this.densityForm.invalid || this.savingDensity()) {
+      this.densityForm.markAllAsTouched();
+      return;
+    }
+
+    const businessId = this.auth.activeBusinessId();
+    const ingredient = this.densityIngredient();
+
+    if (!businessId || !ingredient) {
+      this.densityError.set('No se pudo identificar el ingrediente o el negocio.');
+      return;
+    }
+
+    const density = this.densityForm.controls.densityGramsPerMl.value.trim().replace(',', '.');
+
+    if (!Number.isFinite(Number(density)) || Number(density) <= 0) {
+      this.densityError.set('La densidad debe ser mayor que cero.');
+      return;
+    }
+
+    this.densityError.set(null);
+    this.savingDensity.set(true);
+
+    this.ingredientsApi
+      .update(businessId, ingredient.id, {
+        densityGramsPerMl: density,
+      })
+      .pipe(finalize(() => this.savingDensity.set(false)))
+      .subscribe({
+        next: (updated) => {
+          if (this.auth.activeBusinessId() !== businessId) {
+            this.closeDensityModal();
+            return;
+          }
+
+          this.ingredients.update((current) =>
+            current.map((item) => (item.id === updated.id ? updated : item)),
+          );
+
+          this.densityVisible.set(false);
+          this.densityIngredient.set(null);
+          this.message.success('Densidad guardada correctamente.');
+        },
+        error: (error: unknown) => {
+          this.densityError.set(apiErrorMessage(error));
+        },
+      });
   }
 
   closePriceModal(): void {
@@ -806,14 +1093,14 @@ export class IngredientsPage {
       });
   }
 
-  private loadIngredients(businessId: string): void {
+  private loadIngredients(businessId: string, includeInactive: boolean): void {
     const sequence = ++this.requestSequence;
 
     this.loading.set(true);
     this.pageError.set(null);
 
     this.ingredientsApi
-      .getAll(businessId)
+      .getAll(businessId, undefined, includeInactive)
       .pipe(
         finalize(() => {
           if (sequence === this.requestSequence) {
@@ -834,6 +1121,17 @@ export class IngredientsPage {
           }
         },
       });
+  }
+
+  private syncDensityValidators(): void {
+    const control = this.createForm.controls.densityGramsPerMl;
+
+    control.setValidators([
+      ...(this.requiresDensity() ? [Validators.required] : []),
+      Validators.pattern(/^\d{1,6}(?:[.,]\d{1,6})?$/),
+    ]);
+
+    control.updateValueAndValidity({ emitEvent: false });
   }
 
   private loadPriceHistory(ingredientId: string): void {

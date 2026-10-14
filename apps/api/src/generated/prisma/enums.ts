@@ -25,3 +25,12 @@ export const MeasurementDimension = {
 } as const
 
 export type MeasurementDimension = (typeof MeasurementDimension)[keyof typeof MeasurementDimension]
+
+
+export const RecipeVersionStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  SUPERSEDED: 'SUPERSEDED'
+} as const
+
+export type RecipeVersionStatus = (typeof RecipeVersionStatus)[keyof typeof RecipeVersionStatus]

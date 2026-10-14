@@ -52,3 +52,13 @@ export type IngredientPrice = Prisma.IngredientPriceModel
  * 
  */
 export type Product = Prisma.ProductModel
+/**
+ * Model RecipeVersion
+ * 
+ */
+export type RecipeVersion = Prisma.RecipeVersionModel
+/**
+ * Model RecipeIngredient
+ * 
+ */
+export type RecipeIngredient = Prisma.RecipeIngredientModel

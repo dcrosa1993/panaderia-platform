@@ -1,4 +1,3 @@
-
 import {
   Body,
   Controller,
@@ -12,27 +11,30 @@ import {
 import { CurrentUser } from '../auth/current-user.decorator.js';
 import type { AuthenticatedUser } from '../auth/auth.types.js';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard.js';
-import { CreateIngredientDto, CreateIngredientPriceDto } from './dto/create-ingredient.dto.js';
+import {
+  CreateIngredientDto,
+  CreateIngredientPriceDto,
+} from './dto/create-ingredient.dto.js';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto.js';
 import { IngredientsService } from './ingredients.service.js';
 
 @Controller('businesses/:businessId/ingredients')
 @UseGuards(JwtAuthGuard)
 export class IngredientsController {
-  constructor(
-    private readonly ingredientsService: IngredientsService,
-  ) {}
+  constructor(private readonly ingredientsService: IngredientsService) {}
 
   @Get()
   findAll(
     @CurrentUser() user: AuthenticatedUser,
     @Param('businessId') businessId: string,
     @Query('search') search?: string,
+    @Query('includeInactive') includeInactive?: string,
   ) {
     return this.ingredientsService.findForBusiness(
       user.id,
       businessId,
       search,
+      includeInactive === 'true',
     );
   }
 
@@ -42,11 +44,7 @@ export class IngredientsController {
     @Param('businessId') businessId: string,
     @Body() dto: CreateIngredientDto,
   ) {
-    return this.ingredientsService.createForBusiness(
-      user.id,
-      businessId,
-      dto,
-    );
+    return this.ingredientsService.createForBusiness(user.id, businessId, dto);
   }
 
   @Get(':ingredientId/prices')

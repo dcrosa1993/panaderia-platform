@@ -45,7 +45,12 @@ export class IngredientsService {
     private readonly businessesService: BusinessesService,
   ) {}
 
-  async findForBusiness(userId: string, businessId: string, search?: string) {
+  async findForBusiness(
+    userId: string,
+    businessId: string,
+    search?: string,
+    includeInactive = false,
+  ) {
     await this.businessesService.assertMembership(userId, businessId);
 
     const term = search?.trim().slice(0, 100);
@@ -53,7 +58,7 @@ export class IngredientsService {
     const ingredients = await this.prisma.ingredient.findMany({
       where: {
         businessId,
-        isActive: true,
+        ...(includeInactive ? {} : { isActive: true }),
         ...(term
           ? {
               name: {
@@ -87,6 +92,15 @@ export class IngredientsService {
       dto.initialPrice.purchaseUnitId,
     );
 
+    this.validateDensityForIngredient(
+      baseUnit.baseUnit.dimension,
+      dto.densityGramsPerMl,
+    );
+
+    this.validatePurchase(dto.initialPrice);
+
+    this.validatePurchase(dto.initialPrice);
+
     this.validatePurchase(dto.initialPrice);
 
     try {
@@ -97,6 +111,9 @@ export class IngredientsService {
           normalizedName: name.toLowerCase(),
           description: dto.description?.trim() || null,
           baseUnitId: baseUnit.baseUnit.id,
+          densityGramsPerMl: dto.densityGramsPerMl
+            ? new Prisma.Decimal(dto.densityGramsPerMl)
+            : null,
           prices: {
             create: {
               purchaseQuantity: dto.initialPrice.purchaseQuantity,
@@ -170,6 +187,16 @@ export class IngredientsService {
 
     if (dto.isActive !== undefined) {
       data.isActive = dto.isActive;
+    }
+
+    if (dto.densityGramsPerMl !== undefined) {
+      const density = Number(dto.densityGramsPerMl);
+
+      if (!Number.isFinite(density) || density <= 0) {
+        throw new BadRequestException('La densidad debe ser mayor que cero.');
+      }
+
+      data.densityGramsPerMl = new Prisma.Decimal(density);
     }
 
     if (Object.keys(data).length === 0) {
@@ -318,8 +345,27 @@ export class IngredientsService {
       );
     }
 
-    if (!Number.isFinite(price) || price <= 0) {
+    if (!Number.isFinite(price) || price < 0) {
       throw new BadRequestException('El precio total debe ser mayor que cero.');
+    }
+  }
+
+  private validateDensityForIngredient(
+    baseUnitDimension: string,
+    densityGramsPerMl?: string | null,
+  ): void {
+    const value = densityGramsPerMl?.trim();
+
+    if (value && (!Number.isFinite(Number(value)) || Number(value) <= 0)) {
+      throw new BadRequestException(
+        'La densidad debe ser mayor que cero y expresarse en gramos por mililitro.',
+      );
+    }
+
+    if (baseUnitDimension === 'VOLUME' && !value) {
+      throw new BadRequestException(
+        'Los ingredientes con unidad base de volumen necesitan una densidad en g/ml para utilizarse en recetas.',
+      );
     }
   }
 
@@ -336,6 +382,7 @@ export class IngredientsService {
         ...ingredient.baseUnit,
         factorToBase: ingredient.baseUnit.factorToBase.toString(),
       },
+      densityGramsPerMl: ingredient.densityGramsPerMl?.toString() ?? null,
       latestPrice: price
         ? {
             id: price.id,

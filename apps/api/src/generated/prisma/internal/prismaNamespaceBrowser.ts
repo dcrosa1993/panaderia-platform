@@ -57,7 +57,9 @@ export const ModelName = {
   MeasurementUnit: 'MeasurementUnit',
   Ingredient: 'Ingredient',
   IngredientPrice: 'IngredientPrice',
-  Product: 'Product'
+  Product: 'Product',
+  RecipeVersion: 'RecipeVersion',
+  RecipeIngredient: 'RecipeIngredient'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -132,6 +134,7 @@ export const IngredientScalarFieldEnum = {
   normalizedName: 'normalizedName',
   description: 'description',
   baseUnitId: 'baseUnitId',
+  densityGramsPerMl: 'densityGramsPerMl',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -168,6 +171,33 @@ export const ProductScalarFieldEnum = {
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+export const RecipeVersionScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  versionNumber: 'versionNumber',
+  status: 'status',
+  expectedBakeLossPercent: 'expectedBakeLossPercent',
+  notes: 'notes',
+  publishedAt: 'publishedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RecipeVersionScalarFieldEnum = (typeof RecipeVersionScalarFieldEnum)[keyof typeof RecipeVersionScalarFieldEnum]
+
+
+export const RecipeIngredientScalarFieldEnum = {
+  id: 'id',
+  recipeVersionId: 'recipeVersionId',
+  ingredientId: 'ingredientId',
+  bakerPercentage: 'bakerPercentage',
+  isFlourBase: 'isFlourBase',
+  sortOrder: 'sortOrder'
+} as const
+
+export type RecipeIngredientScalarFieldEnum = (typeof RecipeIngredientScalarFieldEnum)[keyof typeof RecipeIngredientScalarFieldEnum]
 
 
 export const SortOrder = {

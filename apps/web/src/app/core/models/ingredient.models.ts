@@ -18,6 +18,7 @@ export interface Ingredient {
   description: string | null;
   isActive: boolean;
   baseUnit: MeasurementUnit;
+  densityGramsPerMl: string | null;
   latestPrice: IngredientPrice | null;
   createdAt: string;
   updatedAt: string;
@@ -27,6 +28,7 @@ export interface CreateIngredientRequest {
   name: string;
   description?: string;
   baseUnitId: string;
+  densityGramsPerMl?: string;
   initialPrice: {
     purchaseQuantity: string;
     purchaseUnitId: string;

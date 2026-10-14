@@ -1,4 +1,3 @@
-
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -21,11 +20,16 @@ export class IngredientsService {
   getAll(
     businessId: string,
     search?: string,
+    includeInactive = false,
   ): Observable<{ ingredients: Ingredient[] }> {
     let params = new HttpParams();
 
     if (search?.trim()) {
       params = params.set('search', search.trim());
+    }
+
+    if (includeInactive) {
+      params = params.set('includeInactive', 'true');
     }
 
     return this.http.get<{ ingredients: Ingredient[] }>(
@@ -34,10 +38,23 @@ export class IngredientsService {
     );
   }
 
-  create(
+  update(
     businessId: string,
-    request: CreateIngredientRequest,
+    ingredientId: string,
+    request: {
+      isActive?: boolean;
+      name?: string;
+      description?: string | null;
+      densityGramsPerMl?: string;
+    },
   ): Observable<Ingredient> {
+    return this.http.patch<Ingredient>(
+      `${this.baseUrl}/${encodeURIComponent(businessId)}/ingredients/${encodeURIComponent(ingredientId)}`,
+      request,
+    );
+  }
+
+  create(businessId: string, request: CreateIngredientRequest): Observable<Ingredient> {
     return this.http.post<Ingredient>(
       `${this.baseUrl}/${encodeURIComponent(businessId)}/ingredients`,
       request,
