@@ -2,11 +2,17 @@
 # --------------------------------------------------
 # Construcción de Angular
 # --------------------------------------------------
+
 FROM node:24-bookworm-slim AS build
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
 
 RUN npm install --global pnpm@12.11.2
+
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/api/package.json ./apps/api/package.json

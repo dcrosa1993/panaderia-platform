@@ -4,6 +4,10 @@
 # --------------------------------------------------
 FROM node:24-bookworm-slim AS base
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /workspace
 
 RUN npm install --global pnpm@12.11.2
@@ -63,11 +67,17 @@ RUN pnpm install --prod --filter ./apps/api --frozen-lockfile
 # --------------------------------------------------
 # Imagen final de la API
 # --------------------------------------------------
+
 FROM node:24-bookworm-slim AS runtime
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssl ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV NODE_ENV=production
 
 WORKDIR /workspace
+
 
 COPY --from=prod-deps /workspace/node_modules ./node_modules
 COPY --from=prod-deps /workspace/apps/api/node_modules ./apps/api/node_modules
