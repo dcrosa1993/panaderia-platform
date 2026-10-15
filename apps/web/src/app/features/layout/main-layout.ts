@@ -126,12 +126,16 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
             ADMINISTRACIÓN
           </p>
 
-          <div
-            class="hidden items-center gap-3 rounded-lg px-3 py-3 text-sm text-slate-400 md:flex"
-          >
-            <span aria-hidden="true">◎</span>
-            Usuarios y negocios
-          </div>
+          @if (auth.activeBusiness()?.role === 'OWNER' || auth.activeBusiness()?.role === 'ADMIN') {
+            <a
+              routerLink="/administration"
+              routerLinkActive="bg-blue-50 font-semibold text-blue-800"
+              class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-slate-600 no-underline transition-colors hover:bg-slate-100"
+            >
+              <span aria-hidden="true">♙</span>
+              Miembros y accesos
+            </a>
+          }
         </nav>
 
         <div class="mt-5 hidden border-t border-slate-200 pt-4 md:mt-auto md:block">

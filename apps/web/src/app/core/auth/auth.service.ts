@@ -1,4 +1,3 @@
-
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { computed, Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
@@ -28,33 +27,21 @@ export class AuthService {
 
   private readonly initialSession = this.readStoredSession();
 
-  readonly accessToken = signal<string | null>(
-    this.initialSession?.accessToken ?? null,
-  );
+  readonly accessToken = signal<string | null>(this.initialSession?.accessToken ?? null);
 
-  readonly user = signal<AuthUser | null>(
-    this.initialSession?.user ?? null,
-  );
+  readonly user = signal<AuthUser | null>(this.initialSession?.user ?? null);
 
-  readonly businesses = signal<BusinessSummary[]>(
-    this.initialSession?.businesses ?? [],
-  );
+  readonly businesses = signal<BusinessSummary[]>(this.initialSession?.businesses ?? []);
 
   readonly activeBusinessId = signal<string | null>(
-    this.resolveActiveBusinessId(
-      this.initialSession?.businesses ?? [],
-    ),
+    this.resolveActiveBusinessId(this.initialSession?.businesses ?? []),
   );
 
   readonly activeBusiness = computed(() => {
     const businesses = this.businesses();
     const activeId = this.activeBusinessId();
 
-    return (
-      businesses.find((business) => business.id === activeId) ??
-      businesses[0] ??
-      null
-    );
+    return businesses.find((business) => business.id === activeId) ?? businesses[0] ?? null;
   });
 
   constructor(private readonly http: HttpClient) {}
@@ -76,28 +63,21 @@ export class AuthService {
       return of(false);
     }
 
-    return this.http
-      .get<AuthProfile>(`${this.baseUrl}/auth/me`)
-      .pipe(
-        tap((profile) => this.updateProfile(profile)),
-        map(() => true),
-        catchError((error: unknown) => {
-          if (
-            error instanceof HttpErrorResponse &&
-            error.status === 401
-          ) {
-            this.logout();
-          }
+    return this.http.get<AuthProfile>(`${this.baseUrl}/auth/me`).pipe(
+      tap((profile) => this.updateProfile(profile)),
+      map(() => true),
+      catchError((error: unknown) => {
+        if (error instanceof HttpErrorResponse && error.status === 401) {
+          this.logout();
+        }
 
-          return of(false);
-        }),
-      );
+        return of(false);
+      }),
+    );
   }
 
   selectBusiness(businessId: string): boolean {
-    const allowed = this.businesses().some(
-      (business) => business.id === businessId,
-    );
+    const allowed = this.businesses().some((business) => business.id === businessId);
 
     if (!allowed) {
       return false;
@@ -134,14 +114,26 @@ export class AuthService {
     this.writeSession();
   }
 
+  updateBusinessRole(businessId: string, role: BusinessSummary['role']): void {
+    const current = this.businesses();
+
+    if (!current.some((business) => business.id === businessId)) {
+      return;
+    }
+
+    this.businesses.set(
+      current.map((business) => (business.id === businessId ? { ...business, role } : business)),
+    );
+
+    this.writeSession();
+  }
+
   private saveSession(response: AuthResponse): void {
     this.accessToken.set(response.accessToken);
     this.user.set(response.user);
     this.businesses.set(response.businesses);
 
-    const activeId = this.resolveActiveBusinessId(
-      response.businesses,
-    );
+    const activeId = this.resolveActiveBusinessId(response.businesses);
 
     this.activeBusinessId.set(activeId);
     this.writeSession();
@@ -152,9 +144,7 @@ export class AuthService {
     this.user.set(profile.user);
     this.businesses.set(profile.businesses);
 
-    const activeId = this.resolveActiveBusinessId(
-      profile.businesses,
-    );
+    const activeId = this.resolveActiveBusinessId(profile.businesses);
 
     this.activeBusinessId.set(activeId);
     this.writeSession();
@@ -175,10 +165,7 @@ export class AuthService {
       businesses: this.businesses(),
     };
 
-    window.sessionStorage.setItem(
-      this.sessionKey,
-      JSON.stringify(session),
-    );
+    window.sessionStorage.setItem(this.sessionKey, JSON.stringify(session));
   }
 
   private readStoredSession(): StoredSession | null {
@@ -209,18 +196,11 @@ export class AuthService {
     }
   }
 
-  private resolveActiveBusinessId(
-    businesses: BusinessSummary[],
-  ): string | null {
+  private resolveActiveBusinessId(businesses: BusinessSummary[]): string | null {
     if (typeof window !== 'undefined') {
-      const storedId = window.sessionStorage.getItem(
-        this.businessKey,
-      );
+      const storedId = window.sessionStorage.getItem(this.businessKey);
 
-      if (
-        storedId &&
-        businesses.some((business) => business.id === storedId)
-      ) {
+      if (storedId && businesses.some((business) => business.id === storedId)) {
         return storedId;
       }
     }
@@ -228,18 +208,13 @@ export class AuthService {
     return businesses[0]?.id ?? null;
   }
 
-  private writeActiveBusinessId(
-    businessId: string | null,
-  ): void {
+  private writeActiveBusinessId(businessId: string | null): void {
     if (typeof window === 'undefined') {
       return;
     }
 
     if (businessId) {
-      window.sessionStorage.setItem(
-        this.businessKey,
-        businessId,
-      );
+      window.sessionStorage.setItem(this.businessKey, businessId);
     } else {
       window.sessionStorage.removeItem(this.businessKey);
     }

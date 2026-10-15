@@ -8,6 +8,7 @@ import { IngredientsPage } from './features/ingredients/ingredients-page';
 import { ProductsPage } from './features/products/products-page';
 import { RecipesPage } from './features/recipes/recipes-page';
 import { EstimationsPage } from './features/estimations/estimations-page';
+import { AdministrationPage } from './features/administration/administration-page';
 
 export const routes: Routes = [
   {
@@ -61,6 +62,11 @@ export const routes: Routes = [
         path: 'estimations',
         component: EstimationsPage,
         title: 'Estimaciones | Panadería',
+      },
+      {
+        path: 'administration',
+        component: AdministrationPage,
+        title: 'Administración | Panadería',
       },
     ],
   },
