@@ -111,6 +111,14 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
             <span aria-hidden="true">▤</span>
             Recetas
           </a>
+          <a
+            routerLink="/estimations"
+            routerLinkActive="bg-blue-50 font-semibold text-blue-800"
+            class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-slate-600 no-underline transition-colors hover:bg-slate-100"
+          >
+            <span aria-hidden="true">◉</span>
+            Estimaciones
+          </a>
 
           <p
             class="hidden px-3 pb-2 pt-5 text-[10px] font-bold tracking-widest text-slate-400 md:block"
