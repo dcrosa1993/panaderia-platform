@@ -405,7 +405,9 @@ export const ModelName = {
   IngredientPrice: 'IngredientPrice',
   Product: 'Product',
   RecipeVersion: 'RecipeVersion',
-  RecipeIngredient: 'RecipeIngredient'
+  RecipeIngredient: 'RecipeIngredient',
+  Estimation: 'Estimation',
+  EstimationIngredient: 'EstimationIngredient'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -421,7 +423,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "business" | "membership" | "measurementUnit" | "ingredient" | "ingredientPrice" | "product" | "recipeVersion" | "recipeIngredient"
+    modelProps: "user" | "business" | "membership" | "measurementUnit" | "ingredient" | "ingredientPrice" | "product" | "recipeVersion" | "recipeIngredient" | "estimation" | "estimationIngredient"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1091,6 +1093,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Estimation: {
+      payload: Prisma.$EstimationPayload<ExtArgs>
+      fields: Prisma.EstimationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EstimationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EstimationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload>
+        }
+        findFirst: {
+          args: Prisma.EstimationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EstimationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload>
+        }
+        findMany: {
+          args: Prisma.EstimationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload>[]
+        }
+        create: {
+          args: Prisma.EstimationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload>
+        }
+        createMany: {
+          args: Prisma.EstimationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EstimationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload>[]
+        }
+        delete: {
+          args: Prisma.EstimationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload>
+        }
+        update: {
+          args: Prisma.EstimationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload>
+        }
+        deleteMany: {
+          args: Prisma.EstimationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EstimationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EstimationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload>[]
+        }
+        upsert: {
+          args: Prisma.EstimationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationPayload>
+        }
+        aggregate: {
+          args: Prisma.EstimationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEstimation>
+        }
+        groupBy: {
+          args: Prisma.EstimationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EstimationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EstimationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EstimationCountAggregateOutputType> | number
+        }
+      }
+    }
+    EstimationIngredient: {
+      payload: Prisma.$EstimationIngredientPayload<ExtArgs>
+      fields: Prisma.EstimationIngredientFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EstimationIngredientFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EstimationIngredientFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload>
+        }
+        findFirst: {
+          args: Prisma.EstimationIngredientFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EstimationIngredientFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload>
+        }
+        findMany: {
+          args: Prisma.EstimationIngredientFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload>[]
+        }
+        create: {
+          args: Prisma.EstimationIngredientCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload>
+        }
+        createMany: {
+          args: Prisma.EstimationIngredientCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EstimationIngredientCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload>[]
+        }
+        delete: {
+          args: Prisma.EstimationIngredientDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload>
+        }
+        update: {
+          args: Prisma.EstimationIngredientUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload>
+        }
+        deleteMany: {
+          args: Prisma.EstimationIngredientDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EstimationIngredientUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EstimationIngredientUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload>[]
+        }
+        upsert: {
+          args: Prisma.EstimationIngredientUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimationIngredientPayload>
+        }
+        aggregate: {
+          args: Prisma.EstimationIngredientAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEstimationIngredient>
+        }
+        groupBy: {
+          args: Prisma.EstimationIngredientGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EstimationIngredientGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EstimationIngredientCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EstimationIngredientCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1252,12 +1402,88 @@ export const RecipeIngredientScalarFieldEnum = {
 export type RecipeIngredientScalarFieldEnum = (typeof RecipeIngredientScalarFieldEnum)[keyof typeof RecipeIngredientScalarFieldEnum]
 
 
+export const EstimationScalarFieldEnum = {
+  id: 'id',
+  businessId: 'businessId',
+  productId: 'productId',
+  recipeVersionId: 'recipeVersionId',
+  createdByUserId: 'createdByUserId',
+  mode: 'mode',
+  productNameSnapshot: 'productNameSnapshot',
+  productProductionUnitCodeSnapshot: 'productProductionUnitCodeSnapshot',
+  recipeVersionNumber: 'recipeVersionNumber',
+  plannedProductCount: 'plannedProductCount',
+  targetFinishedWeightInput: 'targetFinishedWeightInput',
+  targetFinishedWeightUnitCode: 'targetFinishedWeightUnitCode',
+  targetFinishedWeightUnitName: 'targetFinishedWeightUnitName',
+  targetFinishedWeightUnitSymbol: 'targetFinishedWeightUnitSymbol',
+  targetFinishedWeightUnitFactorToBase: 'targetFinishedWeightUnitFactorToBase',
+  flourQuantity: 'flourQuantity',
+  flourUnitCode: 'flourUnitCode',
+  flourUnitName: 'flourUnitName',
+  flourUnitSymbol: 'flourUnitSymbol',
+  flourUnitFactorToBase: 'flourUnitFactorToBase',
+  expectedBakeLossPercent: 'expectedBakeLossPercent',
+  recipeTotalPercentage: 'recipeTotalPercentage',
+  flourMassGrams: 'flourMassGrams',
+  rawDoughMassGrams: 'rawDoughMassGrams',
+  expectedFinishedMassGrams: 'expectedFinishedMassGrams',
+  targetFinishedWeightPerUnitGrams: 'targetFinishedWeightPerUnitGrams',
+  theoreticalProductCount: 'theoreticalProductCount',
+  wholeProductCount: 'wholeProductCount',
+  costingComplete: 'costingComplete',
+  estimatedIngredientCost: 'estimatedIngredientCost',
+  knownIngredientCostSubtotal: 'knownIngredientCostSubtotal',
+  missingPriceIngredientNames: 'missingPriceIngredientNames',
+  createdAt: 'createdAt'
+} as const
+
+export type EstimationScalarFieldEnum = (typeof EstimationScalarFieldEnum)[keyof typeof EstimationScalarFieldEnum]
+
+
+export const EstimationIngredientScalarFieldEnum = {
+  id: 'id',
+  estimationId: 'estimationId',
+  sourceIngredientId: 'sourceIngredientId',
+  nameSnapshot: 'nameSnapshot',
+  bakerPercentage: 'bakerPercentage',
+  isFlourBase: 'isFlourBase',
+  sortOrder: 'sortOrder',
+  baseUnitCode: 'baseUnitCode',
+  baseUnitName: 'baseUnitName',
+  baseUnitSymbol: 'baseUnitSymbol',
+  baseUnitDimension: 'baseUnitDimension',
+  baseUnitFactorToBase: 'baseUnitFactorToBase',
+  densityGramsPerMl: 'densityGramsPerMl',
+  ingredientMassGrams: 'ingredientMassGrams',
+  ingredientVolumeMl: 'ingredientVolumeMl',
+  quantityInBaseUnit: 'quantityInBaseUnit',
+  purchaseQuantity: 'purchaseQuantity',
+  purchaseUnitCode: 'purchaseUnitCode',
+  purchaseUnitName: 'purchaseUnitName',
+  purchaseUnitSymbol: 'purchaseUnitSymbol',
+  purchaseUnitDimension: 'purchaseUnitDimension',
+  purchaseUnitFactorToBase: 'purchaseUnitFactorToBase',
+  purchaseTotalPrice: 'purchaseTotalPrice',
+  estimatedCost: 'estimatedCost'
+} as const
+
+export type EstimationIngredientScalarFieldEnum = (typeof EstimationIngredientScalarFieldEnum)[keyof typeof EstimationIngredientScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -1274,6 +1500,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1384,6 +1619,34 @@ export type EnumRecipeVersionStatusFieldRefInput<$PrismaModel> = FieldRefInputTy
  * Reference to a field of type 'RecipeVersionStatus[]'
  */
 export type ListEnumRecipeVersionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RecipeVersionStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EstimationMode'
+ */
+export type EnumEstimationModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstimationMode'>
+    
+
+
+/**
+ * Reference to a field of type 'EstimationMode[]'
+ */
+export type ListEnumEstimationModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstimationMode[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -1560,6 +1823,8 @@ export type GlobalOmitConfig = {
   product?: Prisma.ProductOmit
   recipeVersion?: Prisma.RecipeVersionOmit
   recipeIngredient?: Prisma.RecipeIngredientOmit
+  estimation?: Prisma.EstimationOmit
+  estimationIngredient?: Prisma.EstimationIngredientOmit
 }
 
 /* Types for Logging */

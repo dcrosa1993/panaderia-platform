@@ -177,6 +177,7 @@ export type BusinessWhereInput = {
   memberships?: Prisma.MembershipListRelationFilter
   ingredients?: Prisma.IngredientListRelationFilter
   products?: Prisma.ProductListRelationFilter
+  estimations?: Prisma.EstimationListRelationFilter
 }
 
 export type BusinessOrderByWithRelationInput = {
@@ -187,6 +188,7 @@ export type BusinessOrderByWithRelationInput = {
   memberships?: Prisma.MembershipOrderByRelationAggregateInput
   ingredients?: Prisma.IngredientOrderByRelationAggregateInput
   products?: Prisma.ProductOrderByRelationAggregateInput
+  estimations?: Prisma.EstimationOrderByRelationAggregateInput
 }
 
 export type BusinessWhereUniqueInput = Prisma.AtLeast<{
@@ -200,6 +202,7 @@ export type BusinessWhereUniqueInput = Prisma.AtLeast<{
   memberships?: Prisma.MembershipListRelationFilter
   ingredients?: Prisma.IngredientListRelationFilter
   products?: Prisma.ProductListRelationFilter
+  estimations?: Prisma.EstimationListRelationFilter
 }, "id">
 
 export type BusinessOrderByWithAggregationInput = {
@@ -230,6 +233,7 @@ export type BusinessCreateInput = {
   memberships?: Prisma.MembershipCreateNestedManyWithoutBusinessInput
   ingredients?: Prisma.IngredientCreateNestedManyWithoutBusinessInput
   products?: Prisma.ProductCreateNestedManyWithoutBusinessInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUncheckedCreateInput = {
@@ -240,6 +244,7 @@ export type BusinessUncheckedCreateInput = {
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutBusinessInput
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutBusinessInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutBusinessInput
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUpdateInput = {
@@ -250,6 +255,7 @@ export type BusinessUpdateInput = {
   memberships?: Prisma.MembershipUpdateManyWithoutBusinessNestedInput
   ingredients?: Prisma.IngredientUpdateManyWithoutBusinessNestedInput
   products?: Prisma.ProductUpdateManyWithoutBusinessNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessUncheckedUpdateInput = {
@@ -260,6 +266,7 @@ export type BusinessUncheckedUpdateInput = {
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutBusinessNestedInput
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutBusinessNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutBusinessNestedInput
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessCreateManyInput = {
@@ -351,6 +358,20 @@ export type BusinessUpdateOneRequiredWithoutProductsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutProductsInput, Prisma.BusinessUpdateWithoutProductsInput>, Prisma.BusinessUncheckedUpdateWithoutProductsInput>
 }
 
+export type BusinessCreateNestedOneWithoutEstimationsInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutEstimationsInput, Prisma.BusinessUncheckedCreateWithoutEstimationsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutEstimationsInput
+  connect?: Prisma.BusinessWhereUniqueInput
+}
+
+export type BusinessUpdateOneRequiredWithoutEstimationsNestedInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutEstimationsInput, Prisma.BusinessUncheckedCreateWithoutEstimationsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutEstimationsInput
+  upsert?: Prisma.BusinessUpsertWithoutEstimationsInput
+  connect?: Prisma.BusinessWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutEstimationsInput, Prisma.BusinessUpdateWithoutEstimationsInput>, Prisma.BusinessUncheckedUpdateWithoutEstimationsInput>
+}
+
 export type BusinessCreateWithoutMembershipsInput = {
   id?: string
   name: string
@@ -358,6 +379,7 @@ export type BusinessCreateWithoutMembershipsInput = {
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutBusinessInput
   products?: Prisma.ProductCreateNestedManyWithoutBusinessInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUncheckedCreateWithoutMembershipsInput = {
@@ -367,6 +389,7 @@ export type BusinessUncheckedCreateWithoutMembershipsInput = {
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutBusinessInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutBusinessInput
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessCreateOrConnectWithoutMembershipsInput = {
@@ -392,6 +415,7 @@ export type BusinessUpdateWithoutMembershipsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutBusinessNestedInput
   products?: Prisma.ProductUpdateManyWithoutBusinessNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessUncheckedUpdateWithoutMembershipsInput = {
@@ -401,6 +425,7 @@ export type BusinessUncheckedUpdateWithoutMembershipsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutBusinessNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutBusinessNestedInput
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessCreateWithoutIngredientsInput = {
@@ -410,6 +435,7 @@ export type BusinessCreateWithoutIngredientsInput = {
   updatedAt?: Date | string
   memberships?: Prisma.MembershipCreateNestedManyWithoutBusinessInput
   products?: Prisma.ProductCreateNestedManyWithoutBusinessInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUncheckedCreateWithoutIngredientsInput = {
@@ -419,6 +445,7 @@ export type BusinessUncheckedCreateWithoutIngredientsInput = {
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutBusinessInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutBusinessInput
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessCreateOrConnectWithoutIngredientsInput = {
@@ -444,6 +471,7 @@ export type BusinessUpdateWithoutIngredientsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUpdateManyWithoutBusinessNestedInput
   products?: Prisma.ProductUpdateManyWithoutBusinessNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessUncheckedUpdateWithoutIngredientsInput = {
@@ -453,6 +481,7 @@ export type BusinessUncheckedUpdateWithoutIngredientsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutBusinessNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutBusinessNestedInput
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessCreateWithoutProductsInput = {
@@ -462,6 +491,7 @@ export type BusinessCreateWithoutProductsInput = {
   updatedAt?: Date | string
   memberships?: Prisma.MembershipCreateNestedManyWithoutBusinessInput
   ingredients?: Prisma.IngredientCreateNestedManyWithoutBusinessInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUncheckedCreateWithoutProductsInput = {
@@ -471,6 +501,7 @@ export type BusinessUncheckedCreateWithoutProductsInput = {
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutBusinessInput
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutBusinessInput
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessCreateOrConnectWithoutProductsInput = {
@@ -496,6 +527,7 @@ export type BusinessUpdateWithoutProductsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUpdateManyWithoutBusinessNestedInput
   ingredients?: Prisma.IngredientUpdateManyWithoutBusinessNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessUncheckedUpdateWithoutProductsInput = {
@@ -505,6 +537,63 @@ export type BusinessUncheckedUpdateWithoutProductsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutBusinessNestedInput
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutBusinessNestedInput
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessCreateWithoutEstimationsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutBusinessInput
+  ingredients?: Prisma.IngredientCreateNestedManyWithoutBusinessInput
+  products?: Prisma.ProductCreateNestedManyWithoutBusinessInput
+}
+
+export type BusinessUncheckedCreateWithoutEstimationsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutBusinessInput
+  ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutBusinessInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutBusinessInput
+}
+
+export type BusinessCreateOrConnectWithoutEstimationsInput = {
+  where: Prisma.BusinessWhereUniqueInput
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutEstimationsInput, Prisma.BusinessUncheckedCreateWithoutEstimationsInput>
+}
+
+export type BusinessUpsertWithoutEstimationsInput = {
+  update: Prisma.XOR<Prisma.BusinessUpdateWithoutEstimationsInput, Prisma.BusinessUncheckedUpdateWithoutEstimationsInput>
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutEstimationsInput, Prisma.BusinessUncheckedCreateWithoutEstimationsInput>
+  where?: Prisma.BusinessWhereInput
+}
+
+export type BusinessUpdateToOneWithWhereWithoutEstimationsInput = {
+  where?: Prisma.BusinessWhereInput
+  data: Prisma.XOR<Prisma.BusinessUpdateWithoutEstimationsInput, Prisma.BusinessUncheckedUpdateWithoutEstimationsInput>
+}
+
+export type BusinessUpdateWithoutEstimationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutBusinessNestedInput
+  ingredients?: Prisma.IngredientUpdateManyWithoutBusinessNestedInput
+  products?: Prisma.ProductUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessUncheckedUpdateWithoutEstimationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutBusinessNestedInput
+  ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutBusinessNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutBusinessNestedInput
 }
 
 
@@ -516,12 +605,14 @@ export type BusinessCountOutputType = {
   memberships: number
   ingredients: number
   products: number
+  estimations: number
 }
 
 export type BusinessCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   memberships?: boolean | BusinessCountOutputTypeCountMembershipsArgs
   ingredients?: boolean | BusinessCountOutputTypeCountIngredientsArgs
   products?: boolean | BusinessCountOutputTypeCountProductsArgs
+  estimations?: boolean | BusinessCountOutputTypeCountEstimationsArgs
 }
 
 /**
@@ -555,6 +646,13 @@ export type BusinessCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.ProductWhereInput
 }
 
+/**
+ * BusinessCountOutputType without action
+ */
+export type BusinessCountOutputTypeCountEstimationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EstimationWhereInput
+}
+
 
 export type BusinessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -564,6 +662,7 @@ export type BusinessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   memberships?: boolean | Prisma.Business$membershipsArgs<ExtArgs>
   ingredients?: boolean | Prisma.Business$ingredientsArgs<ExtArgs>
   products?: boolean | Prisma.Business$productsArgs<ExtArgs>
+  estimations?: boolean | Prisma.Business$estimationsArgs<ExtArgs>
   _count?: boolean | Prisma.BusinessCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["business"]>
 
@@ -593,6 +692,7 @@ export type BusinessInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   memberships?: boolean | Prisma.Business$membershipsArgs<ExtArgs>
   ingredients?: boolean | Prisma.Business$ingredientsArgs<ExtArgs>
   products?: boolean | Prisma.Business$productsArgs<ExtArgs>
+  estimations?: boolean | Prisma.Business$estimationsArgs<ExtArgs>
   _count?: boolean | Prisma.BusinessCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BusinessIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -604,6 +704,7 @@ export type $BusinessPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     memberships: Prisma.$MembershipPayload<ExtArgs>[]
     ingredients: Prisma.$IngredientPayload<ExtArgs>[]
     products: Prisma.$ProductPayload<ExtArgs>[]
+    estimations: Prisma.$EstimationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1007,6 +1108,7 @@ export interface Prisma__BusinessClient<T, Null = never, ExtArgs extends runtime
   memberships<T extends Prisma.Business$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ingredients<T extends Prisma.Business$ingredientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$ingredientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IngredientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   products<T extends Prisma.Business$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  estimations<T extends Prisma.Business$estimationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$estimationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1502,6 +1604,30 @@ export type Business$productsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
+}
+
+/**
+ * Business.estimations
+ */
+export type Business$estimationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Estimation
+   */
+  select?: Prisma.EstimationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Estimation
+   */
+  omit?: Prisma.EstimationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimationInclude<ExtArgs> | null
+  where?: Prisma.EstimationWhereInput
+  orderBy?: Prisma.EstimationOrderByWithRelationInput | Prisma.EstimationOrderByWithRelationInput[]
+  cursor?: Prisma.EstimationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EstimationScalarFieldEnum | Prisma.EstimationScalarFieldEnum[]
 }
 
 /**

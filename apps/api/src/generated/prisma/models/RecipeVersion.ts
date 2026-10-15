@@ -254,6 +254,7 @@ export type RecipeVersionWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"RecipeVersion"> | Date | string
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
   ingredients?: Prisma.RecipeIngredientListRelationFilter
+  estimations?: Prisma.EstimationListRelationFilter
 }
 
 export type RecipeVersionOrderByWithRelationInput = {
@@ -268,6 +269,7 @@ export type RecipeVersionOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   product?: Prisma.ProductOrderByWithRelationInput
   ingredients?: Prisma.RecipeIngredientOrderByRelationAggregateInput
+  estimations?: Prisma.EstimationOrderByRelationAggregateInput
 }
 
 export type RecipeVersionWhereUniqueInput = Prisma.AtLeast<{
@@ -286,6 +288,7 @@ export type RecipeVersionWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"RecipeVersion"> | Date | string
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
   ingredients?: Prisma.RecipeIngredientListRelationFilter
+  estimations?: Prisma.EstimationListRelationFilter
 }, "id" | "productId_versionNumber">
 
 export type RecipeVersionOrderByWithAggregationInput = {
@@ -331,6 +334,7 @@ export type RecipeVersionCreateInput = {
   updatedAt?: Date | string
   product: Prisma.ProductCreateNestedOneWithoutRecipeVersionsInput
   ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutRecipeVersionInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutRecipeVersionInput
 }
 
 export type RecipeVersionUncheckedCreateInput = {
@@ -344,6 +348,7 @@ export type RecipeVersionUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutRecipeVersionInput
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutRecipeVersionInput
 }
 
 export type RecipeVersionUpdateInput = {
@@ -357,6 +362,7 @@ export type RecipeVersionUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   product?: Prisma.ProductUpdateOneRequiredWithoutRecipeVersionsNestedInput
   ingredients?: Prisma.RecipeIngredientUpdateManyWithoutRecipeVersionNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutRecipeVersionNestedInput
 }
 
 export type RecipeVersionUncheckedUpdateInput = {
@@ -370,6 +376,7 @@ export type RecipeVersionUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutRecipeVersionNestedInput
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutRecipeVersionNestedInput
 }
 
 export type RecipeVersionCreateManyInput = {
@@ -545,6 +552,20 @@ export type RecipeVersionUpdateOneRequiredWithoutIngredientsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RecipeVersionUpdateToOneWithWhereWithoutIngredientsInput, Prisma.RecipeVersionUpdateWithoutIngredientsInput>, Prisma.RecipeVersionUncheckedUpdateWithoutIngredientsInput>
 }
 
+export type RecipeVersionCreateNestedOneWithoutEstimationsInput = {
+  create?: Prisma.XOR<Prisma.RecipeVersionCreateWithoutEstimationsInput, Prisma.RecipeVersionUncheckedCreateWithoutEstimationsInput>
+  connectOrCreate?: Prisma.RecipeVersionCreateOrConnectWithoutEstimationsInput
+  connect?: Prisma.RecipeVersionWhereUniqueInput
+}
+
+export type RecipeVersionUpdateOneRequiredWithoutEstimationsNestedInput = {
+  create?: Prisma.XOR<Prisma.RecipeVersionCreateWithoutEstimationsInput, Prisma.RecipeVersionUncheckedCreateWithoutEstimationsInput>
+  connectOrCreate?: Prisma.RecipeVersionCreateOrConnectWithoutEstimationsInput
+  upsert?: Prisma.RecipeVersionUpsertWithoutEstimationsInput
+  connect?: Prisma.RecipeVersionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RecipeVersionUpdateToOneWithWhereWithoutEstimationsInput, Prisma.RecipeVersionUpdateWithoutEstimationsInput>, Prisma.RecipeVersionUncheckedUpdateWithoutEstimationsInput>
+}
+
 export type RecipeVersionCreateWithoutProductInput = {
   id?: string
   versionNumber: number
@@ -555,6 +576,7 @@ export type RecipeVersionCreateWithoutProductInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutRecipeVersionInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutRecipeVersionInput
 }
 
 export type RecipeVersionUncheckedCreateWithoutProductInput = {
@@ -567,6 +589,7 @@ export type RecipeVersionUncheckedCreateWithoutProductInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutRecipeVersionInput
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutRecipeVersionInput
 }
 
 export type RecipeVersionCreateOrConnectWithoutProductInput = {
@@ -620,6 +643,7 @@ export type RecipeVersionCreateWithoutIngredientsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   product: Prisma.ProductCreateNestedOneWithoutRecipeVersionsInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutRecipeVersionInput
 }
 
 export type RecipeVersionUncheckedCreateWithoutIngredientsInput = {
@@ -632,6 +656,7 @@ export type RecipeVersionUncheckedCreateWithoutIngredientsInput = {
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutRecipeVersionInput
 }
 
 export type RecipeVersionCreateOrConnectWithoutIngredientsInput = {
@@ -660,6 +685,7 @@ export type RecipeVersionUpdateWithoutIngredientsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   product?: Prisma.ProductUpdateOneRequiredWithoutRecipeVersionsNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutRecipeVersionNestedInput
 }
 
 export type RecipeVersionUncheckedUpdateWithoutIngredientsInput = {
@@ -672,6 +698,75 @@ export type RecipeVersionUncheckedUpdateWithoutIngredientsInput = {
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutRecipeVersionNestedInput
+}
+
+export type RecipeVersionCreateWithoutEstimationsInput = {
+  id?: string
+  versionNumber: number
+  status?: $Enums.RecipeVersionStatus
+  expectedBakeLossPercent: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  product: Prisma.ProductCreateNestedOneWithoutRecipeVersionsInput
+  ingredients?: Prisma.RecipeIngredientCreateNestedManyWithoutRecipeVersionInput
+}
+
+export type RecipeVersionUncheckedCreateWithoutEstimationsInput = {
+  id?: string
+  productId: string
+  versionNumber: number
+  status?: $Enums.RecipeVersionStatus
+  expectedBakeLossPercent: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: string | null
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  ingredients?: Prisma.RecipeIngredientUncheckedCreateNestedManyWithoutRecipeVersionInput
+}
+
+export type RecipeVersionCreateOrConnectWithoutEstimationsInput = {
+  where: Prisma.RecipeVersionWhereUniqueInput
+  create: Prisma.XOR<Prisma.RecipeVersionCreateWithoutEstimationsInput, Prisma.RecipeVersionUncheckedCreateWithoutEstimationsInput>
+}
+
+export type RecipeVersionUpsertWithoutEstimationsInput = {
+  update: Prisma.XOR<Prisma.RecipeVersionUpdateWithoutEstimationsInput, Prisma.RecipeVersionUncheckedUpdateWithoutEstimationsInput>
+  create: Prisma.XOR<Prisma.RecipeVersionCreateWithoutEstimationsInput, Prisma.RecipeVersionUncheckedCreateWithoutEstimationsInput>
+  where?: Prisma.RecipeVersionWhereInput
+}
+
+export type RecipeVersionUpdateToOneWithWhereWithoutEstimationsInput = {
+  where?: Prisma.RecipeVersionWhereInput
+  data: Prisma.XOR<Prisma.RecipeVersionUpdateWithoutEstimationsInput, Prisma.RecipeVersionUncheckedUpdateWithoutEstimationsInput>
+}
+
+export type RecipeVersionUpdateWithoutEstimationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  versionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumRecipeVersionStatusFieldUpdateOperationsInput | $Enums.RecipeVersionStatus
+  expectedBakeLossPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  product?: Prisma.ProductUpdateOneRequiredWithoutRecipeVersionsNestedInput
+  ingredients?: Prisma.RecipeIngredientUpdateManyWithoutRecipeVersionNestedInput
+}
+
+export type RecipeVersionUncheckedUpdateWithoutEstimationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
+  versionNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumRecipeVersionStatusFieldUpdateOperationsInput | $Enums.RecipeVersionStatus
+  expectedBakeLossPercent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutRecipeVersionNestedInput
 }
 
 export type RecipeVersionCreateManyProductInput = {
@@ -695,6 +790,7 @@ export type RecipeVersionUpdateWithoutProductInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.RecipeIngredientUpdateManyWithoutRecipeVersionNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutRecipeVersionNestedInput
 }
 
 export type RecipeVersionUncheckedUpdateWithoutProductInput = {
@@ -707,6 +803,7 @@ export type RecipeVersionUncheckedUpdateWithoutProductInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.RecipeIngredientUncheckedUpdateManyWithoutRecipeVersionNestedInput
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutRecipeVersionNestedInput
 }
 
 export type RecipeVersionUncheckedUpdateManyWithoutProductInput = {
@@ -727,10 +824,12 @@ export type RecipeVersionUncheckedUpdateManyWithoutProductInput = {
 
 export type RecipeVersionCountOutputType = {
   ingredients: number
+  estimations: number
 }
 
 export type RecipeVersionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   ingredients?: boolean | RecipeVersionCountOutputTypeCountIngredientsArgs
+  estimations?: boolean | RecipeVersionCountOutputTypeCountEstimationsArgs
 }
 
 /**
@@ -750,6 +849,13 @@ export type RecipeVersionCountOutputTypeCountIngredientsArgs<ExtArgs extends run
   where?: Prisma.RecipeIngredientWhereInput
 }
 
+/**
+ * RecipeVersionCountOutputType without action
+ */
+export type RecipeVersionCountOutputTypeCountEstimationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EstimationWhereInput
+}
+
 
 export type RecipeVersionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -763,6 +869,7 @@ export type RecipeVersionSelect<ExtArgs extends runtime.Types.Extensions.Interna
   updatedAt?: boolean
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   ingredients?: boolean | Prisma.RecipeVersion$ingredientsArgs<ExtArgs>
+  estimations?: boolean | Prisma.RecipeVersion$estimationsArgs<ExtArgs>
   _count?: boolean | Prisma.RecipeVersionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["recipeVersion"]>
 
@@ -808,6 +915,7 @@ export type RecipeVersionOmit<ExtArgs extends runtime.Types.Extensions.InternalA
 export type RecipeVersionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
   ingredients?: boolean | Prisma.RecipeVersion$ingredientsArgs<ExtArgs>
+  estimations?: boolean | Prisma.RecipeVersion$estimationsArgs<ExtArgs>
   _count?: boolean | Prisma.RecipeVersionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RecipeVersionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -822,6 +930,7 @@ export type $RecipeVersionPayload<ExtArgs extends runtime.Types.Extensions.Inter
   objects: {
     product: Prisma.$ProductPayload<ExtArgs>
     ingredients: Prisma.$RecipeIngredientPayload<ExtArgs>[]
+    estimations: Prisma.$EstimationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1229,6 +1338,7 @@ export interface Prisma__RecipeVersionClient<T, Null = never, ExtArgs extends ru
   readonly [Symbol.toStringTag]: "PrismaPromise"
   product<T extends Prisma.ProductDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   ingredients<T extends Prisma.RecipeVersion$ingredientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecipeVersion$ingredientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecipeIngredientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  estimations<T extends Prisma.RecipeVersion$estimationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RecipeVersion$estimationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1689,6 +1799,30 @@ export type RecipeVersion$ingredientsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.RecipeIngredientScalarFieldEnum | Prisma.RecipeIngredientScalarFieldEnum[]
+}
+
+/**
+ * RecipeVersion.estimations
+ */
+export type RecipeVersion$estimationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Estimation
+   */
+  select?: Prisma.EstimationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Estimation
+   */
+  omit?: Prisma.EstimationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimationInclude<ExtArgs> | null
+  where?: Prisma.EstimationWhereInput
+  orderBy?: Prisma.EstimationOrderByWithRelationInput | Prisma.EstimationOrderByWithRelationInput[]
+  cursor?: Prisma.EstimationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EstimationScalarFieldEnum | Prisma.EstimationScalarFieldEnum[]
 }
 
 /**

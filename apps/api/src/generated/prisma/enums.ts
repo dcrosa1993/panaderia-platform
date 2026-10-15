@@ -18,6 +18,14 @@ export const MembershipRole = {
 export type MembershipRole = (typeof MembershipRole)[keyof typeof MembershipRole]
 
 
+export const EstimationMode = {
+  PRODUCT_COUNT: 'PRODUCT_COUNT',
+  FLOUR_QUANTITY: 'FLOUR_QUANTITY'
+} as const
+
+export type EstimationMode = (typeof EstimationMode)[keyof typeof EstimationMode]
+
+
 export const MeasurementDimension = {
   MASS: 'MASS',
   VOLUME: 'VOLUME',

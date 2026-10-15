@@ -59,7 +59,9 @@ export const ModelName = {
   IngredientPrice: 'IngredientPrice',
   Product: 'Product',
   RecipeVersion: 'RecipeVersion',
-  RecipeIngredient: 'RecipeIngredient'
+  RecipeIngredient: 'RecipeIngredient',
+  Estimation: 'Estimation',
+  EstimationIngredient: 'EstimationIngredient'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -200,12 +202,88 @@ export const RecipeIngredientScalarFieldEnum = {
 export type RecipeIngredientScalarFieldEnum = (typeof RecipeIngredientScalarFieldEnum)[keyof typeof RecipeIngredientScalarFieldEnum]
 
 
+export const EstimationScalarFieldEnum = {
+  id: 'id',
+  businessId: 'businessId',
+  productId: 'productId',
+  recipeVersionId: 'recipeVersionId',
+  createdByUserId: 'createdByUserId',
+  mode: 'mode',
+  productNameSnapshot: 'productNameSnapshot',
+  productProductionUnitCodeSnapshot: 'productProductionUnitCodeSnapshot',
+  recipeVersionNumber: 'recipeVersionNumber',
+  plannedProductCount: 'plannedProductCount',
+  targetFinishedWeightInput: 'targetFinishedWeightInput',
+  targetFinishedWeightUnitCode: 'targetFinishedWeightUnitCode',
+  targetFinishedWeightUnitName: 'targetFinishedWeightUnitName',
+  targetFinishedWeightUnitSymbol: 'targetFinishedWeightUnitSymbol',
+  targetFinishedWeightUnitFactorToBase: 'targetFinishedWeightUnitFactorToBase',
+  flourQuantity: 'flourQuantity',
+  flourUnitCode: 'flourUnitCode',
+  flourUnitName: 'flourUnitName',
+  flourUnitSymbol: 'flourUnitSymbol',
+  flourUnitFactorToBase: 'flourUnitFactorToBase',
+  expectedBakeLossPercent: 'expectedBakeLossPercent',
+  recipeTotalPercentage: 'recipeTotalPercentage',
+  flourMassGrams: 'flourMassGrams',
+  rawDoughMassGrams: 'rawDoughMassGrams',
+  expectedFinishedMassGrams: 'expectedFinishedMassGrams',
+  targetFinishedWeightPerUnitGrams: 'targetFinishedWeightPerUnitGrams',
+  theoreticalProductCount: 'theoreticalProductCount',
+  wholeProductCount: 'wholeProductCount',
+  costingComplete: 'costingComplete',
+  estimatedIngredientCost: 'estimatedIngredientCost',
+  knownIngredientCostSubtotal: 'knownIngredientCostSubtotal',
+  missingPriceIngredientNames: 'missingPriceIngredientNames',
+  createdAt: 'createdAt'
+} as const
+
+export type EstimationScalarFieldEnum = (typeof EstimationScalarFieldEnum)[keyof typeof EstimationScalarFieldEnum]
+
+
+export const EstimationIngredientScalarFieldEnum = {
+  id: 'id',
+  estimationId: 'estimationId',
+  sourceIngredientId: 'sourceIngredientId',
+  nameSnapshot: 'nameSnapshot',
+  bakerPercentage: 'bakerPercentage',
+  isFlourBase: 'isFlourBase',
+  sortOrder: 'sortOrder',
+  baseUnitCode: 'baseUnitCode',
+  baseUnitName: 'baseUnitName',
+  baseUnitSymbol: 'baseUnitSymbol',
+  baseUnitDimension: 'baseUnitDimension',
+  baseUnitFactorToBase: 'baseUnitFactorToBase',
+  densityGramsPerMl: 'densityGramsPerMl',
+  ingredientMassGrams: 'ingredientMassGrams',
+  ingredientVolumeMl: 'ingredientVolumeMl',
+  quantityInBaseUnit: 'quantityInBaseUnit',
+  purchaseQuantity: 'purchaseQuantity',
+  purchaseUnitCode: 'purchaseUnitCode',
+  purchaseUnitName: 'purchaseUnitName',
+  purchaseUnitSymbol: 'purchaseUnitSymbol',
+  purchaseUnitDimension: 'purchaseUnitDimension',
+  purchaseUnitFactorToBase: 'purchaseUnitFactorToBase',
+  purchaseTotalPrice: 'purchaseTotalPrice',
+  estimatedCost: 'estimatedCost'
+} as const
+
+export type EstimationIngredientScalarFieldEnum = (typeof EstimationIngredientScalarFieldEnum)[keyof typeof EstimationIngredientScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -222,4 +300,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

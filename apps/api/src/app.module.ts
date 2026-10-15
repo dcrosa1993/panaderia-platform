@@ -10,6 +10,7 @@ import { IngredientsModule } from './modules/ingredients/ingredients.module.js';
 import { MeasurementUnitsModule } from './modules/measurement-units/measurement-units.module.js';
 import { ProductsModule } from './modules/products/products.module.js';
 import { RecipesModule } from './modules/recipes/recipes.module.js';
+import { EstimationsModule } from './modules/estimations/estimations.module.js';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { RecipesModule } from './modules/recipes/recipes.module.js';
     MeasurementUnitsModule,
     IngredientsModule,
     ProductsModule,
-    RecipesModule
+    RecipesModule,
+    EstimationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

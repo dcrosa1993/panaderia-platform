@@ -86,3 +86,13 @@ export type RecipeVersion = Prisma.RecipeVersionModel
  * 
  */
 export type RecipeIngredient = Prisma.RecipeIngredientModel
+/**
+ * Model Estimation
+ * 
+ */
+export type Estimation = Prisma.EstimationModel
+/**
+ * Model EstimationIngredient
+ * 
+ */
+export type EstimationIngredient = Prisma.EstimationIngredientModel

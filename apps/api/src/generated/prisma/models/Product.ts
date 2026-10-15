@@ -268,6 +268,7 @@ export type ProductWhereInput = {
   productionUnit?: Prisma.XOR<Prisma.MeasurementUnitScalarRelationFilter, Prisma.MeasurementUnitWhereInput>
   targetWeightUnit?: Prisma.XOR<Prisma.MeasurementUnitNullableScalarRelationFilter, Prisma.MeasurementUnitWhereInput> | null
   recipeVersions?: Prisma.RecipeVersionListRelationFilter
+  estimations?: Prisma.EstimationListRelationFilter
 }
 
 export type ProductOrderByWithRelationInput = {
@@ -286,6 +287,7 @@ export type ProductOrderByWithRelationInput = {
   productionUnit?: Prisma.MeasurementUnitOrderByWithRelationInput
   targetWeightUnit?: Prisma.MeasurementUnitOrderByWithRelationInput
   recipeVersions?: Prisma.RecipeVersionOrderByRelationAggregateInput
+  estimations?: Prisma.EstimationOrderByRelationAggregateInput
 }
 
 export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -308,6 +310,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   productionUnit?: Prisma.XOR<Prisma.MeasurementUnitScalarRelationFilter, Prisma.MeasurementUnitWhereInput>
   targetWeightUnit?: Prisma.XOR<Prisma.MeasurementUnitNullableScalarRelationFilter, Prisma.MeasurementUnitWhereInput> | null
   recipeVersions?: Prisma.RecipeVersionListRelationFilter
+  estimations?: Prisma.EstimationListRelationFilter
 }, "id" | "businessId_normalizedName">
 
 export type ProductOrderByWithAggregationInput = {
@@ -359,6 +362,7 @@ export type ProductCreateInput = {
   productionUnit: Prisma.MeasurementUnitCreateNestedOneWithoutProductsByProductionUnitInput
   targetWeightUnit?: Prisma.MeasurementUnitCreateNestedOneWithoutProductsByTargetWeightInput
   recipeVersions?: Prisma.RecipeVersionCreateNestedManyWithoutProductInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateInput = {
@@ -374,6 +378,7 @@ export type ProductUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   recipeVersions?: Prisma.RecipeVersionUncheckedCreateNestedManyWithoutProductInput
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductUpdateInput = {
@@ -389,6 +394,7 @@ export type ProductUpdateInput = {
   productionUnit?: Prisma.MeasurementUnitUpdateOneRequiredWithoutProductsByProductionUnitNestedInput
   targetWeightUnit?: Prisma.MeasurementUnitUpdateOneWithoutProductsByTargetWeightNestedInput
   recipeVersions?: Prisma.RecipeVersionUpdateManyWithoutProductNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateInput = {
@@ -404,6 +410,7 @@ export type ProductUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recipeVersions?: Prisma.RecipeVersionUncheckedUpdateManyWithoutProductNestedInput
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateManyInput = {
@@ -655,6 +662,20 @@ export type ProductUpdateOneRequiredWithoutRecipeVersionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutRecipeVersionsInput, Prisma.ProductUpdateWithoutRecipeVersionsInput>, Prisma.ProductUncheckedUpdateWithoutRecipeVersionsInput>
 }
 
+export type ProductCreateNestedOneWithoutEstimationsInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutEstimationsInput, Prisma.ProductUncheckedCreateWithoutEstimationsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutEstimationsInput
+  connect?: Prisma.ProductWhereUniqueInput
+}
+
+export type ProductUpdateOneRequiredWithoutEstimationsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductCreateWithoutEstimationsInput, Prisma.ProductUncheckedCreateWithoutEstimationsInput>
+  connectOrCreate?: Prisma.ProductCreateOrConnectWithoutEstimationsInput
+  upsert?: Prisma.ProductUpsertWithoutEstimationsInput
+  connect?: Prisma.ProductWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProductUpdateToOneWithWhereWithoutEstimationsInput, Prisma.ProductUpdateWithoutEstimationsInput>, Prisma.ProductUncheckedUpdateWithoutEstimationsInput>
+}
+
 export type ProductCreateWithoutBusinessInput = {
   id?: string
   name: string
@@ -667,6 +688,7 @@ export type ProductCreateWithoutBusinessInput = {
   productionUnit: Prisma.MeasurementUnitCreateNestedOneWithoutProductsByProductionUnitInput
   targetWeightUnit?: Prisma.MeasurementUnitCreateNestedOneWithoutProductsByTargetWeightInput
   recipeVersions?: Prisma.RecipeVersionCreateNestedManyWithoutProductInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutBusinessInput = {
@@ -681,6 +703,7 @@ export type ProductUncheckedCreateWithoutBusinessInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   recipeVersions?: Prisma.RecipeVersionUncheckedCreateNestedManyWithoutProductInput
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutBusinessInput = {
@@ -738,6 +761,7 @@ export type ProductCreateWithoutProductionUnitInput = {
   business: Prisma.BusinessCreateNestedOneWithoutProductsInput
   targetWeightUnit?: Prisma.MeasurementUnitCreateNestedOneWithoutProductsByTargetWeightInput
   recipeVersions?: Prisma.RecipeVersionCreateNestedManyWithoutProductInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutProductionUnitInput = {
@@ -752,6 +776,7 @@ export type ProductUncheckedCreateWithoutProductionUnitInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   recipeVersions?: Prisma.RecipeVersionUncheckedCreateNestedManyWithoutProductInput
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutProductionUnitInput = {
@@ -776,6 +801,7 @@ export type ProductCreateWithoutTargetWeightUnitInput = {
   business: Prisma.BusinessCreateNestedOneWithoutProductsInput
   productionUnit: Prisma.MeasurementUnitCreateNestedOneWithoutProductsByProductionUnitInput
   recipeVersions?: Prisma.RecipeVersionCreateNestedManyWithoutProductInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutTargetWeightUnitInput = {
@@ -790,6 +816,7 @@ export type ProductUncheckedCreateWithoutTargetWeightUnitInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   recipeVersions?: Prisma.RecipeVersionUncheckedCreateNestedManyWithoutProductInput
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutTargetWeightUnitInput = {
@@ -846,6 +873,7 @@ export type ProductCreateWithoutRecipeVersionsInput = {
   business: Prisma.BusinessCreateNestedOneWithoutProductsInput
   productionUnit: Prisma.MeasurementUnitCreateNestedOneWithoutProductsByProductionUnitInput
   targetWeightUnit?: Prisma.MeasurementUnitCreateNestedOneWithoutProductsByTargetWeightInput
+  estimations?: Prisma.EstimationCreateNestedManyWithoutProductInput
 }
 
 export type ProductUncheckedCreateWithoutRecipeVersionsInput = {
@@ -860,6 +888,7 @@ export type ProductUncheckedCreateWithoutRecipeVersionsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  estimations?: Prisma.EstimationUncheckedCreateNestedManyWithoutProductInput
 }
 
 export type ProductCreateOrConnectWithoutRecipeVersionsInput = {
@@ -890,6 +919,7 @@ export type ProductUpdateWithoutRecipeVersionsInput = {
   business?: Prisma.BusinessUpdateOneRequiredWithoutProductsNestedInput
   productionUnit?: Prisma.MeasurementUnitUpdateOneRequiredWithoutProductsByProductionUnitNestedInput
   targetWeightUnit?: Prisma.MeasurementUnitUpdateOneWithoutProductsByTargetWeightNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutRecipeVersionsInput = {
@@ -904,6 +934,83 @@ export type ProductUncheckedUpdateWithoutRecipeVersionsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutProductNestedInput
+}
+
+export type ProductCreateWithoutEstimationsInput = {
+  id?: string
+  name: string
+  normalizedName: string
+  description?: string | null
+  targetFinishedWeight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  business: Prisma.BusinessCreateNestedOneWithoutProductsInput
+  productionUnit: Prisma.MeasurementUnitCreateNestedOneWithoutProductsByProductionUnitInput
+  targetWeightUnit?: Prisma.MeasurementUnitCreateNestedOneWithoutProductsByTargetWeightInput
+  recipeVersions?: Prisma.RecipeVersionCreateNestedManyWithoutProductInput
+}
+
+export type ProductUncheckedCreateWithoutEstimationsInput = {
+  id?: string
+  businessId: string
+  name: string
+  normalizedName: string
+  description?: string | null
+  productionUnitId: string
+  targetFinishedWeight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWeightUnitId?: string | null
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  recipeVersions?: Prisma.RecipeVersionUncheckedCreateNestedManyWithoutProductInput
+}
+
+export type ProductCreateOrConnectWithoutEstimationsInput = {
+  where: Prisma.ProductWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductCreateWithoutEstimationsInput, Prisma.ProductUncheckedCreateWithoutEstimationsInput>
+}
+
+export type ProductUpsertWithoutEstimationsInput = {
+  update: Prisma.XOR<Prisma.ProductUpdateWithoutEstimationsInput, Prisma.ProductUncheckedUpdateWithoutEstimationsInput>
+  create: Prisma.XOR<Prisma.ProductCreateWithoutEstimationsInput, Prisma.ProductUncheckedCreateWithoutEstimationsInput>
+  where?: Prisma.ProductWhereInput
+}
+
+export type ProductUpdateToOneWithWhereWithoutEstimationsInput = {
+  where?: Prisma.ProductWhereInput
+  data: Prisma.XOR<Prisma.ProductUpdateWithoutEstimationsInput, Prisma.ProductUncheckedUpdateWithoutEstimationsInput>
+}
+
+export type ProductUpdateWithoutEstimationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  targetFinishedWeight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  business?: Prisma.BusinessUpdateOneRequiredWithoutProductsNestedInput
+  productionUnit?: Prisma.MeasurementUnitUpdateOneRequiredWithoutProductsByProductionUnitNestedInput
+  targetWeightUnit?: Prisma.MeasurementUnitUpdateOneWithoutProductsByTargetWeightNestedInput
+  recipeVersions?: Prisma.RecipeVersionUpdateManyWithoutProductNestedInput
+}
+
+export type ProductUncheckedUpdateWithoutEstimationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  businessId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  normalizedName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  productionUnitId?: Prisma.StringFieldUpdateOperationsInput | string
+  targetFinishedWeight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetWeightUnitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recipeVersions?: Prisma.RecipeVersionUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductCreateManyBusinessInput = {
@@ -931,6 +1038,7 @@ export type ProductUpdateWithoutBusinessInput = {
   productionUnit?: Prisma.MeasurementUnitUpdateOneRequiredWithoutProductsByProductionUnitNestedInput
   targetWeightUnit?: Prisma.MeasurementUnitUpdateOneWithoutProductsByTargetWeightNestedInput
   recipeVersions?: Prisma.RecipeVersionUpdateManyWithoutProductNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutBusinessInput = {
@@ -945,6 +1053,7 @@ export type ProductUncheckedUpdateWithoutBusinessInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recipeVersions?: Prisma.RecipeVersionUncheckedUpdateManyWithoutProductNestedInput
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutBusinessInput = {
@@ -998,6 +1107,7 @@ export type ProductUpdateWithoutProductionUnitInput = {
   business?: Prisma.BusinessUpdateOneRequiredWithoutProductsNestedInput
   targetWeightUnit?: Prisma.MeasurementUnitUpdateOneWithoutProductsByTargetWeightNestedInput
   recipeVersions?: Prisma.RecipeVersionUpdateManyWithoutProductNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutProductionUnitInput = {
@@ -1012,6 +1122,7 @@ export type ProductUncheckedUpdateWithoutProductionUnitInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recipeVersions?: Prisma.RecipeVersionUncheckedUpdateManyWithoutProductNestedInput
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutProductionUnitInput = {
@@ -1039,6 +1150,7 @@ export type ProductUpdateWithoutTargetWeightUnitInput = {
   business?: Prisma.BusinessUpdateOneRequiredWithoutProductsNestedInput
   productionUnit?: Prisma.MeasurementUnitUpdateOneRequiredWithoutProductsByProductionUnitNestedInput
   recipeVersions?: Prisma.RecipeVersionUpdateManyWithoutProductNestedInput
+  estimations?: Prisma.EstimationUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateWithoutTargetWeightUnitInput = {
@@ -1053,6 +1165,7 @@ export type ProductUncheckedUpdateWithoutTargetWeightUnitInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recipeVersions?: Prisma.RecipeVersionUncheckedUpdateManyWithoutProductNestedInput
+  estimations?: Prisma.EstimationUncheckedUpdateManyWithoutProductNestedInput
 }
 
 export type ProductUncheckedUpdateManyWithoutTargetWeightUnitInput = {
@@ -1075,10 +1188,12 @@ export type ProductUncheckedUpdateManyWithoutTargetWeightUnitInput = {
 
 export type ProductCountOutputType = {
   recipeVersions: number
+  estimations: number
 }
 
 export type ProductCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   recipeVersions?: boolean | ProductCountOutputTypeCountRecipeVersionsArgs
+  estimations?: boolean | ProductCountOutputTypeCountEstimationsArgs
 }
 
 /**
@@ -1098,6 +1213,13 @@ export type ProductCountOutputTypeCountRecipeVersionsArgs<ExtArgs extends runtim
   where?: Prisma.RecipeVersionWhereInput
 }
 
+/**
+ * ProductCountOutputType without action
+ */
+export type ProductCountOutputTypeCountEstimationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EstimationWhereInput
+}
+
 
 export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1115,6 +1237,7 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   productionUnit?: boolean | Prisma.MeasurementUnitDefaultArgs<ExtArgs>
   targetWeightUnit?: boolean | Prisma.Product$targetWeightUnitArgs<ExtArgs>
   recipeVersions?: boolean | Prisma.Product$recipeVersionsArgs<ExtArgs>
+  estimations?: boolean | Prisma.Product$estimationsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["product"]>
 
@@ -1172,6 +1295,7 @@ export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   productionUnit?: boolean | Prisma.MeasurementUnitDefaultArgs<ExtArgs>
   targetWeightUnit?: boolean | Prisma.Product$targetWeightUnitArgs<ExtArgs>
   recipeVersions?: boolean | Prisma.Product$recipeVersionsArgs<ExtArgs>
+  estimations?: boolean | Prisma.Product$estimationsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProductIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1192,6 +1316,7 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     productionUnit: Prisma.$MeasurementUnitPayload<ExtArgs>
     targetWeightUnit: Prisma.$MeasurementUnitPayload<ExtArgs> | null
     recipeVersions: Prisma.$RecipeVersionPayload<ExtArgs>[]
+    estimations: Prisma.$EstimationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1603,6 +1728,7 @@ export interface Prisma__ProductClient<T, Null = never, ExtArgs extends runtime.
   productionUnit<T extends Prisma.MeasurementUnitDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MeasurementUnitDefaultArgs<ExtArgs>>): Prisma.Prisma__MeasurementUnitClient<runtime.Types.Result.GetResult<Prisma.$MeasurementUnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   targetWeightUnit<T extends Prisma.Product$targetWeightUnitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$targetWeightUnitArgs<ExtArgs>>): Prisma.Prisma__MeasurementUnitClient<runtime.Types.Result.GetResult<Prisma.$MeasurementUnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   recipeVersions<T extends Prisma.Product$recipeVersionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$recipeVersionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RecipeVersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  estimations<T extends Prisma.Product$estimationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Product$estimationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EstimationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2084,6 +2210,30 @@ export type Product$recipeVersionsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.RecipeVersionScalarFieldEnum | Prisma.RecipeVersionScalarFieldEnum[]
+}
+
+/**
+ * Product.estimations
+ */
+export type Product$estimationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Estimation
+   */
+  select?: Prisma.EstimationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Estimation
+   */
+  omit?: Prisma.EstimationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EstimationInclude<ExtArgs> | null
+  where?: Prisma.EstimationWhereInput
+  orderBy?: Prisma.EstimationOrderByWithRelationInput | Prisma.EstimationOrderByWithRelationInput[]
+  cursor?: Prisma.EstimationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EstimationScalarFieldEnum | Prisma.EstimationScalarFieldEnum[]
 }
 
 /**
