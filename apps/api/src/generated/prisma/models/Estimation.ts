@@ -43,6 +43,24 @@ export type EstimationAvgAggregateOutputType = {
   wholeProductCount: number | null
   estimatedIngredientCost: runtime.Decimal | null
   knownIngredientCostSubtotal: runtime.Decimal | null
+  laborCost: runtime.Decimal | null
+  energyCost: runtime.Decimal | null
+  packagingCost: runtime.Decimal | null
+  otherCost: runtime.Decimal | null
+  additionalCostsSubtotal: runtime.Decimal | null
+  knownCostSubtotal: runtime.Decimal | null
+  productionCostTotal: runtime.Decimal | null
+  targetMarginPercent: runtime.Decimal | null
+  salesTaxRatePercent: runtime.Decimal | null
+  suggestedNetSalesTotal: runtime.Decimal | null
+  targetProfitTotal: runtime.Decimal | null
+  salesTaxTotal: runtime.Decimal | null
+  suggestedCustomerSalesTotal: runtime.Decimal | null
+  productionCostPerUnit: runtime.Decimal | null
+  suggestedNetUnitPrice: runtime.Decimal | null
+  targetProfitPerUnit: runtime.Decimal | null
+  salesTaxPerUnit: runtime.Decimal | null
+  suggestedCustomerUnitPrice: runtime.Decimal | null
 }
 
 export type EstimationSumAggregateOutputType = {
@@ -62,6 +80,24 @@ export type EstimationSumAggregateOutputType = {
   wholeProductCount: number | null
   estimatedIngredientCost: runtime.Decimal | null
   knownIngredientCostSubtotal: runtime.Decimal | null
+  laborCost: runtime.Decimal | null
+  energyCost: runtime.Decimal | null
+  packagingCost: runtime.Decimal | null
+  otherCost: runtime.Decimal | null
+  additionalCostsSubtotal: runtime.Decimal | null
+  knownCostSubtotal: runtime.Decimal | null
+  productionCostTotal: runtime.Decimal | null
+  targetMarginPercent: runtime.Decimal | null
+  salesTaxRatePercent: runtime.Decimal | null
+  suggestedNetSalesTotal: runtime.Decimal | null
+  targetProfitTotal: runtime.Decimal | null
+  salesTaxTotal: runtime.Decimal | null
+  suggestedCustomerSalesTotal: runtime.Decimal | null
+  productionCostPerUnit: runtime.Decimal | null
+  suggestedNetUnitPrice: runtime.Decimal | null
+  targetProfitPerUnit: runtime.Decimal | null
+  salesTaxPerUnit: runtime.Decimal | null
+  suggestedCustomerUnitPrice: runtime.Decimal | null
 }
 
 export type EstimationMinAggregateOutputType = {
@@ -70,6 +106,7 @@ export type EstimationMinAggregateOutputType = {
   productId: string | null
   recipeVersionId: string | null
   createdByUserId: string | null
+  currencyCodeSnapshot: string | null
   mode: $Enums.EstimationMode | null
   productNameSnapshot: string | null
   productProductionUnitCodeSnapshot: string | null
@@ -96,6 +133,24 @@ export type EstimationMinAggregateOutputType = {
   costingComplete: boolean | null
   estimatedIngredientCost: runtime.Decimal | null
   knownIngredientCostSubtotal: runtime.Decimal | null
+  laborCost: runtime.Decimal | null
+  energyCost: runtime.Decimal | null
+  packagingCost: runtime.Decimal | null
+  otherCost: runtime.Decimal | null
+  additionalCostsSubtotal: runtime.Decimal | null
+  knownCostSubtotal: runtime.Decimal | null
+  productionCostTotal: runtime.Decimal | null
+  targetMarginPercent: runtime.Decimal | null
+  salesTaxRatePercent: runtime.Decimal | null
+  suggestedNetSalesTotal: runtime.Decimal | null
+  targetProfitTotal: runtime.Decimal | null
+  salesTaxTotal: runtime.Decimal | null
+  suggestedCustomerSalesTotal: runtime.Decimal | null
+  productionCostPerUnit: runtime.Decimal | null
+  suggestedNetUnitPrice: runtime.Decimal | null
+  targetProfitPerUnit: runtime.Decimal | null
+  salesTaxPerUnit: runtime.Decimal | null
+  suggestedCustomerUnitPrice: runtime.Decimal | null
   createdAt: Date | null
 }
 
@@ -105,6 +160,7 @@ export type EstimationMaxAggregateOutputType = {
   productId: string | null
   recipeVersionId: string | null
   createdByUserId: string | null
+  currencyCodeSnapshot: string | null
   mode: $Enums.EstimationMode | null
   productNameSnapshot: string | null
   productProductionUnitCodeSnapshot: string | null
@@ -131,6 +187,24 @@ export type EstimationMaxAggregateOutputType = {
   costingComplete: boolean | null
   estimatedIngredientCost: runtime.Decimal | null
   knownIngredientCostSubtotal: runtime.Decimal | null
+  laborCost: runtime.Decimal | null
+  energyCost: runtime.Decimal | null
+  packagingCost: runtime.Decimal | null
+  otherCost: runtime.Decimal | null
+  additionalCostsSubtotal: runtime.Decimal | null
+  knownCostSubtotal: runtime.Decimal | null
+  productionCostTotal: runtime.Decimal | null
+  targetMarginPercent: runtime.Decimal | null
+  salesTaxRatePercent: runtime.Decimal | null
+  suggestedNetSalesTotal: runtime.Decimal | null
+  targetProfitTotal: runtime.Decimal | null
+  salesTaxTotal: runtime.Decimal | null
+  suggestedCustomerSalesTotal: runtime.Decimal | null
+  productionCostPerUnit: runtime.Decimal | null
+  suggestedNetUnitPrice: runtime.Decimal | null
+  targetProfitPerUnit: runtime.Decimal | null
+  salesTaxPerUnit: runtime.Decimal | null
+  suggestedCustomerUnitPrice: runtime.Decimal | null
   createdAt: Date | null
 }
 
@@ -140,6 +214,7 @@ export type EstimationCountAggregateOutputType = {
   productId: number
   recipeVersionId: number
   createdByUserId: number
+  currencyCodeSnapshot: number
   mode: number
   productNameSnapshot: number
   productProductionUnitCodeSnapshot: number
@@ -166,6 +241,24 @@ export type EstimationCountAggregateOutputType = {
   costingComplete: number
   estimatedIngredientCost: number
   knownIngredientCostSubtotal: number
+  laborCost: number
+  energyCost: number
+  packagingCost: number
+  otherCost: number
+  additionalCostsSubtotal: number
+  knownCostSubtotal: number
+  productionCostTotal: number
+  targetMarginPercent: number
+  salesTaxRatePercent: number
+  suggestedNetSalesTotal: number
+  targetProfitTotal: number
+  salesTaxTotal: number
+  suggestedCustomerSalesTotal: number
+  productionCostPerUnit: number
+  suggestedNetUnitPrice: number
+  targetProfitPerUnit: number
+  salesTaxPerUnit: number
+  suggestedCustomerUnitPrice: number
   missingPriceIngredientNames: number
   createdAt: number
   _all: number
@@ -189,6 +282,24 @@ export type EstimationAvgAggregateInputType = {
   wholeProductCount?: true
   estimatedIngredientCost?: true
   knownIngredientCostSubtotal?: true
+  laborCost?: true
+  energyCost?: true
+  packagingCost?: true
+  otherCost?: true
+  additionalCostsSubtotal?: true
+  knownCostSubtotal?: true
+  productionCostTotal?: true
+  targetMarginPercent?: true
+  salesTaxRatePercent?: true
+  suggestedNetSalesTotal?: true
+  targetProfitTotal?: true
+  salesTaxTotal?: true
+  suggestedCustomerSalesTotal?: true
+  productionCostPerUnit?: true
+  suggestedNetUnitPrice?: true
+  targetProfitPerUnit?: true
+  salesTaxPerUnit?: true
+  suggestedCustomerUnitPrice?: true
 }
 
 export type EstimationSumAggregateInputType = {
@@ -208,6 +319,24 @@ export type EstimationSumAggregateInputType = {
   wholeProductCount?: true
   estimatedIngredientCost?: true
   knownIngredientCostSubtotal?: true
+  laborCost?: true
+  energyCost?: true
+  packagingCost?: true
+  otherCost?: true
+  additionalCostsSubtotal?: true
+  knownCostSubtotal?: true
+  productionCostTotal?: true
+  targetMarginPercent?: true
+  salesTaxRatePercent?: true
+  suggestedNetSalesTotal?: true
+  targetProfitTotal?: true
+  salesTaxTotal?: true
+  suggestedCustomerSalesTotal?: true
+  productionCostPerUnit?: true
+  suggestedNetUnitPrice?: true
+  targetProfitPerUnit?: true
+  salesTaxPerUnit?: true
+  suggestedCustomerUnitPrice?: true
 }
 
 export type EstimationMinAggregateInputType = {
@@ -216,6 +345,7 @@ export type EstimationMinAggregateInputType = {
   productId?: true
   recipeVersionId?: true
   createdByUserId?: true
+  currencyCodeSnapshot?: true
   mode?: true
   productNameSnapshot?: true
   productProductionUnitCodeSnapshot?: true
@@ -242,6 +372,24 @@ export type EstimationMinAggregateInputType = {
   costingComplete?: true
   estimatedIngredientCost?: true
   knownIngredientCostSubtotal?: true
+  laborCost?: true
+  energyCost?: true
+  packagingCost?: true
+  otherCost?: true
+  additionalCostsSubtotal?: true
+  knownCostSubtotal?: true
+  productionCostTotal?: true
+  targetMarginPercent?: true
+  salesTaxRatePercent?: true
+  suggestedNetSalesTotal?: true
+  targetProfitTotal?: true
+  salesTaxTotal?: true
+  suggestedCustomerSalesTotal?: true
+  productionCostPerUnit?: true
+  suggestedNetUnitPrice?: true
+  targetProfitPerUnit?: true
+  salesTaxPerUnit?: true
+  suggestedCustomerUnitPrice?: true
   createdAt?: true
 }
 
@@ -251,6 +399,7 @@ export type EstimationMaxAggregateInputType = {
   productId?: true
   recipeVersionId?: true
   createdByUserId?: true
+  currencyCodeSnapshot?: true
   mode?: true
   productNameSnapshot?: true
   productProductionUnitCodeSnapshot?: true
@@ -277,6 +426,24 @@ export type EstimationMaxAggregateInputType = {
   costingComplete?: true
   estimatedIngredientCost?: true
   knownIngredientCostSubtotal?: true
+  laborCost?: true
+  energyCost?: true
+  packagingCost?: true
+  otherCost?: true
+  additionalCostsSubtotal?: true
+  knownCostSubtotal?: true
+  productionCostTotal?: true
+  targetMarginPercent?: true
+  salesTaxRatePercent?: true
+  suggestedNetSalesTotal?: true
+  targetProfitTotal?: true
+  salesTaxTotal?: true
+  suggestedCustomerSalesTotal?: true
+  productionCostPerUnit?: true
+  suggestedNetUnitPrice?: true
+  targetProfitPerUnit?: true
+  salesTaxPerUnit?: true
+  suggestedCustomerUnitPrice?: true
   createdAt?: true
 }
 
@@ -286,6 +453,7 @@ export type EstimationCountAggregateInputType = {
   productId?: true
   recipeVersionId?: true
   createdByUserId?: true
+  currencyCodeSnapshot?: true
   mode?: true
   productNameSnapshot?: true
   productProductionUnitCodeSnapshot?: true
@@ -312,6 +480,24 @@ export type EstimationCountAggregateInputType = {
   costingComplete?: true
   estimatedIngredientCost?: true
   knownIngredientCostSubtotal?: true
+  laborCost?: true
+  energyCost?: true
+  packagingCost?: true
+  otherCost?: true
+  additionalCostsSubtotal?: true
+  knownCostSubtotal?: true
+  productionCostTotal?: true
+  targetMarginPercent?: true
+  salesTaxRatePercent?: true
+  suggestedNetSalesTotal?: true
+  targetProfitTotal?: true
+  salesTaxTotal?: true
+  suggestedCustomerSalesTotal?: true
+  productionCostPerUnit?: true
+  suggestedNetUnitPrice?: true
+  targetProfitPerUnit?: true
+  salesTaxPerUnit?: true
+  suggestedCustomerUnitPrice?: true
   missingPriceIngredientNames?: true
   createdAt?: true
   _all?: true
@@ -409,6 +595,7 @@ export type EstimationGroupByOutputType = {
   productId: string
   recipeVersionId: string
   createdByUserId: string
+  currencyCodeSnapshot: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -435,6 +622,24 @@ export type EstimationGroupByOutputType = {
   costingComplete: boolean
   estimatedIngredientCost: runtime.Decimal | null
   knownIngredientCostSubtotal: runtime.Decimal
+  laborCost: runtime.Decimal | null
+  energyCost: runtime.Decimal | null
+  packagingCost: runtime.Decimal | null
+  otherCost: runtime.Decimal | null
+  additionalCostsSubtotal: runtime.Decimal | null
+  knownCostSubtotal: runtime.Decimal | null
+  productionCostTotal: runtime.Decimal | null
+  targetMarginPercent: runtime.Decimal | null
+  salesTaxRatePercent: runtime.Decimal | null
+  suggestedNetSalesTotal: runtime.Decimal | null
+  targetProfitTotal: runtime.Decimal | null
+  salesTaxTotal: runtime.Decimal | null
+  suggestedCustomerSalesTotal: runtime.Decimal | null
+  productionCostPerUnit: runtime.Decimal | null
+  suggestedNetUnitPrice: runtime.Decimal | null
+  targetProfitPerUnit: runtime.Decimal | null
+  salesTaxPerUnit: runtime.Decimal | null
+  suggestedCustomerUnitPrice: runtime.Decimal | null
   missingPriceIngredientNames: runtime.JsonValue
   createdAt: Date
   _count: EstimationCountAggregateOutputType | null
@@ -468,6 +673,7 @@ export type EstimationWhereInput = {
   productId?: Prisma.StringFilter<"Estimation"> | string
   recipeVersionId?: Prisma.StringFilter<"Estimation"> | string
   createdByUserId?: Prisma.StringFilter<"Estimation"> | string
+  currencyCodeSnapshot?: Prisma.StringFilter<"Estimation"> | string
   mode?: Prisma.EnumEstimationModeFilter<"Estimation"> | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFilter<"Estimation"> | string
   productProductionUnitCodeSnapshot?: Prisma.StringFilter<"Estimation"> | string
@@ -494,6 +700,24 @@ export type EstimationWhereInput = {
   costingComplete?: Prisma.BoolFilter<"Estimation"> | boolean
   estimatedIngredientCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonFilter<"Estimation">
   createdAt?: Prisma.DateTimeFilter<"Estimation"> | Date | string
   business?: Prisma.XOR<Prisma.BusinessScalarRelationFilter, Prisma.BusinessWhereInput>
@@ -509,6 +733,7 @@ export type EstimationOrderByWithRelationInput = {
   productId?: Prisma.SortOrder
   recipeVersionId?: Prisma.SortOrder
   createdByUserId?: Prisma.SortOrder
+  currencyCodeSnapshot?: Prisma.SortOrder
   mode?: Prisma.SortOrder
   productNameSnapshot?: Prisma.SortOrder
   productProductionUnitCodeSnapshot?: Prisma.SortOrder
@@ -535,6 +760,24 @@ export type EstimationOrderByWithRelationInput = {
   costingComplete?: Prisma.SortOrder
   estimatedIngredientCost?: Prisma.SortOrderInput | Prisma.SortOrder
   knownIngredientCostSubtotal?: Prisma.SortOrder
+  laborCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  energyCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  packagingCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  otherCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  additionalCostsSubtotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  knownCostSubtotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  productionCostTotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetMarginPercent?: Prisma.SortOrderInput | Prisma.SortOrder
+  salesTaxRatePercent?: Prisma.SortOrderInput | Prisma.SortOrder
+  suggestedNetSalesTotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetProfitTotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  salesTaxTotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  suggestedCustomerSalesTotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  productionCostPerUnit?: Prisma.SortOrderInput | Prisma.SortOrder
+  suggestedNetUnitPrice?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetProfitPerUnit?: Prisma.SortOrderInput | Prisma.SortOrder
+  salesTaxPerUnit?: Prisma.SortOrderInput | Prisma.SortOrder
+  suggestedCustomerUnitPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   missingPriceIngredientNames?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   business?: Prisma.BusinessOrderByWithRelationInput
@@ -553,6 +796,7 @@ export type EstimationWhereUniqueInput = Prisma.AtLeast<{
   productId?: Prisma.StringFilter<"Estimation"> | string
   recipeVersionId?: Prisma.StringFilter<"Estimation"> | string
   createdByUserId?: Prisma.StringFilter<"Estimation"> | string
+  currencyCodeSnapshot?: Prisma.StringFilter<"Estimation"> | string
   mode?: Prisma.EnumEstimationModeFilter<"Estimation"> | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFilter<"Estimation"> | string
   productProductionUnitCodeSnapshot?: Prisma.StringFilter<"Estimation"> | string
@@ -579,6 +823,24 @@ export type EstimationWhereUniqueInput = Prisma.AtLeast<{
   costingComplete?: Prisma.BoolFilter<"Estimation"> | boolean
   estimatedIngredientCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonFilter<"Estimation">
   createdAt?: Prisma.DateTimeFilter<"Estimation"> | Date | string
   business?: Prisma.XOR<Prisma.BusinessScalarRelationFilter, Prisma.BusinessWhereInput>
@@ -594,6 +856,7 @@ export type EstimationOrderByWithAggregationInput = {
   productId?: Prisma.SortOrder
   recipeVersionId?: Prisma.SortOrder
   createdByUserId?: Prisma.SortOrder
+  currencyCodeSnapshot?: Prisma.SortOrder
   mode?: Prisma.SortOrder
   productNameSnapshot?: Prisma.SortOrder
   productProductionUnitCodeSnapshot?: Prisma.SortOrder
@@ -620,6 +883,24 @@ export type EstimationOrderByWithAggregationInput = {
   costingComplete?: Prisma.SortOrder
   estimatedIngredientCost?: Prisma.SortOrderInput | Prisma.SortOrder
   knownIngredientCostSubtotal?: Prisma.SortOrder
+  laborCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  energyCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  packagingCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  otherCost?: Prisma.SortOrderInput | Prisma.SortOrder
+  additionalCostsSubtotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  knownCostSubtotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  productionCostTotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetMarginPercent?: Prisma.SortOrderInput | Prisma.SortOrder
+  salesTaxRatePercent?: Prisma.SortOrderInput | Prisma.SortOrder
+  suggestedNetSalesTotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetProfitTotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  salesTaxTotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  suggestedCustomerSalesTotal?: Prisma.SortOrderInput | Prisma.SortOrder
+  productionCostPerUnit?: Prisma.SortOrderInput | Prisma.SortOrder
+  suggestedNetUnitPrice?: Prisma.SortOrderInput | Prisma.SortOrder
+  targetProfitPerUnit?: Prisma.SortOrderInput | Prisma.SortOrder
+  salesTaxPerUnit?: Prisma.SortOrderInput | Prisma.SortOrder
+  suggestedCustomerUnitPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   missingPriceIngredientNames?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.EstimationCountOrderByAggregateInput
@@ -638,6 +919,7 @@ export type EstimationScalarWhereWithAggregatesInput = {
   productId?: Prisma.StringWithAggregatesFilter<"Estimation"> | string
   recipeVersionId?: Prisma.StringWithAggregatesFilter<"Estimation"> | string
   createdByUserId?: Prisma.StringWithAggregatesFilter<"Estimation"> | string
+  currencyCodeSnapshot?: Prisma.StringWithAggregatesFilter<"Estimation"> | string
   mode?: Prisma.EnumEstimationModeWithAggregatesFilter<"Estimation"> | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringWithAggregatesFilter<"Estimation"> | string
   productProductionUnitCodeSnapshot?: Prisma.StringWithAggregatesFilter<"Estimation"> | string
@@ -664,12 +946,31 @@ export type EstimationScalarWhereWithAggregatesInput = {
   costingComplete?: Prisma.BoolWithAggregatesFilter<"Estimation"> | boolean
   estimatedIngredientCost?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.DecimalNullableWithAggregatesFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonWithAggregatesFilter<"Estimation">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Estimation"> | Date | string
 }
 
 export type EstimationCreateInput = {
   id?: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -696,6 +997,24 @@ export type EstimationCreateInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   business: Prisma.BusinessCreateNestedOneWithoutEstimationsInput
@@ -711,6 +1030,7 @@ export type EstimationUncheckedCreateInput = {
   productId: string
   recipeVersionId: string
   createdByUserId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -737,6 +1057,24 @@ export type EstimationUncheckedCreateInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   ingredients?: Prisma.EstimationIngredientUncheckedCreateNestedManyWithoutEstimationInput
@@ -744,6 +1082,7 @@ export type EstimationUncheckedCreateInput = {
 
 export type EstimationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -770,6 +1109,24 @@ export type EstimationUpdateInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   business?: Prisma.BusinessUpdateOneRequiredWithoutEstimationsNestedInput
@@ -785,6 +1142,7 @@ export type EstimationUncheckedUpdateInput = {
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   recipeVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -811,6 +1169,24 @@ export type EstimationUncheckedUpdateInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.EstimationIngredientUncheckedUpdateManyWithoutEstimationNestedInput
@@ -822,6 +1198,7 @@ export type EstimationCreateManyInput = {
   productId: string
   recipeVersionId: string
   createdByUserId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -848,12 +1225,31 @@ export type EstimationCreateManyInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
 }
 
 export type EstimationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -880,6 +1276,24 @@ export type EstimationUpdateManyMutationInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -890,6 +1304,7 @@ export type EstimationUncheckedUpdateManyInput = {
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   recipeVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -916,6 +1331,24 @@ export type EstimationUncheckedUpdateManyInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -936,6 +1369,7 @@ export type EstimationCountOrderByAggregateInput = {
   productId?: Prisma.SortOrder
   recipeVersionId?: Prisma.SortOrder
   createdByUserId?: Prisma.SortOrder
+  currencyCodeSnapshot?: Prisma.SortOrder
   mode?: Prisma.SortOrder
   productNameSnapshot?: Prisma.SortOrder
   productProductionUnitCodeSnapshot?: Prisma.SortOrder
@@ -962,6 +1396,24 @@ export type EstimationCountOrderByAggregateInput = {
   costingComplete?: Prisma.SortOrder
   estimatedIngredientCost?: Prisma.SortOrder
   knownIngredientCostSubtotal?: Prisma.SortOrder
+  laborCost?: Prisma.SortOrder
+  energyCost?: Prisma.SortOrder
+  packagingCost?: Prisma.SortOrder
+  otherCost?: Prisma.SortOrder
+  additionalCostsSubtotal?: Prisma.SortOrder
+  knownCostSubtotal?: Prisma.SortOrder
+  productionCostTotal?: Prisma.SortOrder
+  targetMarginPercent?: Prisma.SortOrder
+  salesTaxRatePercent?: Prisma.SortOrder
+  suggestedNetSalesTotal?: Prisma.SortOrder
+  targetProfitTotal?: Prisma.SortOrder
+  salesTaxTotal?: Prisma.SortOrder
+  suggestedCustomerSalesTotal?: Prisma.SortOrder
+  productionCostPerUnit?: Prisma.SortOrder
+  suggestedNetUnitPrice?: Prisma.SortOrder
+  targetProfitPerUnit?: Prisma.SortOrder
+  salesTaxPerUnit?: Prisma.SortOrder
+  suggestedCustomerUnitPrice?: Prisma.SortOrder
   missingPriceIngredientNames?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -983,6 +1435,24 @@ export type EstimationAvgOrderByAggregateInput = {
   wholeProductCount?: Prisma.SortOrder
   estimatedIngredientCost?: Prisma.SortOrder
   knownIngredientCostSubtotal?: Prisma.SortOrder
+  laborCost?: Prisma.SortOrder
+  energyCost?: Prisma.SortOrder
+  packagingCost?: Prisma.SortOrder
+  otherCost?: Prisma.SortOrder
+  additionalCostsSubtotal?: Prisma.SortOrder
+  knownCostSubtotal?: Prisma.SortOrder
+  productionCostTotal?: Prisma.SortOrder
+  targetMarginPercent?: Prisma.SortOrder
+  salesTaxRatePercent?: Prisma.SortOrder
+  suggestedNetSalesTotal?: Prisma.SortOrder
+  targetProfitTotal?: Prisma.SortOrder
+  salesTaxTotal?: Prisma.SortOrder
+  suggestedCustomerSalesTotal?: Prisma.SortOrder
+  productionCostPerUnit?: Prisma.SortOrder
+  suggestedNetUnitPrice?: Prisma.SortOrder
+  targetProfitPerUnit?: Prisma.SortOrder
+  salesTaxPerUnit?: Prisma.SortOrder
+  suggestedCustomerUnitPrice?: Prisma.SortOrder
 }
 
 export type EstimationMaxOrderByAggregateInput = {
@@ -991,6 +1461,7 @@ export type EstimationMaxOrderByAggregateInput = {
   productId?: Prisma.SortOrder
   recipeVersionId?: Prisma.SortOrder
   createdByUserId?: Prisma.SortOrder
+  currencyCodeSnapshot?: Prisma.SortOrder
   mode?: Prisma.SortOrder
   productNameSnapshot?: Prisma.SortOrder
   productProductionUnitCodeSnapshot?: Prisma.SortOrder
@@ -1017,6 +1488,24 @@ export type EstimationMaxOrderByAggregateInput = {
   costingComplete?: Prisma.SortOrder
   estimatedIngredientCost?: Prisma.SortOrder
   knownIngredientCostSubtotal?: Prisma.SortOrder
+  laborCost?: Prisma.SortOrder
+  energyCost?: Prisma.SortOrder
+  packagingCost?: Prisma.SortOrder
+  otherCost?: Prisma.SortOrder
+  additionalCostsSubtotal?: Prisma.SortOrder
+  knownCostSubtotal?: Prisma.SortOrder
+  productionCostTotal?: Prisma.SortOrder
+  targetMarginPercent?: Prisma.SortOrder
+  salesTaxRatePercent?: Prisma.SortOrder
+  suggestedNetSalesTotal?: Prisma.SortOrder
+  targetProfitTotal?: Prisma.SortOrder
+  salesTaxTotal?: Prisma.SortOrder
+  suggestedCustomerSalesTotal?: Prisma.SortOrder
+  productionCostPerUnit?: Prisma.SortOrder
+  suggestedNetUnitPrice?: Prisma.SortOrder
+  targetProfitPerUnit?: Prisma.SortOrder
+  salesTaxPerUnit?: Prisma.SortOrder
+  suggestedCustomerUnitPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -1026,6 +1515,7 @@ export type EstimationMinOrderByAggregateInput = {
   productId?: Prisma.SortOrder
   recipeVersionId?: Prisma.SortOrder
   createdByUserId?: Prisma.SortOrder
+  currencyCodeSnapshot?: Prisma.SortOrder
   mode?: Prisma.SortOrder
   productNameSnapshot?: Prisma.SortOrder
   productProductionUnitCodeSnapshot?: Prisma.SortOrder
@@ -1052,6 +1542,24 @@ export type EstimationMinOrderByAggregateInput = {
   costingComplete?: Prisma.SortOrder
   estimatedIngredientCost?: Prisma.SortOrder
   knownIngredientCostSubtotal?: Prisma.SortOrder
+  laborCost?: Prisma.SortOrder
+  energyCost?: Prisma.SortOrder
+  packagingCost?: Prisma.SortOrder
+  otherCost?: Prisma.SortOrder
+  additionalCostsSubtotal?: Prisma.SortOrder
+  knownCostSubtotal?: Prisma.SortOrder
+  productionCostTotal?: Prisma.SortOrder
+  targetMarginPercent?: Prisma.SortOrder
+  salesTaxRatePercent?: Prisma.SortOrder
+  suggestedNetSalesTotal?: Prisma.SortOrder
+  targetProfitTotal?: Prisma.SortOrder
+  salesTaxTotal?: Prisma.SortOrder
+  suggestedCustomerSalesTotal?: Prisma.SortOrder
+  productionCostPerUnit?: Prisma.SortOrder
+  suggestedNetUnitPrice?: Prisma.SortOrder
+  targetProfitPerUnit?: Prisma.SortOrder
+  salesTaxPerUnit?: Prisma.SortOrder
+  suggestedCustomerUnitPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -1072,6 +1580,24 @@ export type EstimationSumOrderByAggregateInput = {
   wholeProductCount?: Prisma.SortOrder
   estimatedIngredientCost?: Prisma.SortOrder
   knownIngredientCostSubtotal?: Prisma.SortOrder
+  laborCost?: Prisma.SortOrder
+  energyCost?: Prisma.SortOrder
+  packagingCost?: Prisma.SortOrder
+  otherCost?: Prisma.SortOrder
+  additionalCostsSubtotal?: Prisma.SortOrder
+  knownCostSubtotal?: Prisma.SortOrder
+  productionCostTotal?: Prisma.SortOrder
+  targetMarginPercent?: Prisma.SortOrder
+  salesTaxRatePercent?: Prisma.SortOrder
+  suggestedNetSalesTotal?: Prisma.SortOrder
+  targetProfitTotal?: Prisma.SortOrder
+  salesTaxTotal?: Prisma.SortOrder
+  suggestedCustomerSalesTotal?: Prisma.SortOrder
+  productionCostPerUnit?: Prisma.SortOrder
+  suggestedNetUnitPrice?: Prisma.SortOrder
+  targetProfitPerUnit?: Prisma.SortOrder
+  salesTaxPerUnit?: Prisma.SortOrder
+  suggestedCustomerUnitPrice?: Prisma.SortOrder
 }
 
 export type EstimationScalarRelationFilter = {
@@ -1275,6 +1801,7 @@ export type EstimationUpdateOneRequiredWithoutIngredientsNestedInput = {
 
 export type EstimationCreateWithoutCreatedByInput = {
   id?: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1301,6 +1828,24 @@ export type EstimationCreateWithoutCreatedByInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   business: Prisma.BusinessCreateNestedOneWithoutEstimationsInput
@@ -1314,6 +1859,7 @@ export type EstimationUncheckedCreateWithoutCreatedByInput = {
   businessId: string
   productId: string
   recipeVersionId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1340,6 +1886,24 @@ export type EstimationUncheckedCreateWithoutCreatedByInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   ingredients?: Prisma.EstimationIngredientUncheckedCreateNestedManyWithoutEstimationInput
@@ -1380,6 +1944,7 @@ export type EstimationScalarWhereInput = {
   productId?: Prisma.StringFilter<"Estimation"> | string
   recipeVersionId?: Prisma.StringFilter<"Estimation"> | string
   createdByUserId?: Prisma.StringFilter<"Estimation"> | string
+  currencyCodeSnapshot?: Prisma.StringFilter<"Estimation"> | string
   mode?: Prisma.EnumEstimationModeFilter<"Estimation"> | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFilter<"Estimation"> | string
   productProductionUnitCodeSnapshot?: Prisma.StringFilter<"Estimation"> | string
@@ -1406,12 +1971,31 @@ export type EstimationScalarWhereInput = {
   costingComplete?: Prisma.BoolFilter<"Estimation"> | boolean
   estimatedIngredientCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.DecimalNullableFilter<"Estimation"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonFilter<"Estimation">
   createdAt?: Prisma.DateTimeFilter<"Estimation"> | Date | string
 }
 
 export type EstimationCreateWithoutBusinessInput = {
   id?: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1438,6 +2022,24 @@ export type EstimationCreateWithoutBusinessInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   product: Prisma.ProductCreateNestedOneWithoutEstimationsInput
@@ -1451,6 +2053,7 @@ export type EstimationUncheckedCreateWithoutBusinessInput = {
   productId: string
   recipeVersionId: string
   createdByUserId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1477,6 +2080,24 @@ export type EstimationUncheckedCreateWithoutBusinessInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   ingredients?: Prisma.EstimationIngredientUncheckedCreateNestedManyWithoutEstimationInput
@@ -1510,6 +2131,7 @@ export type EstimationUpdateManyWithWhereWithoutBusinessInput = {
 
 export type EstimationCreateWithoutProductInput = {
   id?: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1536,6 +2158,24 @@ export type EstimationCreateWithoutProductInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   business: Prisma.BusinessCreateNestedOneWithoutEstimationsInput
@@ -1549,6 +2189,7 @@ export type EstimationUncheckedCreateWithoutProductInput = {
   businessId: string
   recipeVersionId: string
   createdByUserId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1575,6 +2216,24 @@ export type EstimationUncheckedCreateWithoutProductInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   ingredients?: Prisma.EstimationIngredientUncheckedCreateNestedManyWithoutEstimationInput
@@ -1608,6 +2267,7 @@ export type EstimationUpdateManyWithWhereWithoutProductInput = {
 
 export type EstimationCreateWithoutRecipeVersionInput = {
   id?: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1634,6 +2294,24 @@ export type EstimationCreateWithoutRecipeVersionInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   business: Prisma.BusinessCreateNestedOneWithoutEstimationsInput
@@ -1647,6 +2325,7 @@ export type EstimationUncheckedCreateWithoutRecipeVersionInput = {
   businessId: string
   productId: string
   createdByUserId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1673,6 +2352,24 @@ export type EstimationUncheckedCreateWithoutRecipeVersionInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   ingredients?: Prisma.EstimationIngredientUncheckedCreateNestedManyWithoutEstimationInput
@@ -1706,6 +2403,7 @@ export type EstimationUpdateManyWithWhereWithoutRecipeVersionInput = {
 
 export type EstimationCreateWithoutIngredientsInput = {
   id?: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1732,6 +2430,24 @@ export type EstimationCreateWithoutIngredientsInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   business: Prisma.BusinessCreateNestedOneWithoutEstimationsInput
@@ -1746,6 +2462,7 @@ export type EstimationUncheckedCreateWithoutIngredientsInput = {
   productId: string
   recipeVersionId: string
   createdByUserId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1772,6 +2489,24 @@ export type EstimationUncheckedCreateWithoutIngredientsInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
 }
@@ -1794,6 +2529,7 @@ export type EstimationUpdateToOneWithWhereWithoutIngredientsInput = {
 
 export type EstimationUpdateWithoutIngredientsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1820,6 +2556,24 @@ export type EstimationUpdateWithoutIngredientsInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   business?: Prisma.BusinessUpdateOneRequiredWithoutEstimationsNestedInput
@@ -1834,6 +2588,7 @@ export type EstimationUncheckedUpdateWithoutIngredientsInput = {
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   recipeVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1860,6 +2615,24 @@ export type EstimationUncheckedUpdateWithoutIngredientsInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1869,6 +2642,7 @@ export type EstimationCreateManyCreatedByInput = {
   businessId: string
   productId: string
   recipeVersionId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -1895,12 +2669,31 @@ export type EstimationCreateManyCreatedByInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
 }
 
 export type EstimationUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1927,6 +2720,24 @@ export type EstimationUpdateWithoutCreatedByInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   business?: Prisma.BusinessUpdateOneRequiredWithoutEstimationsNestedInput
@@ -1940,6 +2751,7 @@ export type EstimationUncheckedUpdateWithoutCreatedByInput = {
   businessId?: Prisma.StringFieldUpdateOperationsInput | string
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   recipeVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1966,6 +2778,24 @@ export type EstimationUncheckedUpdateWithoutCreatedByInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.EstimationIngredientUncheckedUpdateManyWithoutEstimationNestedInput
@@ -1976,6 +2806,7 @@ export type EstimationUncheckedUpdateManyWithoutCreatedByInput = {
   businessId?: Prisma.StringFieldUpdateOperationsInput | string
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   recipeVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2002,6 +2833,24 @@ export type EstimationUncheckedUpdateManyWithoutCreatedByInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2011,6 +2860,7 @@ export type EstimationCreateManyBusinessInput = {
   productId: string
   recipeVersionId: string
   createdByUserId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -2037,12 +2887,31 @@ export type EstimationCreateManyBusinessInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
 }
 
 export type EstimationUpdateWithoutBusinessInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2069,6 +2938,24 @@ export type EstimationUpdateWithoutBusinessInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   product?: Prisma.ProductUpdateOneRequiredWithoutEstimationsNestedInput
@@ -2082,6 +2969,7 @@ export type EstimationUncheckedUpdateWithoutBusinessInput = {
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   recipeVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2108,6 +2996,24 @@ export type EstimationUncheckedUpdateWithoutBusinessInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.EstimationIngredientUncheckedUpdateManyWithoutEstimationNestedInput
@@ -2118,6 +3024,7 @@ export type EstimationUncheckedUpdateManyWithoutBusinessInput = {
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   recipeVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2144,6 +3051,24 @@ export type EstimationUncheckedUpdateManyWithoutBusinessInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2153,6 +3078,7 @@ export type EstimationCreateManyProductInput = {
   businessId: string
   recipeVersionId: string
   createdByUserId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -2179,12 +3105,31 @@ export type EstimationCreateManyProductInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
 }
 
 export type EstimationUpdateWithoutProductInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2211,6 +3156,24 @@ export type EstimationUpdateWithoutProductInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   business?: Prisma.BusinessUpdateOneRequiredWithoutEstimationsNestedInput
@@ -2224,6 +3187,7 @@ export type EstimationUncheckedUpdateWithoutProductInput = {
   businessId?: Prisma.StringFieldUpdateOperationsInput | string
   recipeVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2250,6 +3214,24 @@ export type EstimationUncheckedUpdateWithoutProductInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.EstimationIngredientUncheckedUpdateManyWithoutEstimationNestedInput
@@ -2260,6 +3242,7 @@ export type EstimationUncheckedUpdateManyWithoutProductInput = {
   businessId?: Prisma.StringFieldUpdateOperationsInput | string
   recipeVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2286,6 +3269,24 @@ export type EstimationUncheckedUpdateManyWithoutProductInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2295,6 +3296,7 @@ export type EstimationCreateManyRecipeVersionInput = {
   businessId: string
   productId: string
   createdByUserId: string
+  currencyCodeSnapshot?: string
   mode: $Enums.EstimationMode
   productNameSnapshot: string
   productProductionUnitCodeSnapshot: string
@@ -2321,12 +3323,31 @@ export type EstimationCreateManyRecipeVersionInput = {
   costingComplete: boolean
   estimatedIngredientCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal: runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
 }
 
 export type EstimationUpdateWithoutRecipeVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2353,6 +3374,24 @@ export type EstimationUpdateWithoutRecipeVersionInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   business?: Prisma.BusinessUpdateOneRequiredWithoutEstimationsNestedInput
@@ -2366,6 +3405,7 @@ export type EstimationUncheckedUpdateWithoutRecipeVersionInput = {
   businessId?: Prisma.StringFieldUpdateOperationsInput | string
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2392,6 +3432,24 @@ export type EstimationUncheckedUpdateWithoutRecipeVersionInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.EstimationIngredientUncheckedUpdateManyWithoutEstimationNestedInput
@@ -2402,6 +3460,7 @@ export type EstimationUncheckedUpdateManyWithoutRecipeVersionInput = {
   businessId?: Prisma.StringFieldUpdateOperationsInput | string
   productId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumEstimationModeFieldUpdateOperationsInput | $Enums.EstimationMode
   productNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
   productProductionUnitCodeSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2428,6 +3487,24 @@ export type EstimationUncheckedUpdateManyWithoutRecipeVersionInput = {
   costingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estimatedIngredientCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   knownIngredientCostSubtotal?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  laborCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  energyCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  packagingCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  otherCost?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  additionalCostsSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  knownCostSubtotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetMarginPercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxRatePercent?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerSalesTotal?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  productionCostPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedNetUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  targetProfitPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  salesTaxPerUnit?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  suggestedCustomerUnitPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   missingPriceIngredientNames?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2469,6 +3546,7 @@ export type EstimationSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   productId?: boolean
   recipeVersionId?: boolean
   createdByUserId?: boolean
+  currencyCodeSnapshot?: boolean
   mode?: boolean
   productNameSnapshot?: boolean
   productProductionUnitCodeSnapshot?: boolean
@@ -2495,6 +3573,24 @@ export type EstimationSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   costingComplete?: boolean
   estimatedIngredientCost?: boolean
   knownIngredientCostSubtotal?: boolean
+  laborCost?: boolean
+  energyCost?: boolean
+  packagingCost?: boolean
+  otherCost?: boolean
+  additionalCostsSubtotal?: boolean
+  knownCostSubtotal?: boolean
+  productionCostTotal?: boolean
+  targetMarginPercent?: boolean
+  salesTaxRatePercent?: boolean
+  suggestedNetSalesTotal?: boolean
+  targetProfitTotal?: boolean
+  salesTaxTotal?: boolean
+  suggestedCustomerSalesTotal?: boolean
+  productionCostPerUnit?: boolean
+  suggestedNetUnitPrice?: boolean
+  targetProfitPerUnit?: boolean
+  salesTaxPerUnit?: boolean
+  suggestedCustomerUnitPrice?: boolean
   missingPriceIngredientNames?: boolean
   createdAt?: boolean
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
@@ -2511,6 +3607,7 @@ export type EstimationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   productId?: boolean
   recipeVersionId?: boolean
   createdByUserId?: boolean
+  currencyCodeSnapshot?: boolean
   mode?: boolean
   productNameSnapshot?: boolean
   productProductionUnitCodeSnapshot?: boolean
@@ -2537,6 +3634,24 @@ export type EstimationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   costingComplete?: boolean
   estimatedIngredientCost?: boolean
   knownIngredientCostSubtotal?: boolean
+  laborCost?: boolean
+  energyCost?: boolean
+  packagingCost?: boolean
+  otherCost?: boolean
+  additionalCostsSubtotal?: boolean
+  knownCostSubtotal?: boolean
+  productionCostTotal?: boolean
+  targetMarginPercent?: boolean
+  salesTaxRatePercent?: boolean
+  suggestedNetSalesTotal?: boolean
+  targetProfitTotal?: boolean
+  salesTaxTotal?: boolean
+  suggestedCustomerSalesTotal?: boolean
+  productionCostPerUnit?: boolean
+  suggestedNetUnitPrice?: boolean
+  targetProfitPerUnit?: boolean
+  salesTaxPerUnit?: boolean
+  suggestedCustomerUnitPrice?: boolean
   missingPriceIngredientNames?: boolean
   createdAt?: boolean
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
@@ -2551,6 +3666,7 @@ export type EstimationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   productId?: boolean
   recipeVersionId?: boolean
   createdByUserId?: boolean
+  currencyCodeSnapshot?: boolean
   mode?: boolean
   productNameSnapshot?: boolean
   productProductionUnitCodeSnapshot?: boolean
@@ -2577,6 +3693,24 @@ export type EstimationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   costingComplete?: boolean
   estimatedIngredientCost?: boolean
   knownIngredientCostSubtotal?: boolean
+  laborCost?: boolean
+  energyCost?: boolean
+  packagingCost?: boolean
+  otherCost?: boolean
+  additionalCostsSubtotal?: boolean
+  knownCostSubtotal?: boolean
+  productionCostTotal?: boolean
+  targetMarginPercent?: boolean
+  salesTaxRatePercent?: boolean
+  suggestedNetSalesTotal?: boolean
+  targetProfitTotal?: boolean
+  salesTaxTotal?: boolean
+  suggestedCustomerSalesTotal?: boolean
+  productionCostPerUnit?: boolean
+  suggestedNetUnitPrice?: boolean
+  targetProfitPerUnit?: boolean
+  salesTaxPerUnit?: boolean
+  suggestedCustomerUnitPrice?: boolean
   missingPriceIngredientNames?: boolean
   createdAt?: boolean
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
@@ -2591,6 +3725,7 @@ export type EstimationSelectScalar = {
   productId?: boolean
   recipeVersionId?: boolean
   createdByUserId?: boolean
+  currencyCodeSnapshot?: boolean
   mode?: boolean
   productNameSnapshot?: boolean
   productProductionUnitCodeSnapshot?: boolean
@@ -2617,11 +3752,29 @@ export type EstimationSelectScalar = {
   costingComplete?: boolean
   estimatedIngredientCost?: boolean
   knownIngredientCostSubtotal?: boolean
+  laborCost?: boolean
+  energyCost?: boolean
+  packagingCost?: boolean
+  otherCost?: boolean
+  additionalCostsSubtotal?: boolean
+  knownCostSubtotal?: boolean
+  productionCostTotal?: boolean
+  targetMarginPercent?: boolean
+  salesTaxRatePercent?: boolean
+  suggestedNetSalesTotal?: boolean
+  targetProfitTotal?: boolean
+  salesTaxTotal?: boolean
+  suggestedCustomerSalesTotal?: boolean
+  productionCostPerUnit?: boolean
+  suggestedNetUnitPrice?: boolean
+  targetProfitPerUnit?: boolean
+  salesTaxPerUnit?: boolean
+  suggestedCustomerUnitPrice?: boolean
   missingPriceIngredientNames?: boolean
   createdAt?: boolean
 }
 
-export type EstimationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "businessId" | "productId" | "recipeVersionId" | "createdByUserId" | "mode" | "productNameSnapshot" | "productProductionUnitCodeSnapshot" | "recipeVersionNumber" | "plannedProductCount" | "targetFinishedWeightInput" | "targetFinishedWeightUnitCode" | "targetFinishedWeightUnitName" | "targetFinishedWeightUnitSymbol" | "targetFinishedWeightUnitFactorToBase" | "flourQuantity" | "flourUnitCode" | "flourUnitName" | "flourUnitSymbol" | "flourUnitFactorToBase" | "expectedBakeLossPercent" | "recipeTotalPercentage" | "flourMassGrams" | "rawDoughMassGrams" | "expectedFinishedMassGrams" | "targetFinishedWeightPerUnitGrams" | "theoreticalProductCount" | "wholeProductCount" | "costingComplete" | "estimatedIngredientCost" | "knownIngredientCostSubtotal" | "missingPriceIngredientNames" | "createdAt", ExtArgs["result"]["estimation"]>
+export type EstimationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "businessId" | "productId" | "recipeVersionId" | "createdByUserId" | "currencyCodeSnapshot" | "mode" | "productNameSnapshot" | "productProductionUnitCodeSnapshot" | "recipeVersionNumber" | "plannedProductCount" | "targetFinishedWeightInput" | "targetFinishedWeightUnitCode" | "targetFinishedWeightUnitName" | "targetFinishedWeightUnitSymbol" | "targetFinishedWeightUnitFactorToBase" | "flourQuantity" | "flourUnitCode" | "flourUnitName" | "flourUnitSymbol" | "flourUnitFactorToBase" | "expectedBakeLossPercent" | "recipeTotalPercentage" | "flourMassGrams" | "rawDoughMassGrams" | "expectedFinishedMassGrams" | "targetFinishedWeightPerUnitGrams" | "theoreticalProductCount" | "wholeProductCount" | "costingComplete" | "estimatedIngredientCost" | "knownIngredientCostSubtotal" | "laborCost" | "energyCost" | "packagingCost" | "otherCost" | "additionalCostsSubtotal" | "knownCostSubtotal" | "productionCostTotal" | "targetMarginPercent" | "salesTaxRatePercent" | "suggestedNetSalesTotal" | "targetProfitTotal" | "salesTaxTotal" | "suggestedCustomerSalesTotal" | "productionCostPerUnit" | "suggestedNetUnitPrice" | "targetProfitPerUnit" | "salesTaxPerUnit" | "suggestedCustomerUnitPrice" | "missingPriceIngredientNames" | "createdAt", ExtArgs["result"]["estimation"]>
 export type EstimationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
@@ -2658,6 +3811,7 @@ export type $EstimationPayload<ExtArgs extends runtime.Types.Extensions.Internal
     productId: string
     recipeVersionId: string
     createdByUserId: string
+    currencyCodeSnapshot: string
     mode: $Enums.EstimationMode
     productNameSnapshot: string
     productProductionUnitCodeSnapshot: string
@@ -2684,6 +3838,24 @@ export type $EstimationPayload<ExtArgs extends runtime.Types.Extensions.Internal
     costingComplete: boolean
     estimatedIngredientCost: runtime.Decimal | null
     knownIngredientCostSubtotal: runtime.Decimal
+    laborCost: runtime.Decimal | null
+    energyCost: runtime.Decimal | null
+    packagingCost: runtime.Decimal | null
+    otherCost: runtime.Decimal | null
+    additionalCostsSubtotal: runtime.Decimal | null
+    knownCostSubtotal: runtime.Decimal | null
+    productionCostTotal: runtime.Decimal | null
+    targetMarginPercent: runtime.Decimal | null
+    salesTaxRatePercent: runtime.Decimal | null
+    suggestedNetSalesTotal: runtime.Decimal | null
+    targetProfitTotal: runtime.Decimal | null
+    salesTaxTotal: runtime.Decimal | null
+    suggestedCustomerSalesTotal: runtime.Decimal | null
+    productionCostPerUnit: runtime.Decimal | null
+    suggestedNetUnitPrice: runtime.Decimal | null
+    targetProfitPerUnit: runtime.Decimal | null
+    salesTaxPerUnit: runtime.Decimal | null
+    suggestedCustomerUnitPrice: runtime.Decimal | null
     missingPriceIngredientNames: runtime.JsonValue
     createdAt: Date
   }, ExtArgs["result"]["estimation"]>
@@ -3119,6 +4291,7 @@ export interface EstimationFieldRefs {
   readonly productId: Prisma.FieldRef<"Estimation", 'String'>
   readonly recipeVersionId: Prisma.FieldRef<"Estimation", 'String'>
   readonly createdByUserId: Prisma.FieldRef<"Estimation", 'String'>
+  readonly currencyCodeSnapshot: Prisma.FieldRef<"Estimation", 'String'>
   readonly mode: Prisma.FieldRef<"Estimation", 'EstimationMode'>
   readonly productNameSnapshot: Prisma.FieldRef<"Estimation", 'String'>
   readonly productProductionUnitCodeSnapshot: Prisma.FieldRef<"Estimation", 'String'>
@@ -3145,6 +4318,24 @@ export interface EstimationFieldRefs {
   readonly costingComplete: Prisma.FieldRef<"Estimation", 'Boolean'>
   readonly estimatedIngredientCost: Prisma.FieldRef<"Estimation", 'Decimal'>
   readonly knownIngredientCostSubtotal: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly laborCost: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly energyCost: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly packagingCost: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly otherCost: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly additionalCostsSubtotal: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly knownCostSubtotal: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly productionCostTotal: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly targetMarginPercent: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly salesTaxRatePercent: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly suggestedNetSalesTotal: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly targetProfitTotal: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly salesTaxTotal: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly suggestedCustomerSalesTotal: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly productionCostPerUnit: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly suggestedNetUnitPrice: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly targetProfitPerUnit: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly salesTaxPerUnit: Prisma.FieldRef<"Estimation", 'Decimal'>
+  readonly suggestedCustomerUnitPrice: Prisma.FieldRef<"Estimation", 'Decimal'>
   readonly missingPriceIngredientNames: Prisma.FieldRef<"Estimation", 'Json'>
   readonly createdAt: Prisma.FieldRef<"Estimation", 'DateTime'>
 }

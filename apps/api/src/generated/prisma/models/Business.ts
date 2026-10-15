@@ -27,6 +27,7 @@ export type AggregateBusiness = {
 export type BusinessMinAggregateOutputType = {
   id: string | null
   name: string | null
+  currencyCode: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -34,6 +35,7 @@ export type BusinessMinAggregateOutputType = {
 export type BusinessMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  currencyCode: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -41,6 +43,7 @@ export type BusinessMaxAggregateOutputType = {
 export type BusinessCountAggregateOutputType = {
   id: number
   name: number
+  currencyCode: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -50,6 +53,7 @@ export type BusinessCountAggregateOutputType = {
 export type BusinessMinAggregateInputType = {
   id?: true
   name?: true
+  currencyCode?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -57,6 +61,7 @@ export type BusinessMinAggregateInputType = {
 export type BusinessMaxAggregateInputType = {
   id?: true
   name?: true
+  currencyCode?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -64,6 +69,7 @@ export type BusinessMaxAggregateInputType = {
 export type BusinessCountAggregateInputType = {
   id?: true
   name?: true
+  currencyCode?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -144,6 +150,7 @@ export type BusinessGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type BusinessGroupByOutputType = {
   id: string
   name: string
+  currencyCode: string
   createdAt: Date
   updatedAt: Date
   _count: BusinessCountAggregateOutputType | null
@@ -172,6 +179,7 @@ export type BusinessWhereInput = {
   NOT?: Prisma.BusinessWhereInput | Prisma.BusinessWhereInput[]
   id?: Prisma.StringFilter<"Business"> | string
   name?: Prisma.StringFilter<"Business"> | string
+  currencyCode?: Prisma.StringFilter<"Business"> | string
   createdAt?: Prisma.DateTimeFilter<"Business"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Business"> | Date | string
   memberships?: Prisma.MembershipListRelationFilter
@@ -183,6 +191,7 @@ export type BusinessWhereInput = {
 export type BusinessOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  currencyCode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   memberships?: Prisma.MembershipOrderByRelationAggregateInput
@@ -197,6 +206,7 @@ export type BusinessWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.BusinessWhereInput[]
   NOT?: Prisma.BusinessWhereInput | Prisma.BusinessWhereInput[]
   name?: Prisma.StringFilter<"Business"> | string
+  currencyCode?: Prisma.StringFilter<"Business"> | string
   createdAt?: Prisma.DateTimeFilter<"Business"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Business"> | Date | string
   memberships?: Prisma.MembershipListRelationFilter
@@ -208,6 +218,7 @@ export type BusinessWhereUniqueInput = Prisma.AtLeast<{
 export type BusinessOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  currencyCode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.BusinessCountOrderByAggregateInput
@@ -221,6 +232,7 @@ export type BusinessScalarWhereWithAggregatesInput = {
   NOT?: Prisma.BusinessScalarWhereWithAggregatesInput | Prisma.BusinessScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Business"> | string
   name?: Prisma.StringWithAggregatesFilter<"Business"> | string
+  currencyCode?: Prisma.StringWithAggregatesFilter<"Business"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Business"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Business"> | Date | string
 }
@@ -228,6 +240,7 @@ export type BusinessScalarWhereWithAggregatesInput = {
 export type BusinessCreateInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipCreateNestedManyWithoutBusinessInput
@@ -239,6 +252,7 @@ export type BusinessCreateInput = {
 export type BusinessUncheckedCreateInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutBusinessInput
@@ -250,6 +264,7 @@ export type BusinessUncheckedCreateInput = {
 export type BusinessUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUpdateManyWithoutBusinessNestedInput
@@ -261,6 +276,7 @@ export type BusinessUpdateInput = {
 export type BusinessUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutBusinessNestedInput
@@ -272,6 +288,7 @@ export type BusinessUncheckedUpdateInput = {
 export type BusinessCreateManyInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -279,6 +296,7 @@ export type BusinessCreateManyInput = {
 export type BusinessUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -286,6 +304,7 @@ export type BusinessUpdateManyMutationInput = {
 export type BusinessUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -293,6 +312,7 @@ export type BusinessUncheckedUpdateManyInput = {
 export type BusinessCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  currencyCode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -300,6 +320,7 @@ export type BusinessCountOrderByAggregateInput = {
 export type BusinessMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  currencyCode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -307,6 +328,7 @@ export type BusinessMaxOrderByAggregateInput = {
 export type BusinessMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  currencyCode?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -375,6 +397,7 @@ export type BusinessUpdateOneRequiredWithoutEstimationsNestedInput = {
 export type BusinessCreateWithoutMembershipsInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientCreateNestedManyWithoutBusinessInput
@@ -385,6 +408,7 @@ export type BusinessCreateWithoutMembershipsInput = {
 export type BusinessUncheckedCreateWithoutMembershipsInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutBusinessInput
@@ -411,6 +435,7 @@ export type BusinessUpdateToOneWithWhereWithoutMembershipsInput = {
 export type BusinessUpdateWithoutMembershipsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUpdateManyWithoutBusinessNestedInput
@@ -421,6 +446,7 @@ export type BusinessUpdateWithoutMembershipsInput = {
 export type BusinessUncheckedUpdateWithoutMembershipsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutBusinessNestedInput
@@ -431,6 +457,7 @@ export type BusinessUncheckedUpdateWithoutMembershipsInput = {
 export type BusinessCreateWithoutIngredientsInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipCreateNestedManyWithoutBusinessInput
@@ -441,6 +468,7 @@ export type BusinessCreateWithoutIngredientsInput = {
 export type BusinessUncheckedCreateWithoutIngredientsInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutBusinessInput
@@ -467,6 +495,7 @@ export type BusinessUpdateToOneWithWhereWithoutIngredientsInput = {
 export type BusinessUpdateWithoutIngredientsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUpdateManyWithoutBusinessNestedInput
@@ -477,6 +506,7 @@ export type BusinessUpdateWithoutIngredientsInput = {
 export type BusinessUncheckedUpdateWithoutIngredientsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutBusinessNestedInput
@@ -487,6 +517,7 @@ export type BusinessUncheckedUpdateWithoutIngredientsInput = {
 export type BusinessCreateWithoutProductsInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipCreateNestedManyWithoutBusinessInput
@@ -497,6 +528,7 @@ export type BusinessCreateWithoutProductsInput = {
 export type BusinessUncheckedCreateWithoutProductsInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutBusinessInput
@@ -523,6 +555,7 @@ export type BusinessUpdateToOneWithWhereWithoutProductsInput = {
 export type BusinessUpdateWithoutProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUpdateManyWithoutBusinessNestedInput
@@ -533,6 +566,7 @@ export type BusinessUpdateWithoutProductsInput = {
 export type BusinessUncheckedUpdateWithoutProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutBusinessNestedInput
@@ -543,6 +577,7 @@ export type BusinessUncheckedUpdateWithoutProductsInput = {
 export type BusinessCreateWithoutEstimationsInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipCreateNestedManyWithoutBusinessInput
@@ -553,6 +588,7 @@ export type BusinessCreateWithoutEstimationsInput = {
 export type BusinessUncheckedCreateWithoutEstimationsInput = {
   id?: string
   name: string
+  currencyCode?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutBusinessInput
@@ -579,6 +615,7 @@ export type BusinessUpdateToOneWithWhereWithoutEstimationsInput = {
 export type BusinessUpdateWithoutEstimationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUpdateManyWithoutBusinessNestedInput
@@ -589,6 +626,7 @@ export type BusinessUpdateWithoutEstimationsInput = {
 export type BusinessUncheckedUpdateWithoutEstimationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  currencyCode?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutBusinessNestedInput
@@ -657,6 +695,7 @@ export type BusinessCountOutputTypeCountEstimationsArgs<ExtArgs extends runtime.
 export type BusinessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  currencyCode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   memberships?: boolean | Prisma.Business$membershipsArgs<ExtArgs>
@@ -669,6 +708,7 @@ export type BusinessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type BusinessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  currencyCode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["business"]>
@@ -676,6 +716,7 @@ export type BusinessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type BusinessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  currencyCode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["business"]>
@@ -683,11 +724,12 @@ export type BusinessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type BusinessSelectScalar = {
   id?: boolean
   name?: boolean
+  currencyCode?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BusinessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["business"]>
+export type BusinessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "currencyCode" | "createdAt" | "updatedAt", ExtArgs["result"]["business"]>
 export type BusinessInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   memberships?: boolean | Prisma.Business$membershipsArgs<ExtArgs>
   ingredients?: boolean | Prisma.Business$ingredientsArgs<ExtArgs>
@@ -709,6 +751,7 @@ export type $BusinessPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    currencyCode: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["business"]>
@@ -1140,6 +1183,7 @@ export interface Prisma__BusinessClient<T, Null = never, ExtArgs extends runtime
 export interface BusinessFieldRefs {
   readonly id: Prisma.FieldRef<"Business", 'String'>
   readonly name: Prisma.FieldRef<"Business", 'String'>
+  readonly currencyCode: Prisma.FieldRef<"Business", 'String'>
   readonly createdAt: Prisma.FieldRef<"Business", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Business", 'DateTime'>
 }

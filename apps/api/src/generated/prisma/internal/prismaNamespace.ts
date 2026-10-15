@@ -1295,6 +1295,7 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const BusinessScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  currencyCode: 'currencyCode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1408,6 +1409,7 @@ export const EstimationScalarFieldEnum = {
   productId: 'productId',
   recipeVersionId: 'recipeVersionId',
   createdByUserId: 'createdByUserId',
+  currencyCodeSnapshot: 'currencyCodeSnapshot',
   mode: 'mode',
   productNameSnapshot: 'productNameSnapshot',
   productProductionUnitCodeSnapshot: 'productProductionUnitCodeSnapshot',
@@ -1434,6 +1436,24 @@ export const EstimationScalarFieldEnum = {
   costingComplete: 'costingComplete',
   estimatedIngredientCost: 'estimatedIngredientCost',
   knownIngredientCostSubtotal: 'knownIngredientCostSubtotal',
+  laborCost: 'laborCost',
+  energyCost: 'energyCost',
+  packagingCost: 'packagingCost',
+  otherCost: 'otherCost',
+  additionalCostsSubtotal: 'additionalCostsSubtotal',
+  knownCostSubtotal: 'knownCostSubtotal',
+  productionCostTotal: 'productionCostTotal',
+  targetMarginPercent: 'targetMarginPercent',
+  salesTaxRatePercent: 'salesTaxRatePercent',
+  suggestedNetSalesTotal: 'suggestedNetSalesTotal',
+  targetProfitTotal: 'targetProfitTotal',
+  salesTaxTotal: 'salesTaxTotal',
+  suggestedCustomerSalesTotal: 'suggestedCustomerSalesTotal',
+  productionCostPerUnit: 'productionCostPerUnit',
+  suggestedNetUnitPrice: 'suggestedNetUnitPrice',
+  targetProfitPerUnit: 'targetProfitPerUnit',
+  salesTaxPerUnit: 'salesTaxPerUnit',
+  suggestedCustomerUnitPrice: 'suggestedCustomerUnitPrice',
   missingPriceIngredientNames: 'missingPriceIngredientNames',
   createdAt: 'createdAt'
 } as const

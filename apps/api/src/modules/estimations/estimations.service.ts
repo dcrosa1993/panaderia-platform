@@ -1,4 +1,3 @@
-
 import {
   BadRequestException,
   ForbiddenException,
@@ -6,10 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
-import {
-  EstimationMode,
-  Prisma,
-} from '../../generated/prisma/client.js';
+import { EstimationMode, Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../database/prisma.service.js';
 import {
   calculateByFlourQuantity,
@@ -18,6 +14,10 @@ import {
   type EstimationRecipeIngredientSnapshot,
   type EstimationUnitSnapshot,
 } from './estimation-calculator.js';
+import {
+  calculateFinancials,
+  type FinancialCalculationResult,
+} from './financial-calculator.js';
 import { CreateEstimationDto } from './dto/create-estimation.dto.js';
 
 @Injectable()
@@ -41,9 +41,7 @@ export class EstimationsService {
     });
 
     if (!membership) {
-      throw new ForbiddenException(
-        'No tienes acceso a este negocio.',
-      );
+      throw new ForbiddenException('No tienes acceso a este negocio.');
     }
   }
 
@@ -63,11 +61,7 @@ export class EstimationsService {
     };
   }
 
-  async create(
-    businessId: string,
-    userId: string,
-    dto: CreateEstimationDto,
-  ) {
+  async create(businessId: string, userId: string, dto: CreateEstimationDto) {
     await this.assertMembership(businessId, userId);
 
     const product = await this.prisma.product.findFirst({
@@ -78,6 +72,11 @@ export class EstimationsService {
       include: {
         productionUnit: true,
         targetWeightUnit: true,
+        business: {
+          select: {
+            currencyCode: true,
+          },
+        },
       },
     });
 
@@ -95,44 +94,37 @@ export class EstimationsService {
 
     const effectiveAt = new Date();
 
-    const recipeVersion =
-      await this.prisma.recipeVersion.findFirst({
-        where: {
-          id: dto.recipeVersionId,
-          productId: product.id,
-          status: 'PUBLISHED',
-        },
-        include: {
-          ingredients: {
-            orderBy: [
-              { sortOrder: 'asc' },
-              { ingredientId: 'asc' },
-            ],
-            include: {
-              ingredient: {
-                include: {
-                  baseUnit: true,
-                  prices: {
-                    where: {
-                      effectiveFrom: {
-                        lte: effectiveAt,
-                      },
+    const recipeVersion = await this.prisma.recipeVersion.findFirst({
+      where: {
+        id: dto.recipeVersionId,
+        productId: product.id,
+        status: 'PUBLISHED',
+      },
+      include: {
+        ingredients: {
+          orderBy: [{ sortOrder: 'asc' }, { ingredientId: 'asc' }],
+          include: {
+            ingredient: {
+              include: {
+                baseUnit: true,
+                prices: {
+                  where: {
+                    effectiveFrom: {
+                      lte: effectiveAt,
                     },
-                    orderBy: [
-                      { effectiveFrom: 'desc' },
-                      { createdAt: 'desc' },
-                    ],
-                    take: 1,
-                    include: {
-                      purchaseUnit: true,
-                    },
+                  },
+                  orderBy: [{ effectiveFrom: 'desc' }, { createdAt: 'desc' }],
+                  take: 1,
+                  include: {
+                    purchaseUnit: true,
                   },
                 },
               },
             },
           },
         },
-      });
+      },
+    });
 
     if (!recipeVersion) {
       throw new NotFoundException(
@@ -159,16 +151,12 @@ export class EstimationsService {
           bakerPercentage: line.bakerPercentage.toString(),
           isFlourBase: line.isFlourBase,
           baseUnit: this.toUnitSnapshot(ingredient.baseUnit),
-          densityGramsPerMl:
-            ingredient.densityGramsPerMl?.toString() ?? null,
+          densityGramsPerMl: ingredient.densityGramsPerMl?.toString() ?? null,
           isActive: ingredient.isActive,
           latestPrice: latestPrice
             ? {
-                purchaseQuantity:
-                  latestPrice.purchaseQuantity.toString(),
-                purchaseUnit: this.toUnitSnapshot(
-                  latestPrice.purchaseUnit,
-                ),
+                purchaseQuantity: latestPrice.purchaseQuantity.toString(),
+                purchaseUnit: this.toUnitSnapshot(latestPrice.purchaseUnit),
                 totalPrice: latestPrice.totalPrice.toString(),
               }
             : null,
@@ -196,14 +184,10 @@ export class EstimationsService {
         }
 
         if (dto.quantity === undefined) {
-          throw new BadRequestException(
-            'Debes indicar la cantidad de piezas.',
-          );
+          throw new BadRequestException('Debes indicar la cantidad de piezas.');
         }
 
-        if (
-          product.targetWeightUnit.dimension !== 'MASS'
-        ) {
+        if (product.targetWeightUnit.dimension !== 'MASS') {
           throw new BadRequestException(
             'El peso terminado del producto debe utilizar una unidad de masa.',
           );
@@ -211,8 +195,7 @@ export class EstimationsService {
 
         calculation = calculateByProductCount({
           quantity: String(dto.quantity),
-          targetFinishedWeight:
-            product.targetFinishedWeight.toString(),
+          targetFinishedWeight: product.targetFinishedWeight.toString(),
           targetFinishedWeightUnit: this.toUnitSnapshot(
             product.targetWeightUnit,
           ),
@@ -221,23 +204,19 @@ export class EstimationsService {
           recipeIngredients,
         });
       } else if (dto.mode === EstimationMode.FLOUR_QUANTITY) {
-        if (
-          dto.flourQuantity === undefined ||
-          !dto.flourUnitId
-        ) {
+        if (dto.flourQuantity === undefined || !dto.flourUnitId) {
           throw new BadRequestException(
             'Indica la cantidad de harina y su unidad de medida.',
           );
         }
 
-        const flourUnit =
-          await this.prisma.measurementUnit.findFirst({
-            where: {
-              id: dto.flourUnitId,
-              dimension: 'MASS',
-              isActive: true,
-            },
-          });
+        const flourUnit = await this.prisma.measurementUnit.findFirst({
+          where: {
+            id: dto.flourUnitId,
+            dimension: 'MASS',
+            isActive: true,
+          },
+        });
 
         if (!flourUnit) {
           throw new BadRequestException(
@@ -259,9 +238,7 @@ export class EstimationsService {
           product.targetFinishedWeight !== null &&
           product.targetWeightUnit !== null
         ) {
-          if (
-            product.targetWeightUnit.dimension !== 'MASS'
-          ) {
+          if (product.targetWeightUnit.dimension !== 'MASS') {
             throw new BadRequestException(
               'El peso terminado del producto debe utilizar una unidad de masa.',
             );
@@ -269,8 +246,7 @@ export class EstimationsService {
 
           calculation = calculateByFlourQuantity({
             ...input,
-            targetFinishedWeight:
-              product.targetFinishedWeight.toString(),
+            targetFinishedWeight: product.targetFinishedWeight.toString(),
             targetFinishedWeightUnit: this.toUnitSnapshot(
               product.targetWeightUnit,
             ),
@@ -302,69 +278,114 @@ export class EstimationsService {
       ]),
     );
 
-    const ingredientSnapshots = recipeVersion.ingredients.map(
-      (line) => {
-        const ingredient = line.ingredient;
-        const price = ingredient.prices[0] ?? null;
-        const calculated = calculationByIngredientId.get(
-          ingredient.id,
-        );
+    const ingredientSnapshots = recipeVersion.ingredients.map((line) => {
+      const ingredient = line.ingredient;
+      const price = ingredient.prices[0] ?? null;
+      const calculated = calculationByIngredientId.get(ingredient.id);
 
-        if (!calculated) {
-          throw new Error(
-            `No se encontró el cálculo de "${ingredient.name}".`,
-          );
-        }
+      if (!calculated) {
+        throw new Error(`No se encontró el cálculo de "${ingredient.name}".`);
+      }
 
-        return {
-          sourceIngredientId: ingredient.id,
-          nameSnapshot: ingredient.name,
-          bakerPercentage: line.bakerPercentage,
-          isFlourBase: line.isFlourBase,
-          sortOrder: line.sortOrder,
+      return {
+        sourceIngredientId: ingredient.id,
+        nameSnapshot: ingredient.name,
+        bakerPercentage: line.bakerPercentage,
+        isFlourBase: line.isFlourBase,
+        sortOrder: line.sortOrder,
 
-          baseUnitCode: ingredient.baseUnit.code,
-          baseUnitName: ingredient.baseUnit.name,
-          baseUnitSymbol: ingredient.baseUnit.symbol,
-          baseUnitDimension: ingredient.baseUnit.dimension,
-          baseUnitFactorToBase:
-            ingredient.baseUnit.factorToBase,
-          densityGramsPerMl: ingredient.densityGramsPerMl,
+        baseUnitCode: ingredient.baseUnit.code,
+        baseUnitName: ingredient.baseUnit.name,
+        baseUnitSymbol: ingredient.baseUnit.symbol,
+        baseUnitDimension: ingredient.baseUnit.dimension,
+        baseUnitFactorToBase: ingredient.baseUnit.factorToBase,
+        densityGramsPerMl: ingredient.densityGramsPerMl,
 
-          ingredientMassGrams: new Prisma.Decimal(
-            calculated.ingredientMassGrams,
-          ),
-          ingredientVolumeMl:
-            calculated.ingredientVolumeMl === null
-              ? null
-              : new Prisma.Decimal(
-                  calculated.ingredientVolumeMl,
-                ),
-          quantityInBaseUnit: new Prisma.Decimal(
-            calculated.quantityInBaseUnit,
-          ),
+        ingredientMassGrams: new Prisma.Decimal(calculated.ingredientMassGrams),
+        ingredientVolumeMl:
+          calculated.ingredientVolumeMl === null
+            ? null
+            : new Prisma.Decimal(calculated.ingredientVolumeMl),
+        quantityInBaseUnit: new Prisma.Decimal(calculated.quantityInBaseUnit),
 
-          purchaseQuantity: price?.purchaseQuantity ?? null,
-          purchaseUnitCode: price?.purchaseUnit.code ?? null,
-          purchaseUnitName: price?.purchaseUnit.name ?? null,
-          purchaseUnitSymbol: price?.purchaseUnit.symbol ?? null,
-          purchaseUnitDimension:
-            price?.purchaseUnit.dimension ?? null,
-          purchaseUnitFactorToBase:
-            price?.purchaseUnit.factorToBase ?? null,
-          purchaseTotalPrice: price?.totalPrice ?? null,
+        purchaseQuantity: price?.purchaseQuantity ?? null,
+        purchaseUnitCode: price?.purchaseUnit.code ?? null,
+        purchaseUnitName: price?.purchaseUnit.name ?? null,
+        purchaseUnitSymbol: price?.purchaseUnit.symbol ?? null,
+        purchaseUnitDimension: price?.purchaseUnit.dimension ?? null,
+        purchaseUnitFactorToBase: price?.purchaseUnit.factorToBase ?? null,
+        purchaseTotalPrice: price?.totalPrice ?? null,
 
-          estimatedCost:
-            calculated.estimatedCost === null
-              ? null
-              : new Prisma.Decimal(
-                  calculated.estimatedCost,
-                ),
-        };
-      },
-    );
+        estimatedCost:
+          calculated.estimatedCost === null
+            ? null
+            : new Prisma.Decimal(calculated.estimatedCost),
+      };
+    });
 
     const targetWeightUnit = product.targetWeightUnit;
+
+    const laborCost = new Prisma.Decimal(String(dto.laborCost ?? 0));
+    const energyCost = new Prisma.Decimal(String(dto.energyCost ?? 0));
+    const packagingCost = new Prisma.Decimal(String(dto.packagingCost ?? 0));
+    const otherCost = new Prisma.Decimal(String(dto.otherCost ?? 0));
+
+    const hasMargin = dto.targetMarginPercent !== undefined;
+    const hasTaxRate = dto.salesTaxRatePercent !== undefined;
+
+    if (hasMargin !== hasTaxRate) {
+      throw new BadRequestException(
+        'Debes proporcionar el margen objetivo y el impuesto juntos.',
+      );
+    }
+
+    const additionalCostsSubtotal = laborCost
+      .plus(energyCost)
+      .plus(packagingCost)
+      .plus(otherCost);
+
+    const knownCostSubtotal = new Prisma.Decimal(
+      calculation.knownIngredientCostSubtotal,
+    ).plus(additionalCostsSubtotal);
+
+    const productionCostTotal =
+      calculation.estimatedIngredientCost === null
+        ? null
+        : new Prisma.Decimal(calculation.estimatedIngredientCost).plus(
+            additionalCostsSubtotal,
+          );
+
+    let financial: FinancialCalculationResult | null = null;
+
+    if (hasMargin && hasTaxRate) {
+      try {
+        const productCount =
+          dto.mode === EstimationMode.PRODUCT_COUNT
+            ? String(dto.quantity)
+            : calculation.wholeProductCount !== null &&
+                calculation.wholeProductCount > 0
+              ? String(calculation.wholeProductCount)
+              : undefined;
+
+        financial = calculateFinancials({
+          ingredientCost: calculation.estimatedIngredientCost,
+          knownIngredientCostSubtotal: calculation.knownIngredientCostSubtotal,
+          laborCost: laborCost.toString(),
+          energyCost: energyCost.toString(),
+          packagingCost: packagingCost.toString(),
+          otherCost: otherCost.toString(),
+          targetMarginPercent: String(dto.targetMarginPercent),
+          salesTaxRatePercent: String(dto.salesTaxRatePercent),
+          productCount,
+        });
+      } catch (error) {
+        if (error instanceof Error) {
+          throw new BadRequestException(error.message);
+        }
+
+        throw error;
+      }
+    }
 
     return this.prisma.estimation.create({
       data: {
@@ -375,31 +396,23 @@ export class EstimationsService {
         mode: dto.mode,
 
         productNameSnapshot: product.name,
-        productProductionUnitCodeSnapshot:
-          product.productionUnit.code,
+        productProductionUnitCodeSnapshot: product.productionUnit.code,
+        currencyCodeSnapshot: product.business.currencyCode,
         recipeVersionNumber: recipeVersion.versionNumber,
 
         plannedProductCount:
-          dto.mode === EstimationMode.PRODUCT_COUNT
-            ? dto.quantity!
-            : null,
+          dto.mode === EstimationMode.PRODUCT_COUNT ? dto.quantity! : null,
 
-        targetFinishedWeightInput:
-          product.targetFinishedWeight,
-        targetFinishedWeightUnitCode:
-          targetWeightUnit?.code ?? null,
-        targetFinishedWeightUnitName:
-          targetWeightUnit?.name ?? null,
-        targetFinishedWeightUnitSymbol:
-          targetWeightUnit?.symbol ?? null,
+        targetFinishedWeightInput: product.targetFinishedWeight,
+        targetFinishedWeightUnitCode: targetWeightUnit?.code ?? null,
+        targetFinishedWeightUnitName: targetWeightUnit?.name ?? null,
+        targetFinishedWeightUnitSymbol: targetWeightUnit?.symbol ?? null,
         targetFinishedWeightUnitFactorToBase:
           targetWeightUnit?.factorToBase ?? null,
 
         flourQuantity:
           dto.mode === EstimationMode.FLOUR_QUANTITY
-            ? new Prisma.Decimal(
-                String(dto.flourQuantity),
-              )
+            ? new Prisma.Decimal(String(dto.flourQuantity))
             : null,
         flourUnitCode: flourUnitSnapshot?.code ?? null,
         flourUnitName: flourUnitSnapshot?.name ?? null,
@@ -407,9 +420,7 @@ export class EstimationsService {
         flourUnitFactorToBase:
           flourUnitSnapshot === null
             ? null
-            : new Prisma.Decimal(
-                String(flourUnitSnapshot.factorToBase),
-              ),
+            : new Prisma.Decimal(String(flourUnitSnapshot.factorToBase)),
 
         expectedBakeLossPercent: new Prisma.Decimal(
           calculation.expectedBakeLossPercent,
@@ -417,12 +428,8 @@ export class EstimationsService {
         recipeTotalPercentage: new Prisma.Decimal(
           calculation.recipeTotalPercentage,
         ),
-        flourMassGrams: new Prisma.Decimal(
-          calculation.flourMassGrams,
-        ),
-        rawDoughMassGrams: new Prisma.Decimal(
-          calculation.rawDoughMassGrams,
-        ),
+        flourMassGrams: new Prisma.Decimal(calculation.flourMassGrams),
+        rawDoughMassGrams: new Prisma.Decimal(calculation.rawDoughMassGrams),
         expectedFinishedMassGrams: new Prisma.Decimal(
           calculation.expectedFinishedMassGrams,
         ),
@@ -430,29 +437,78 @@ export class EstimationsService {
         targetFinishedWeightPerUnitGrams:
           calculation.targetFinishedWeightPerUnitGrams === null
             ? null
-            : new Prisma.Decimal(
-                calculation.targetFinishedWeightPerUnitGrams,
-              ),
+            : new Prisma.Decimal(calculation.targetFinishedWeightPerUnitGrams),
         theoreticalProductCount:
           calculation.theoreticalProductCount === null
             ? null
-            : new Prisma.Decimal(
-                calculation.theoreticalProductCount,
-              ),
+            : new Prisma.Decimal(calculation.theoreticalProductCount),
         wholeProductCount: calculation.wholeProductCount,
 
         costingComplete: calculation.costingComplete,
         estimatedIngredientCost:
           calculation.estimatedIngredientCost === null
             ? null
-            : new Prisma.Decimal(
-                calculation.estimatedIngredientCost,
-              ),
+            : new Prisma.Decimal(calculation.estimatedIngredientCost),
         knownIngredientCostSubtotal: new Prisma.Decimal(
           calculation.knownIngredientCostSubtotal,
         ),
         missingPriceIngredientNames:
           calculation.ingredientsMissingPrice as Prisma.InputJsonValue,
+
+        laborCost,
+        energyCost,
+        packagingCost,
+        otherCost,
+        additionalCostsSubtotal,
+        knownCostSubtotal,
+        productionCostTotal,
+
+        targetMarginPercent:
+          dto.targetMarginPercent === undefined
+            ? null
+            : new Prisma.Decimal(String(dto.targetMarginPercent)),
+        salesTaxRatePercent:
+          dto.salesTaxRatePercent === undefined
+            ? null
+            : new Prisma.Decimal(String(dto.salesTaxRatePercent)),
+
+        suggestedNetSalesTotal:
+          financial?.suggestedNetSalesTotal == null
+            ? null
+            : new Prisma.Decimal(financial.suggestedNetSalesTotal),
+        targetProfitTotal:
+          financial?.targetProfitTotal == null
+            ? null
+            : new Prisma.Decimal(financial.targetProfitTotal),
+        salesTaxTotal:
+          financial?.salesTaxTotal == null
+            ? null
+            : new Prisma.Decimal(financial.salesTaxTotal),
+        suggestedCustomerSalesTotal:
+          financial?.suggestedCustomerSalesTotal == null
+            ? null
+            : new Prisma.Decimal(financial.suggestedCustomerSalesTotal),
+
+        productionCostPerUnit:
+          financial?.productionCostPerUnit == null
+            ? null
+            : new Prisma.Decimal(financial.productionCostPerUnit),
+        suggestedNetUnitPrice:
+          financial?.suggestedNetUnitPrice == null
+            ? null
+            : new Prisma.Decimal(financial.suggestedNetUnitPrice),
+        targetProfitPerUnit:
+          financial?.targetProfitPerUnit == null
+            ? null
+            : new Prisma.Decimal(financial.targetProfitPerUnit),
+        salesTaxPerUnit:
+          financial?.salesTaxPerUnit == null
+            ? null
+            : new Prisma.Decimal(financial.salesTaxPerUnit),
+        suggestedCustomerUnitPrice:
+          financial?.suggestedCustomerUnitPrice == null
+            ? null
+            : new Prisma.Decimal(financial.suggestedCustomerUnitPrice),
 
         ingredients: {
           create: ingredientSnapshots,
@@ -460,19 +516,13 @@ export class EstimationsService {
       },
       include: {
         ingredients: {
-          orderBy: [
-            { sortOrder: 'asc' },
-            { sourceIngredientId: 'asc' },
-          ],
+          orderBy: [{ sortOrder: 'asc' }, { sourceIngredientId: 'asc' }],
         },
       },
     });
   }
 
-  async findAll(
-    businessId: string,
-    userId: string,
-  ) {
+  async findAll(businessId: string, userId: string) {
     await this.assertMembership(businessId, userId);
 
     return this.prisma.estimation.findMany({
@@ -486,28 +536,20 @@ export class EstimationsService {
     });
   }
 
-  async findOne(
-    businessId: string,
-    userId: string,
-    estimationId: string,
-  ) {
+  async findOne(businessId: string, userId: string, estimationId: string) {
     await this.assertMembership(businessId, userId);
 
-    const estimation =
-      await this.prisma.estimation.findFirst({
-        where: {
-          id: estimationId,
-          businessId,
+    const estimation = await this.prisma.estimation.findFirst({
+      where: {
+        id: estimationId,
+        businessId,
+      },
+      include: {
+        ingredients: {
+          orderBy: [{ sortOrder: 'asc' }, { sourceIngredientId: 'asc' }],
         },
-        include: {
-          ingredients: {
-            orderBy: [
-              { sortOrder: 'asc' },
-              { sourceIngredientId: 'asc' },
-            ],
-          },
-        },
-      });
+      },
+    });
 
     if (!estimation) {
       throw new NotFoundException(

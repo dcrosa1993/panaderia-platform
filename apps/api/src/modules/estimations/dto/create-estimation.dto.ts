@@ -5,6 +5,7 @@ import {
   IsInt,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Max,
   Min,
@@ -48,4 +49,46 @@ export class CreateEstimationDto {
   @IsString()
   @IsNotEmpty()
   flourUnitId?: string;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 8 })
+  @Min(0)
+  laborCost?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 8 })
+  @Min(0)
+  energyCost?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 8 })
+  @Min(0)
+  packagingCost?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 8 })
+  @Min(0)
+  otherCost?: number;
+
+  /**
+   * Si se indica el margen, también debe indicarse la tasa de impuesto,
+   * y viceversa. Ambos campos pueden omitirse para peticiones antiguas.
+   */
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 4 })
+  @Min(0)
+  @Max(99.9999)
+  targetMarginPercent?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 4 })
+  @Min(0)
+  @Max(999.9999)
+  salesTaxRatePercent?: number;
 }

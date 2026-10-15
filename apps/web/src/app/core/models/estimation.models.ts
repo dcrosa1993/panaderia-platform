@@ -8,6 +8,14 @@ export interface CreateEstimationRequest {
   quantity?: number;
   flourQuantity?: number;
   flourUnitId?: string;
+
+  laborCost?: number;
+  energyCost?: number;
+  packagingCost?: number;
+  otherCost?: number;
+
+  targetMarginPercent?: number;
+  salesTaxRatePercent?: number;
 }
 
 export interface EstimationIngredientSnapshot {
@@ -50,6 +58,7 @@ export interface Estimation {
   mode: EstimationMode;
   productNameSnapshot: string;
   productProductionUnitCodeSnapshot: string;
+  currencyCodeSnapshot: string;
   recipeVersionNumber: number;
 
   plannedProductCount: number | null;
@@ -77,6 +86,28 @@ export interface Estimation {
   estimatedIngredientCost: string | number | null;
   knownIngredientCostSubtotal: string | number;
   missingPriceIngredientNames: string[];
+
+  laborCost: string | number | null;
+  energyCost: string | number | null;
+  packagingCost: string | number | null;
+  otherCost: string | number | null;
+  additionalCostsSubtotal: string | number | null;
+  knownCostSubtotal: string | number | null;
+  productionCostTotal: string | number | null;
+
+  targetMarginPercent: string | number | null;
+  salesTaxRatePercent: string | number | null;
+
+  suggestedNetSalesTotal: string | number | null;
+  targetProfitTotal: string | number | null;
+  salesTaxTotal: string | number | null;
+  suggestedCustomerSalesTotal: string | number | null;
+
+  productionCostPerUnit: string | number | null;
+  suggestedNetUnitPrice: string | number | null;
+  targetProfitPerUnit: string | number | null;
+  salesTaxPerUnit: string | number | null;
+  suggestedCustomerUnitPrice: string | number | null;
 
   createdAt: string;
   ingredients?: EstimationIngredientSnapshot[];

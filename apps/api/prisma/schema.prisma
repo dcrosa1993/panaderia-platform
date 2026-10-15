@@ -46,8 +46,9 @@ model User {
 }
 
 model Business {
-  id   String @id @default(cuid())
-  name String @db.VarChar(160)
+  id           String @id @default(cuid())
+  name         String @db.VarChar(160)
+  currencyCode String @default("CUP") @db.VarChar(3)
 
   memberships Membership[]
   ingredients Ingredient[]
@@ -201,11 +202,12 @@ model RecipeIngredient {
 }
 
 model Estimation {
-  id              String @id @default(cuid())
-  businessId      String
-  productId       String
-  recipeVersionId String
-  createdByUserId String
+  id                   String @id @default(cuid())
+  businessId           String
+  productId            String
+  recipeVersionId      String
+  createdByUserId      String
+  currencyCodeSnapshot String @default("CUP") @db.VarChar(3)
 
   mode EstimationMode
 
@@ -244,6 +246,35 @@ model Estimation {
   costingComplete             Boolean
   estimatedIngredientCost     Decimal? @db.Decimal(20, 8)
   knownIngredientCostSubtotal Decimal  @db.Decimal(20, 8)
+
+  // Costes adicionales del lote, en la moneda del negocio.
+  laborCost     Decimal? @db.Decimal(20, 8)
+  energyCost    Decimal? @db.Decimal(20, 8)
+  packagingCost Decimal? @db.Decimal(20, 8)
+  otherCost     Decimal? @db.Decimal(20, 8)
+
+  // Subtotales y coste final de producción.
+  additionalCostsSubtotal Decimal? @db.Decimal(20, 8)
+  knownCostSubtotal       Decimal? @db.Decimal(20, 8)
+  productionCostTotal     Decimal? @db.Decimal(20, 8)
+
+  // Supuestos financieros empleados.
+  targetMarginPercent Decimal? @db.Decimal(7, 4)
+  salesTaxRatePercent Decimal? @db.Decimal(7, 4)
+
+  // Resultados financieros del lote completo.
+  suggestedNetSalesTotal      Decimal? @db.Decimal(20, 8)
+  targetProfitTotal           Decimal? @db.Decimal(20, 8)
+  salesTaxTotal               Decimal? @db.Decimal(20, 8)
+  suggestedCustomerSalesTotal Decimal? @db.Decimal(20, 8)
+
+  // Resultados por unidad vendible, cuando se conoce el rendimiento.
+  productionCostPerUnit      Decimal? @db.Decimal(20, 8)
+  suggestedNetUnitPrice      Decimal? @db.Decimal(20, 8)
+  targetProfitPerUnit        Decimal? @db.Decimal(20, 8)
+  salesTaxPerUnit            Decimal? @db.Decimal(20, 8)
+  suggestedCustomerUnitPrice Decimal? @db.Decimal(20, 8)
+
   missingPriceIngredientNames Json
 
   createdAt DateTime @default(now())

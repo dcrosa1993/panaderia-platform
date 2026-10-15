@@ -305,6 +305,142 @@ import type { RecipeVersion } from '../../core/models/recipe.models';
                   }
                 }
 
+                <fieldset class="space-y-4 rounded-xl border border-slate-200 p-4">
+                  <legend class="px-2 text-sm font-semibold text-slate-800">
+                    Costes adicionales del lote
+                  </legend>
+
+                  <p class="text-xs leading-5 text-slate-500">
+                    Importes totales para la producción estimada, expresados en la moneda
+                    configurada para el negocio. Los campos vacíos equivalen a cero.
+                  </p>
+
+                  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                      <label for="laborCost" class="mb-2 block text-sm font-medium text-slate-700">
+                        Mano de obra
+                      </label>
+                      <input
+                        id="laborCost"
+                        name="laborCost"
+                        type="number"
+                        min="0"
+                        step="any"
+                        [(ngModel)]="laborCost"
+                        class="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      />
+                    </div>
+
+                    <div>
+                      <label for="energyCost" class="mb-2 block text-sm font-medium text-slate-700">
+                        Energía
+                      </label>
+                      <input
+                        id="energyCost"
+                        name="energyCost"
+                        type="number"
+                        min="0"
+                        step="any"
+                        [(ngModel)]="energyCost"
+                        class="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        for="packagingCost"
+                        class="mb-2 block text-sm font-medium text-slate-700"
+                      >
+                        Envases y embalaje
+                      </label>
+                      <input
+                        id="packagingCost"
+                        name="packagingCost"
+                        type="number"
+                        min="0"
+                        step="any"
+                        [(ngModel)]="packagingCost"
+                        class="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      />
+                    </div>
+
+                    <div>
+                      <label for="otherCost" class="mb-2 block text-sm font-medium text-slate-700">
+                        Otros costes
+                      </label>
+                      <input
+                        id="otherCost"
+                        name="otherCost"
+                        type="number"
+                        min="0"
+                        step="any"
+                        [(ngModel)]="otherCost"
+                        class="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      />
+                    </div>
+                  </div>
+                </fieldset>
+
+                <fieldset class="space-y-4 rounded-xl border border-slate-200 p-4">
+                  <legend class="px-2 text-sm font-semibold text-slate-800">
+                    Precio de venta y rentabilidad
+                  </legend>
+
+                  <p class="text-xs leading-5 text-slate-500">
+                    El margen se calcula sobre las ventas netas. El impuesto se añade después al
+                    precio neto. Deja ambos campos vacíos para guardar el coste de producción sin
+                    proponer un precio de venta.
+                  </p>
+
+                  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                      <label
+                        for="targetMarginPercent"
+                        class="mb-2 block text-sm font-medium text-slate-700"
+                      >
+                        Margen objetivo (%)
+                      </label>
+                      <input
+                        id="targetMarginPercent"
+                        name="targetMarginPercent"
+                        type="number"
+                        min="0"
+                        max="99.9999"
+                        step="any"
+                        [(ngModel)]="targetMarginPercent"
+                        placeholder="Ej. 30"
+                        class="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        for="salesTaxRatePercent"
+                        class="mb-2 block text-sm font-medium text-slate-700"
+                      >
+                        Impuesto sobre la venta (%)
+                      </label>
+                      <input
+                        id="salesTaxRatePercent"
+                        name="salesTaxRatePercent"
+                        type="number"
+                        min="0"
+                        max="999.9999"
+                        step="any"
+                        [(ngModel)]="salesTaxRatePercent"
+                        placeholder="Ej. 0"
+                        class="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      />
+                    </div>
+                  </div>
+
+                  @if (pricingInputError) {
+                    <p class="rounded-lg bg-amber-50 p-3 text-xs leading-5 text-amber-800">
+                      {{ pricingInputError }}
+                    </p>
+                  }
+                </fieldset>
+
                 <div class="rounded-xl bg-slate-50 p-3.5 text-xs leading-5 text-slate-600">
                   El cálculo utiliza la pérdida de horneado y los porcentajes de la receta
                   publicada. Los costes se calculan con los precios registrados al guardar la
@@ -381,9 +517,24 @@ import type { RecipeVersion } from '../../core/models/recipe.models';
                     </span>
 
                     <span class="shrink-0 text-right">
-                      @if (estimation.estimatedIngredientCost !== null) {
+                      @if (estimation.productionCostTotal !== null) {
                         <span class="block text-sm font-bold text-slate-900">
-                          {{ formatNumber(estimation.estimatedIngredientCost) }}
+                          {{
+                            formatMoney(
+                              estimation.productionCostTotal,
+                              estimation.currencyCodeSnapshot
+                            )
+                          }}
+                        </span>
+                        <span class="block text-[10px] text-slate-500"> coste de producción </span>
+                      } @else if (estimation.estimatedIngredientCost !== null) {
+                        <span class="block text-sm font-bold text-slate-900">
+                          {{
+                            formatMoney(
+                              estimation.estimatedIngredientCost,
+                              estimation.currencyCodeSnapshot
+                            )
+                          }}
                         </span>
                         <span class="block text-[10px] text-slate-500">
                           coste de ingredientes
@@ -456,17 +607,143 @@ import type { RecipeVersion } from '../../core/models/recipe.models';
                   <span class="text-xs font-medium text-slate-500">kg</span>
                 </p>
               </div>
+
               <div>
-                <p class="text-xs text-slate-500">Coste conocido de ingredientes</p>
+                <p class="text-xs text-slate-500">Coste de producción</p>
                 <p class="mt-1 text-lg font-bold text-slate-900">
-                  {{ formatNumber(selectedEstimation.knownIngredientCostSubtotal, 4) }}
+                  {{ formatMoney(selectedEstimation.productionCostTotal, selectedCurrencyCode) }}
                 </p>
                 <p class="mt-1 text-[10px] text-slate-500">
-                  Sin moneda ni costes indirectos añadidos
+                  Coste conocido de ingredientes:
+                  {{
+                    formatMoney(
+                      selectedEstimation.knownIngredientCostSubtotal,
+                      selectedCurrencyCode
+                    )
+                  }}
                 </p>
               </div>
             </div>
+            @if (selectedEstimation.suggestedCustomerSalesTotal !== null) {
+              <section class="border-b border-slate-100 px-5 py-5 sm:px-6">
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h3 class="font-semibold text-slate-900">Precio de venta sugerido</h3>
+                    <p class="mt-1 text-xs text-slate-500">
+                      Margen objetivo:
+                      {{ formatNumber(selectedEstimation.targetMarginPercent, 2) }}% · Impuesto:
+                      {{ formatNumber(selectedEstimation.salesTaxRatePercent, 2) }}%
+                    </p>
+                  </div>
 
+                  <div class="text-right">
+                    <p class="text-xs text-slate-500">Total del lote con impuesto</p>
+                    <p class="mt-1 text-2xl font-bold text-emerald-800">
+                      {{
+                        formatMoney(
+                          selectedEstimation.suggestedCustomerSalesTotal,
+                          selectedCurrencyCode
+                        )
+                      }}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                  <div class="rounded-xl bg-slate-50 p-4">
+                    <p class="text-xs text-slate-500">Venta neta</p>
+                    <p class="mt-1 text-base font-bold text-slate-900">
+                      {{
+                        formatMoney(selectedEstimation.suggestedNetSalesTotal, selectedCurrencyCode)
+                      }}
+                    </p>
+                  </div>
+
+                  <div class="rounded-xl bg-slate-50 p-4">
+                    <p class="text-xs text-slate-500">Beneficio previsto</p>
+                    <p class="mt-1 text-base font-bold text-slate-900">
+                      {{ formatMoney(selectedEstimation.targetProfitTotal, selectedCurrencyCode) }}
+                    </p>
+                  </div>
+
+                  <div class="rounded-xl bg-slate-50 p-4">
+                    <p class="text-xs text-slate-500">Impuesto total</p>
+                    <p class="mt-1 text-base font-bold text-slate-900">
+                      {{ formatMoney(selectedEstimation.salesTaxTotal, selectedCurrencyCode) }}
+                    </p>
+                  </div>
+
+                  <div class="rounded-xl bg-slate-50 p-4">
+                    <p class="text-xs text-slate-500">Precio por unidad</p>
+                    <p class="mt-1 text-base font-bold text-emerald-800">
+                      {{
+                        formatMoney(
+                          selectedEstimation.suggestedCustomerUnitPrice,
+                          selectedCurrencyCode
+                        )
+                      }}
+                    </p>
+                    @if (selectedEstimation.suggestedNetUnitPrice !== null) {
+                      <p class="mt-1 text-xs text-slate-500">
+                        Neto:
+                        {{
+                          formatMoney(
+                            selectedEstimation.suggestedNetUnitPrice,
+                            selectedCurrencyCode
+                          )
+                        }}
+                      </p>
+                    }
+                  </div>
+                </div>
+              </section>
+            } @else {
+              <section class="border-b border-slate-100 px-5 py-5 sm:px-6">
+                <h3 class="font-semibold text-slate-900">Costes adicionales del lote</h3>
+
+                <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                  <div>
+                    <p class="text-xs text-slate-500">Mano de obra</p>
+                    <p class="mt-1 text-sm font-semibold text-slate-800">
+                      {{ formatMoney(selectedEstimation.laborCost, selectedCurrencyCode) }}
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-slate-500">Energía</p>
+                    <p class="mt-1 text-sm font-semibold text-slate-800">
+                      {{ formatMoney(selectedEstimation.energyCost, selectedCurrencyCode) }}
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-slate-500">Envases</p>
+                    <p class="mt-1 text-sm font-semibold text-slate-800">
+                      {{ formatMoney(selectedEstimation.packagingCost, selectedCurrencyCode) }}
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-slate-500">Otros</p>
+                    <p class="mt-1 text-sm font-semibold text-slate-800">
+                      {{ formatMoney(selectedEstimation.otherCost, selectedCurrencyCode) }}
+                    </p>
+                  </div>
+                </div>
+
+                @if (
+                  selectedEstimation.targetMarginPercent === null ||
+                  selectedEstimation.salesTaxRatePercent === null
+                ) {
+                  <p class="mt-4 text-sm leading-6 text-slate-600">
+                    Esta estimación no tiene un margen y un impuesto definidos. Para calcular un
+                    precio de venta, crea una nueva estimación con ambos valores.
+                  </p>
+                } @else {
+                  <p class="mt-4 text-sm leading-6 text-amber-800">
+                    No se ha generado un precio de venta porque faltan precios de ingredientes.
+                    Completa los precios del catálogo y crea una nueva estimación.
+                  </p>
+                }
+              </section>
+            }
             @if (!selectedEstimation.costingComplete) {
               <div
                 class="border-b border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900 sm:px-6"
@@ -609,6 +886,14 @@ export class EstimationsPage {
   pageError: string | null = null;
   successMessage: string | null = null;
 
+  laborCost: number | null = 0;
+  energyCost: number | null = 0;
+  packagingCost: number | null = 0;
+  otherCost: number | null = 0;
+
+  targetMarginPercent: number | null = null;
+  salesTaxRatePercent: number | null = null;
+
   private lastBusinessId: string | null | undefined = undefined;
 
   constructor() {
@@ -636,6 +921,9 @@ export class EstimationsPage {
   }
 
   get canCreate(): boolean {
+    if (this.pricingInputError !== null) {
+      return false;
+    }
     if (
       !this.activeBusinessId ||
       this.saving ||
@@ -685,6 +973,7 @@ export class EstimationsPage {
     this.loadingVersions = false;
     this.loadingEstimations = false;
     this.saving = false;
+    this.resetFinancialInputs();
   }
 
   private loadBusinessData(businessId: string): void {
@@ -819,6 +1108,16 @@ export class EstimationsPage {
       request.flourUnitId = this.flourUnitId;
     }
 
+    request.laborCost = this.laborCost ?? 0;
+    request.energyCost = this.energyCost ?? 0;
+    request.packagingCost = this.packagingCost ?? 0;
+    request.otherCost = this.otherCost ?? 0;
+
+    if (this.targetMarginPercent !== null && this.salesTaxRatePercent !== null) {
+      request.targetMarginPercent = this.targetMarginPercent;
+      request.salesTaxRatePercent = this.salesTaxRatePercent;
+    }
+
     this.saving = true;
     this.pageError = null;
     this.successMessage = null;
@@ -908,5 +1207,75 @@ export class EstimationsPage {
       dateStyle: 'medium',
       timeStyle: 'short',
     }).format(date);
+  }
+
+  formatMoney(value: string | number | null | undefined, currencyCode: string): string {
+    if (value === null || value === undefined || value === '') {
+      return '—';
+    }
+
+    const amount = Number(value);
+
+    if (!Number.isFinite(amount)) {
+      return '—';
+    }
+
+    try {
+      return new Intl.NumberFormat('es-ES', {
+        style: 'currency',
+        currency: currencyCode || 'CUP',
+        maximumFractionDigits: 2,
+      }).format(amount);
+    } catch {
+      return `${this.formatNumber(amount, 2)} ${currencyCode || ''}`.trim();
+    }
+  }
+
+  get selectedCurrencyCode(): string {
+    return this.selectedEstimation?.currencyCodeSnapshot || 'CUP';
+  }
+
+  get pricingInputError(): string | null {
+    const hasMargin = this.targetMarginPercent !== null;
+    const hasTax = this.salesTaxRatePercent !== null;
+
+    if (hasMargin !== hasTax) {
+      return 'Introduce el margen y el impuesto juntos, o deja ambos vacíos.';
+    }
+
+    if (
+      hasMargin &&
+      (!Number.isFinite(this.targetMarginPercent) ||
+        this.targetMarginPercent! < 0 ||
+        this.targetMarginPercent! >= 100)
+    ) {
+      return 'El margen debe ser igual o mayor que 0% y menor que 100%.';
+    }
+
+    if (
+      hasTax &&
+      (!Number.isFinite(this.salesTaxRatePercent) ||
+        this.salesTaxRatePercent! < 0 ||
+        this.salesTaxRatePercent! > 999.9999)
+    ) {
+      return 'El impuesto debe ser un número igual o mayor que cero.';
+    }
+
+    const costs = [this.laborCost, this.energyCost, this.packagingCost, this.otherCost];
+
+    if (costs.some((value) => value !== null && (!Number.isFinite(value) || value < 0))) {
+      return 'Los costes adicionales deben ser números iguales o mayores que cero.';
+    }
+
+    return null;
+  }
+
+  private resetFinancialInputs(): void {
+    this.laborCost = 0;
+    this.energyCost = 0;
+    this.packagingCost = 0;
+    this.otherCost = 0;
+    this.targetMarginPercent = null;
+    this.salesTaxRatePercent = null;
   }
 }
