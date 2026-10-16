@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Panadería Gestión</string>
+    <string name="title_activity_main">Panadería Gestión</string>
+    <string name="package_name">cu.may.panaderia</string>
+    <string name="custom_url_scheme">cu.may.panaderia</string>
+</resources>
