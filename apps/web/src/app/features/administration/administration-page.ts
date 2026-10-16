@@ -134,7 +134,7 @@ import type {
 
               <button
                 type="submit"
-                class="flex w-full items-center justify-center rounded-lg bg-blue-800 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-900 disabled:cursor-not-allowed disabled:opacity-50"
+                class="app-btn app-btn-primary min-h-11 w-full"
                 [disabled]="creatingMember || !newEmail.trim()"
               >
                 {{ creatingMember ? 'Incorporando usuario…' : 'Incorporar al negocio' }}
@@ -164,7 +164,7 @@ import type {
 
               <button
                 type="button"
-                class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50"
+                class="app-btn app-btn-secondary"
                 [disabled]="loadingMembers"
                 (click)="reloadMembers()"
               >
@@ -235,7 +235,7 @@ import type {
 
                         <button
                           type="button"
-                          class="rounded-lg border border-blue-200 px-3 py-2 text-xs font-semibold text-blue-800 transition hover:bg-blue-50 disabled:opacity-50"
+                          class="app-btn app-btn-secondary"
                           [disabled]="
                             roleSavingId === member.id || roleDrafts[member.id] === member.role
                           "
@@ -260,7 +260,7 @@ import type {
                             <div class="mt-3 flex flex-wrap gap-2">
                               <button
                                 type="button"
-                                class="rounded-lg bg-red-700 px-3 py-2 text-xs font-semibold text-white hover:bg-red-800 disabled:opacity-50"
+                                class="app-btn app-btn-danger"
                                 [disabled]="removingMemberId === member.id"
                                 (click)="removeMember(member)"
                               >
@@ -272,7 +272,7 @@ import type {
                               </button>
                               <button
                                 type="button"
-                                class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                                class="app-btn app-btn-secondary"
                                 [disabled]="removingMemberId === member.id"
                                 (click)="cancelRemoval()"
                               >
@@ -283,7 +283,7 @@ import type {
                         } @else {
                           <button
                             type="button"
-                            class="rounded-lg px-3 py-2 text-xs font-semibold text-red-700 transition hover:bg-red-50"
+                            class="app-btn app-btn-danger-subtle"
                             (click)="requestRemoval(member)"
                           >
                             Retirar acceso
@@ -316,7 +316,7 @@ import type {
                             <div class="mt-4 flex flex-wrap gap-2">
                               <button
                                 type="button"
-                                class="rounded-lg bg-amber-800 px-3 py-2 text-xs font-semibold text-white hover:bg-amber-900 disabled:opacity-50"
+                                class="app-btn app-btn-warning"
                                 [disabled]="transferringOwnershipId === member.id"
                                 (click)="transferOwnership(member)"
                               >
@@ -329,7 +329,7 @@ import type {
 
                               <button
                                 type="button"
-                                class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+                                class="app-btn app-btn-secondary"
                                 [disabled]="transferringOwnershipId === member.id"
                                 (click)="cancelOwnershipTransfer()"
                               >
@@ -340,7 +340,7 @@ import type {
                         } @else {
                           <button
                             type="button"
-                            class="rounded-lg px-3 py-2 text-xs font-semibold text-amber-800 transition hover:bg-amber-50"
+                            class="app-btn app-btn-warning"
                             (click)="requestOwnershipTransfer(member)"
                           >
                             Transferir propiedad

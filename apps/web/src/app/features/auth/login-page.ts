@@ -107,7 +107,7 @@ import { apiErrorMessage } from '../../core/api-error';
             nz-button
             nzType="primary"
             type="submit"
-            class="!mt-6 min-h-11 w-full font-semibold sm:!mt-7"
+            class="app-btn app-btn-primary !mt-6 min-h-11 w-full sm:!mt-7"
             [nzLoading]="submitting"
             [disabled]="submitting"
           >

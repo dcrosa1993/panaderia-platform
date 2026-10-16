@@ -61,11 +61,19 @@ import type { CreateProductRequest, UpdateProductRequest } from '../../core/mode
           nz-button
           nzType="primary"
           type="button"
-          class="min-h-11 w-full shrink-0 sm:w-auto"
+          class="app-btn app-btn-primary min-h-11 w-full shrink-0 sm:w-auto"
           [disabled]="!auth.activeBusinessId() || loadingUnits()"
           (click)="openCreateModal()"
         >
-          + Agregar producto
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 5v14M5 12h14"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+          Agregar producto
         </button>
       </header>
 
@@ -202,7 +210,7 @@ import type { CreateProductRequest, UpdateProductRequest } from '../../core/mode
                       nzType="default"
                       nzSize="small"
                       type="button"
-                      class="w-full lg:w-auto"
+                      class="app-btn app-btn-secondary w-full lg:w-auto"
                       (click)="openEditModal(product)"
                     >
                       Editar
@@ -213,7 +221,9 @@ import type { CreateProductRequest, UpdateProductRequest } from '../../core/mode
                       nzType="default"
                       nzSize="small"
                       type="button"
-                      class="w-full lg:w-auto"
+                      class="app-btn w-full lg:w-auto"
+                      [class.app-btn-danger]="product.isActive"
+                      [class.app-btn-secondary]="!product.isActive"
                       [disabled]="isChangingState(product.id)"
                       [nzLoading]="isChangingState(product.id)"
                       (click)="toggleActive(product)"
@@ -384,7 +394,7 @@ import type { CreateProductRequest, UpdateProductRequest } from '../../core/mode
             <button
               nz-button
               type="button"
-              class="min-h-11 w-full sm:w-auto"
+              class="app-btn app-btn-secondary min-h-11 w-full sm:w-auto"
               [disabled]="saving()"
               (click)="closeEditor()"
             >
@@ -395,7 +405,7 @@ import type { CreateProductRequest, UpdateProductRequest } from '../../core/mode
               nz-button
               nzType="primary"
               type="submit"
-              class="min-h-11 w-full sm:w-auto"
+              class="app-btn app-btn-primary min-h-11 w-full sm:w-auto"
               [nzLoading]="saving()"
               [disabled]="form.invalid || saving()"
             >

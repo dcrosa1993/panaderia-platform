@@ -38,6 +38,146 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+button.app-btn,
+.ant-btn.app-btn {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.625rem;
+  padding: 0.625rem 1rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+button.app-btn:focus-visible,
+.ant-btn.app-btn:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+button.app-btn:disabled,
+.ant-btn.app-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+button.app-btn-primary,
+.ant-btn.app-btn-primary {
+  color: #fff !important;
+  background-color: var(--brand-blue) !important;
+  border-color: var(--brand-blue) !important;
+  box-shadow: none !important;
+}
+
+button.app-btn-primary:not(:disabled):hover,
+.ant-btn.app-btn-primary:not(:disabled):hover {
+  color: #fff !important;
+  background-color: var(--brand-blue-strong) !important;
+  border-color: var(--brand-blue-strong) !important;
+}
+
+button.app-btn-secondary,
+.ant-btn.app-btn-secondary {
+  color: #334155 !important;
+  background-color: #fff !important;
+  border-color: #d7dee8 !important;
+  box-shadow: none !important;
+}
+
+button.app-btn-secondary:not(:disabled):hover,
+.ant-btn.app-btn-secondary:not(:disabled):hover {
+  color: #1e293b !important;
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+button.app-btn-subtle,
+.ant-btn.app-btn-subtle {
+  color: #475569 !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+button.app-btn-subtle:not(:disabled):hover,
+.ant-btn.app-btn-subtle:not(:disabled):hover {
+  color: #1e293b !important;
+  background-color: #f1f5f9 !important;
+}
+
+button.app-btn-danger,
+.ant-btn.app-btn-danger {
+  color: #b91c1c !important;
+  background-color: #fff !important;
+  border-color: #fecaca !important;
+  box-shadow: none !important;
+}
+
+button.app-btn-danger:not(:disabled):hover,
+.ant-btn.app-btn-danger:not(:disabled):hover {
+  color: #991b1b !important;
+  background-color: #fef2f2 !important;
+  border-color: #fca5a5 !important;
+}
+
+button.app-btn-danger-subtle,
+.ant-btn.app-btn-danger-subtle {
+  color: #b91c1c !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+button.app-btn-danger-subtle:not(:disabled):hover,
+.ant-btn.app-btn-danger-subtle:not(:disabled):hover {
+  color: #991b1b !important;
+  background-color: #fef2f2 !important;
+}
+
+button.app-btn-warning,
+.ant-btn.app-btn-warning {
+  color: #92400e !important;
+  background-color: #fff !important;
+  border-color: #fcd34d !important;
+  box-shadow: none !important;
+}
+
+button.app-btn-warning:not(:disabled):hover,
+.ant-btn.app-btn-warning:not(:disabled):hover {
+  color: #78350f !important;
+  background-color: #fffbeb !important;
+  border-color: #fbbf24 !important;
+}
+
+button.app-btn-icon,
+.ant-btn.app-btn-icon {
+  width: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem;
+}
+
+button.app-btn-icon svg,
+.ant-btn.app-btn-icon svg,
+button.app-btn svg,
+.ant-btn.app-btn svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+
 /* Color principal de los botones NG-ZORRO. */
 .ant-btn-primary {
   color: #fff !important;

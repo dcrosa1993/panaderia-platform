@@ -59,11 +59,19 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
           nz-button
           nzType="primary"
           type="button"
-          class="min-h-11 w-full sm:w-auto"
+          class="app-btn app-btn-primary min-h-11 w-full sm:w-auto"
           [disabled]="!auth.activeBusinessId() || loadingUnits()"
           (click)="openCreateModal()"
         >
-          + Agregar ingrediente
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 5v14M5 12h14"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+          Agregar ingrediente
         </button>
       </header>
 
@@ -232,6 +240,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
                       nzType="default"
                       nzSize="small"
                       type="button"
+                      class="app-btn app-btn-secondary"
                       [disabled]="!ingredient.isActive"
                       (click)="openPriceModal(ingredient)"
                     >
@@ -244,6 +253,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
                         nzType="default"
                         nzSize="small"
                         type="button"
+                        class="app-btn app-btn-secondary"
                         (click)="openDensityModal(ingredient)"
                       >
                         {{
@@ -257,6 +267,9 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
                       nzType="default"
                       nzSize="small"
                       type="button"
+                      class="app-btn"
+                      [class.app-btn-danger]="ingredient.isActive"
+                      [class.app-btn-secondary]="!ingredient.isActive"
                       [nzLoading]="isUpdatingIngredient(ingredient.id)"
                       [disabled]="isUpdatingIngredient(ingredient.id)"
                       (click)="toggleIngredientStatus(ingredient)"
@@ -445,7 +458,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
             class="flex flex-col-reverse gap-2 border-t border-slate-100 pt-4 sm:flex-row sm:justify-end"
           >
             <button
-              class="w-full sm:w-auto"
+              class="app-btn app-btn-secondary w-full sm:w-auto"
               nz-button
               type="button"
               [disabled]="savingCreate()"
@@ -455,7 +468,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
             </button>
 
             <button
-              class="w-full sm:w-auto"
+              class="app-btn app-btn-primary w-full sm:w-auto"
               nz-button
               nzType="primary"
               type="submit"
@@ -512,7 +525,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
               class="flex flex-col-reverse gap-2 border-t border-slate-100 pt-4 sm:flex-row sm:justify-end"
             >
               <button
-                class="w-full sm:w-auto"
+                class="app-btn app-btn-secondary w-full sm:w-auto"
                 nz-button
                 type="button"
                 [disabled]="savingDensity()"
@@ -522,7 +535,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
               </button>
 
               <button
-                class="w-full sm:w-auto"
+                class="app-btn app-btn-primary w-full sm:w-auto"
                 nz-button
                 nzType="primary"
                 type="submit"
@@ -622,7 +635,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
               class="flex flex-col-reverse gap-2 border-t border-slate-100 pt-4 sm:flex-row sm:justify-end"
             >
               <button
-                class="w-full sm:w-auto"
+                class="app-btn app-btn-secondary w-full sm:w-auto"
                 nz-button
                 type="button"
                 [disabled]="savingPrice()"
@@ -632,7 +645,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
               </button>
 
               <button
-                class="w-full sm:w-auto"
+                class="app-btn app-btn-primary w-full sm:w-auto"
                 nz-button
                 nzType="primary"
                 type="submit"

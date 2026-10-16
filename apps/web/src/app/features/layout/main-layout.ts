@@ -165,13 +165,25 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
               <div class="flex min-w-0 items-center gap-3">
                 <button
                   type="button"
-                  aria-label="Abrir menú de navegación"
+                  [attr.aria-label]="
+                    mobileMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'
+                  "
+                  [attr.title]="
+                    mobileMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'
+                  "
                   aria-controls="main-sidebar"
                   [attr.aria-expanded]="mobileMenuOpen"
-                  class="grid size-10 shrink-0 place-items-center rounded-lg border border-slate-200 bg-white text-xl text-slate-700 hover:bg-slate-100 md:hidden"
+                  class="app-btn app-btn-secondary app-btn-icon shrink-0 md:hidden"
                   (click)="toggleMobileMenu()"
                 >
-                  <span aria-hidden="true">☰</span>
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M4 6h16M4 12h16M4 18h16"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
                 </button>
 
                 <span class="truncate text-sm font-bold text-slate-900 md:hidden">
@@ -184,7 +196,13 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
                   {{ auth.user()?.fullName ?? 'Usuario' }}
                 </span>
 
-                <button nz-button nzType="default" type="button" (click)="logout()">
+                <button
+                  nz-button
+                  nzType="default"
+                  type="button"
+                  class="app-btn app-btn-secondary"
+                  (click)="logout()"
+                >
                   <span class="md:hidden">Salir</span>
                   <span class="hidden md:inline">Cerrar sesión</span>
                 </button>
@@ -216,7 +234,7 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
                 nz-button
                 nzType="default"
                 type="button"
-                class="w-full md:w-auto"
+                class="app-btn app-btn-secondary w-full md:w-auto"
                 (click)="openCreateBusiness()"
               >
                 Nuevo negocio
@@ -287,6 +305,7 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
                 nz-button
                 nzType="default"
                 type="button"
+                class="app-btn app-btn-secondary"
                 [disabled]="creatingBusiness"
                 (click)="cancelCreateBusiness()"
               >
@@ -297,6 +316,7 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
                 nz-button
                 nzType="primary"
                 type="submit"
+                class="app-btn app-btn-primary"
                 [nzLoading]="creatingBusiness"
                 [disabled]="businessForm.invalid || creatingBusiness"
               >

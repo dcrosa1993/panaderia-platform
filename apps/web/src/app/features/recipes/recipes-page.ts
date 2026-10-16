@@ -91,11 +91,19 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
           nz-button
           nzType="primary"
           type="button"
-          class="min-h-11 w-full shrink-0 sm:w-auto"
+          class="app-btn app-btn-primary min-h-11 w-full shrink-0 sm:w-auto"
           [disabled]="!selectedProduct()"
           (click)="openDraftModal()"
         >
-          + Nueva versión
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+             <path
+               d="M12 5v14M5 12h14"
+               stroke="currentColor"
+               stroke-width="1.8"
+               stroke-linecap="round"
+             />
+          </svg>
+          Nueva versión
         </button>
       </header>
 
@@ -178,7 +186,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
               <button
                 nz-button
                 nzType="primary"
-                class="mt-4 min-h-11 w-full sm:w-auto"
+                class="app-btn app-btn-primary mt-4 min-h-11 w-full sm:w-auto"
                 type="button"
                 (click)="openDraftModal()"
               >
@@ -251,7 +259,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                         nzType="default"
                         nzSize="small"
                         type="button"
-                        class="w-full sm:w-auto"
+                        class="app-btn app-btn-secondary w-full sm:w-auto"
                         (click)="openVersion(version)"
                       >
                         Ver / editar
@@ -375,11 +383,19 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                   nz-button
                   nzType="default"
                   type="button"
-                  class="min-h-11 w-full shrink-0 sm:w-auto"
+                  class="app-btn app-btn-secondary min-h-11 w-full shrink-0 sm:w-auto"
                   [disabled]="!canEditVersion() || ingredientRows.length >= 200"
                   (click)="addIngredient()"
                 >
-                  + Ingrediente
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M12 5v14M5 12h14"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  Ingrediente
                 </button>
               </div>
 
@@ -477,7 +493,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                         nz-button
                         nzType="default"
                         type="button"
-                        class="min-h-11 w-full sm:w-auto xl:w-auto"
+                        class="app-btn app-btn-danger min-h-11 w-full sm:w-auto xl:w-auto"
                         [disabled]="!canEditVersion()"
                         (click)="removeIngredient(i)"
                       >
@@ -498,10 +514,18 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                     nz-button
                     nzType="default"
                     type="button"
-                    class="mt-3 min-h-11 w-full sm:w-auto"
+                    class="app-btn app-btn-secondary mt-3 min-h-11 w-full sm:w-auto"
                     (click)="addIngredient()"
                   >
-                    + Añadir ingrediente
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                     <path
+                       d="M12 5v14M5 12h14"
+                       stroke="currentColor"
+                       stroke-width="1.8"
+                       stroke-linecap="round"
+                     />
+                    </svg>
+                    Añadir ingrediente
                   </button>
                 </div>
               }
@@ -592,7 +616,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 nz-button
                 nzType="default"
                 type="button"
-                class="min-h-11 w-full sm:w-auto"
+                class="app-btn app-btn-secondary min-h-11 w-full sm:w-auto"
                 [disabled]="saving()"
                 (click)="discardEditorChanges()"
               >
@@ -603,7 +627,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 nz-button
                 nzType="default"
                 type="button"
-                class="min-h-11 w-full sm:w-auto"
+                class="app-btn app-btn-secondary min-h-11 w-full sm:w-auto"
                 [disabled]="saving() || recipeForm.invalid || ingredientRows.length === 0"
                 [nzLoading]="saving()"
                 (click)="saveDraft()"
@@ -615,7 +639,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 nz-button
                 nzType="primary"
                 type="button"
-                class="min-h-11 w-full sm:w-auto"
+                class="app-btn app-btn-primary min-h-11 w-full sm:w-auto"
                 [disabled]="saving() || !canPublishFormula()"
                 [nzLoading]="saving()"
                 (click)="saveDraft(true)"
@@ -690,7 +714,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
               <button
                 nz-button
                 type="button"
-                class="min-h-11 w-full sm:w-auto"
+                class="app-btn app-btn-secondary min-h-11 w-full sm:w-auto"
                 [disabled]="creatingDraft()"
                 (click)="closeDraftModal()"
               >
@@ -701,7 +725,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 nz-button
                 nzType="primary"
                 type="submit"
-                class="min-h-11 w-full sm:w-auto"
+                class="app-btn app-btn-primary min-h-11 w-full sm:w-auto"
                 [nzLoading]="creatingDraft()"
                 [disabled]="draftForm.invalid || creatingDraft()"
               >

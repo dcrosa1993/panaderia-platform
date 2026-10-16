@@ -449,7 +449,7 @@ import type { RecipeVersion } from '../../core/models/recipe.models';
 
                 <button
                   type="submit"
-                  class="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-800 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-900 disabled:cursor-not-allowed disabled:opacity-50"
+                  class="app-btn app-btn-primary min-h-11 w-full"
                   [disabled]="!canCreate"
                 >
                   @if (saving) {
@@ -471,7 +471,7 @@ import type { RecipeVersion } from '../../core/models/recipe.models';
               </div>
               <button
                 type="button"
-                class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+                class="app-btn app-btn-secondary"
                 [disabled]="loadingEstimations"
                 (click)="reloadEstimations()"
               >
@@ -493,7 +493,7 @@ import type { RecipeVersion } from '../../core/models/recipe.models';
                 @for (estimation of estimations; track estimation.id) {
                   <button
                     type="button"
-                    class="flex w-full items-start justify-between gap-4 rounded-lg px-3 py-4 text-left transition hover:bg-slate-50"
+                    class="flex w-full items-start justify-between gap-4 rounded-lg px-3 py-4 text-left transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
                     [class.bg-blue-50]="selectedEstimation?.id === estimation.id"
                     (click)="viewEstimation(estimation)"
                   >
