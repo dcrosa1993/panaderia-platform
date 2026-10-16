@@ -259,10 +259,20 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                         nzType="default"
                         nzSize="small"
                         type="button"
-                        class="app-btn app-btn-secondary w-full sm:w-auto"
+                        class="app-btn app-btn-secondary app-btn-icon"
+                        aria-label="Ver y editar versión"
+                        title="Ver y editar versión"
                         (click)="openVersion(version)"
                       >
-                        Ver / editar
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="m15 5 4 4M4 20l4.5-1 10.9-10.9a2.1 2.1 0 0 0-3-3L5.5 16 4 20Z"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
                       </button>
                     </td>
                   </tr>

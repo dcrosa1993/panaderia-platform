@@ -112,7 +112,7 @@ import type {
                     id="memberRole"
                     name="memberRole"
                     [(ngModel)]="newRole"
-                    class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                    class="min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                   >
                     <option value="MEMBER">Miembro</option>
                     <option value="ADMIN">Administrador</option>
@@ -226,7 +226,7 @@ import type {
                             [id]="'role-' + member.id"
                             [name]="'role-' + member.id"
                             [(ngModel)]="roleDrafts[member.id]"
-                            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                            class="min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                           >
                             <option value="MEMBER">Miembro</option>
                             <option value="ADMIN">Administrador</option>

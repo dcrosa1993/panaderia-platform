@@ -104,7 +104,7 @@ import type { RecipeVersion } from '../../core/models/recipe.models';
                   <select
                     id="estimateProduct"
                     name="productId"
-                    class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                    class="min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                     [ngModel]="selectedProductId"
                     (ngModelChange)="onProductChange($event)"
                     required
@@ -141,7 +141,7 @@ import type { RecipeVersion } from '../../core/models/recipe.models';
                   <select
                     id="estimateRecipe"
                     name="recipeVersionId"
-                    class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                    class="min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                     [(ngModel)]="selectedRecipeVersionId"
                     [disabled]="loadingVersions || publishedVersions.length === 0"
                     required
@@ -286,7 +286,7 @@ import type { RecipeVersion } from '../../core/models/recipe.models';
                       <select
                         id="flourUnit"
                         name="flourUnitId"
-                        class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                        class="min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                         [(ngModel)]="flourUnitId"
                         required
                       >

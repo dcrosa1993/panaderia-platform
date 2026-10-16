@@ -178,6 +178,34 @@ button.app-btn svg,
   flex: none;
 }
 
+.ant-select-single.ant-select {
+  height: 2.75rem;
+  font-size: 0.875rem;
+}
+
+.ant-select-single.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  height: 2.75rem !important;
+  padding-inline: 0.75rem;
+  border-color: #cbd5e1;
+  border-radius: 0.5rem;
+}
+
+.ant-select-single.ant-select .ant-select-selector .ant-select-selection-item,
+.ant-select-single.ant-select .ant-select-selector .ant-select-selection-placeholder,
+.ant-select-single.ant-select .ant-select-selector::after {
+  line-height: calc(2.75rem - 2px);
+}
+
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  border-color: #94a3b8;
+}
+
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+  .ant-select-selector {
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 2px rgb(36 87 167 / 12%);
+}
+
 /* Color principal de los botones NG-ZORRO. */
 .ant-btn-primary {
   color: #fff !important;

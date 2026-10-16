@@ -234,17 +234,27 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
                 </td>
 
                 <td class="text-right">
-                  <div class="flex min-w-[280px] flex-wrap justify-end gap-2">
+                  <div class="flex flex-wrap justify-end gap-2">
                     <button
                       nz-button
                       nzType="default"
                       nzSize="small"
                       type="button"
-                      class="app-btn app-btn-secondary"
+                      class="app-btn app-btn-secondary app-btn-icon"
+                      aria-label="Actualizar precio"
+                      title="Actualizar precio"
                       [disabled]="!ingredient.isActive"
                       (click)="openPriceModal(ingredient)"
                     >
-                      Actualizar precio
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="M12 3v18m4-14.5c-.8-1-2.1-1.5-4-1.5-2.2 0-3.5 1-3.5 2.5S10 10 12 10s3.5 1 3.5 2.5S14.2 15 12 15c-1.9 0-3.2-.5-4-1.5"
+                          stroke="currentColor"
+                          stroke-width="1.7"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
                     </button>
 
                     @if (ingredient.baseUnit.dimension === 'VOLUME') {
@@ -253,12 +263,28 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
                         nzType="default"
                         nzSize="small"
                         type="button"
-                        class="app-btn app-btn-secondary"
+                        class="app-btn app-btn-secondary app-btn-icon"
+                        [attr.aria-label]="
+                          ingredient.densityGramsPerMl
+                            ? 'Editar densidad'
+                            : 'Configurar densidad'
+                        "
+                        [attr.title]="
+                          ingredient.densityGramsPerMl
+                            ? 'Editar densidad'
+                            : 'Configurar densidad'
+                        "
                         (click)="openDensityModal(ingredient)"
                       >
-                        {{
-                          ingredient.densityGramsPerMl ? 'Editar densidad' : 'Configurar densidad'
-                        }}
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="M9 3h6m-5 0v6l-5.5 9.2A1.8 1.8 0 0 0 6 21h12a1.8 1.8 0 0 0 1.5-2.8L14 9V3m-6.2 12h8.4"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
                       </button>
                     }
 
@@ -267,14 +293,36 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
                       nzType="default"
                       nzSize="small"
                       type="button"
-                      class="app-btn"
+                      class="app-btn app-btn-icon"
+                      [attr.aria-label]="ingredient.isActive ? 'Archivar ingrediente' : 'Reactivar ingrediente'"
+                      [attr.title]="ingredient.isActive ? 'Archivar ingrediente' : 'Reactivar ingrediente'"
                       [class.app-btn-danger]="ingredient.isActive"
                       [class.app-btn-secondary]="!ingredient.isActive"
                       [nzLoading]="isUpdatingIngredient(ingredient.id)"
                       [disabled]="isUpdatingIngredient(ingredient.id)"
                       (click)="toggleIngredientStatus(ingredient)"
                     >
-                      {{ ingredient.isActive ? 'Archivar' : 'Reactivar' }}
+                      @if (ingredient.isActive) {
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="M4 8h16l-1.2 11H5.2L4 8Zm3 0 1-4h8l1 4m-5 4v3"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      } @else {
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="M4 12a8 8 0 1 0 2.3-5.7L4 8.5M4 4v4.5h4.5m3.5-1v5l3 2"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      }
                     </button>
                   </div>
                 </td>

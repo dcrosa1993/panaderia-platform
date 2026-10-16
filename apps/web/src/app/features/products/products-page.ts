@@ -210,10 +210,20 @@ import type { CreateProductRequest, UpdateProductRequest } from '../../core/mode
                       nzType="default"
                       nzSize="small"
                       type="button"
-                      class="app-btn app-btn-secondary w-full lg:w-auto"
+                      class="app-btn app-btn-secondary app-btn-icon"
+                      aria-label="Editar producto"
+                      title="Editar producto"
                       (click)="openEditModal(product)"
                     >
-                      Editar
+                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d="m15 5 4 4M4 20l4.5-1 10.9-10.9a2.1 2.1 0 0 0-3-3L5.5 16 4 20Z"
+                          stroke="currentColor"
+                          stroke-width="1.7"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
                     </button>
 
                     <button
@@ -221,14 +231,36 @@ import type { CreateProductRequest, UpdateProductRequest } from '../../core/mode
                       nzType="default"
                       nzSize="small"
                       type="button"
-                      class="app-btn w-full lg:w-auto"
+                      class="app-btn app-btn-icon"
+                      [attr.aria-label]="product.isActive ? 'Desactivar producto' : 'Activar producto'"
+                      [attr.title]="product.isActive ? 'Desactivar producto' : 'Activar producto'"
                       [class.app-btn-danger]="product.isActive"
                       [class.app-btn-secondary]="!product.isActive"
                       [disabled]="isChangingState(product.id)"
                       [nzLoading]="isChangingState(product.id)"
                       (click)="toggleActive(product)"
                     >
-                      {{ product.isActive ? 'Desactivar' : 'Activar' }}
+                      @if (product.isActive) {
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="M4 8h16l-1.2 11H5.2L4 8Zm3 0 1-4h8l1 4m-5 4v3"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      } @else {
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path
+                            d="M4 12a8 8 0 1 0 2.3-5.7L4 8.5M4 4v4.5h4.5m3.5-1v5l3 2"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      }
                     </button>
                   </div>
                 </td>
