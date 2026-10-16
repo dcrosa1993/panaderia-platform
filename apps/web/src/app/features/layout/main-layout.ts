@@ -29,9 +29,24 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
     NzSelectModule,
   ],
   template: `
-    <div class="min-h-screen bg-slate-50 text-slate-800 md:grid md:grid-cols-[258px_minmax(0,1fr)]">
+    <div
+      class="min-h-screen bg-slate-50 text-slate-800 md:grid md:grid-cols-[258px_minmax(0,1fr)]"
+      (window:keydown.escape)="closeMobileMenu()"
+    >
+      @if (mobileMenuOpen) {
+        <button
+          type="button"
+          aria-label="Cerrar menú de navegación"
+          class="fixed inset-0 z-40 cursor-default bg-slate-950/40 md:hidden"
+          (click)="closeMobileMenu()"
+        ></button>
+      }
+
       <aside
-        class="border-b border-slate-200 bg-white p-4 md:sticky md:top-0 md:flex md:h-screen md:flex-col md:overflow-y-auto md:border-b-0 md:border-r md:p-5"
+        id="main-sidebar"
+        class="fixed inset-y-0 left-0 z-50 flex h-screen w-[85vw] max-w-[300px] flex-col overflow-y-auto border-r border-slate-200 bg-white p-4 shadow-xl transition-transform duration-200 md:sticky md:top-0 md:z-auto md:h-screen md:w-auto md:max-w-none md:translate-x-0 md:overflow-y-auto md:p-5 md:shadow-none"
+        [class.-translate-x-full]="!mobileMenuOpen"
+        [class.translate-x-0]="mobileMenuOpen"
       >
         <a routerLink="/" class="flex items-center gap-3 px-1 py-2 no-underline">
           <span
@@ -58,10 +73,12 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
           }
         </section>
 
-        <nav aria-label="Navegación principal" class="mt-6 flex flex-wrap gap-1 md:flex-col">
-          <p class="hidden px-3 pb-2 text-[10px] font-bold tracking-widest text-slate-400 md:block">
-            GENERAL
-          </p>
+        <nav
+          aria-label="Navegación principal"
+          class="mt-6 flex flex-col gap-1"
+          (click)="closeMobileMenu()"
+        >
+          <p class="px-3 pb-2 text-[10px] font-bold tracking-widest text-slate-400">GENERAL</p>
 
           <a
             routerLink="/"
@@ -73,9 +90,7 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
             Inicio
           </a>
 
-          <p
-            class="hidden px-3 pb-2 pt-5 text-[10px] font-bold tracking-widest text-slate-400 md:block"
-          >
+          <p class="px-3 pb-2 pt-5 text-[10px] font-bold tracking-widest text-slate-400">
             OPERACIÓN
           </p>
 
@@ -120,9 +135,7 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
             Estimaciones
           </a>
 
-          <p
-            class="hidden px-3 pb-2 pt-5 text-[10px] font-bold tracking-widest text-slate-400 md:block"
-          >
+          <p class="px-3 pb-2 pt-5 text-[10px] font-bold tracking-widest text-slate-400">
             ADMINISTRACIÓN
           </p>
 
@@ -145,44 +158,74 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
       </aside>
 
       <div class="flex min-w-0 flex-col">
-        <header
-          class="flex min-h-16 flex-wrap items-center justify-between gap-4 border-b border-slate-200 bg-white px-5 py-3 sm:px-8"
-        >
-          <div class="flex min-w-0 flex-wrap items-center gap-3">
-            <label for="activeBusiness" class="text-xs font-semibold text-slate-600">
-              Negocio activo
-            </label>
+        <header class="border-b border-slate-200 bg-white px-4 py-3 sm:px-8">
+          <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <!-- Zona superior: menú móvil, nombre de la app y sesión -->
+            <div class="order-1 flex items-center justify-between gap-3 md:order-2">
+              <div class="flex min-w-0 items-center gap-3">
+                <button
+                  type="button"
+                  aria-label="Abrir menú de navegación"
+                  aria-controls="main-sidebar"
+                  [attr.aria-expanded]="mobileMenuOpen"
+                  class="grid size-10 shrink-0 place-items-center rounded-lg border border-slate-200 bg-white text-xl text-slate-700 hover:bg-slate-100 md:hidden"
+                  (click)="toggleMobileMenu()"
+                >
+                  <span aria-hidden="true">☰</span>
+                </button>
 
-            <nz-select
-              id="activeBusiness"
-              class="w-56"
-              [ngModel]="auth.activeBusinessId()"
-              (ngModelChange)="changeBusiness($event)"
-              [nzDisabled]="auth.businesses().length === 0"
-              nzPlaceHolder="Selecciona un negocio"
+                <span class="truncate text-sm font-bold text-slate-900 md:hidden">
+                  Panadería Gestión
+                </span>
+              </div>
+
+              <div class="flex shrink-0 items-center gap-2 md:gap-3">
+                <span class="hidden text-sm font-medium text-slate-700 md:inline">
+                  {{ auth.user()?.fullName ?? 'Usuario' }}
+                </span>
+
+                <button nz-button nzType="default" type="button" (click)="logout()">
+                  <span class="md:hidden">Salir</span>
+                  <span class="hidden md:inline">Cerrar sesión</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Selector del negocio y creación -->
+            <div
+              class="order-2 flex min-w-0 flex-col gap-2 md:order-1 md:flex-row md:items-center md:gap-3"
             >
-              @for (business of auth.businesses(); track business.id) {
-                <nz-option [nzValue]="business.id" [nzLabel]="business.name" />
-              }
-            </nz-select>
+              <label for="activeBusiness" class="text-xs font-semibold text-slate-600">
+                Negocio activo
+              </label>
 
-            <button nz-button nzType="default" type="button" (click)="openCreateBusiness()">
-              Nuevo negocio
-            </button>
-          </div>
+              <nz-select
+                id="activeBusiness"
+                class="w-full md:w-56"
+                [ngModel]="auth.activeBusinessId()"
+                (ngModelChange)="changeBusiness($event)"
+                [nzDisabled]="auth.businesses().length === 0"
+                nzPlaceHolder="Selecciona un negocio"
+              >
+                @for (business of auth.businesses(); track business.id) {
+                  <nz-option [nzValue]="business.id" [nzLabel]="business.name" />
+                }
+              </nz-select>
 
-          <div class="flex items-center gap-3">
-            <span class="hidden text-sm font-medium text-slate-700 sm:inline">
-              {{ auth.user()?.fullName ?? 'Usuario' }}
-            </span>
-
-            <button nz-button nzType="default" type="button" (click)="logout()">
-              Cerrar sesión
-            </button>
+              <button
+                nz-button
+                nzType="default"
+                type="button"
+                class="w-full md:w-auto"
+                (click)="openCreateBusiness()"
+              >
+                Nuevo negocio
+              </button>
+            </div>
           </div>
         </header>
 
-        <main class="w-full flex-1 p-5 sm:p-8">
+        <main class="w-full min-w-0 flex-1 p-4 sm:p-6 md:p-8">
           <router-outlet />
         </main>
 
@@ -267,6 +310,15 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
   `,
 })
 export class MainLayout {
+  mobileMenuOpen = false;
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen = false;
+  }
   readonly auth = inject(AuthService);
 
   private readonly router = inject(Router);
