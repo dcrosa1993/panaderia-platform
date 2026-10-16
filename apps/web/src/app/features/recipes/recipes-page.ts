@@ -64,21 +64,22 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
     RouterLink,
   ],
   template: `
-    <main class="mx-auto w-full max-w-7xl space-y-6">
+    <main class="mx-auto w-full min-w-0 max-w-7xl space-y-5 sm:space-y-6">
+      <!-- Encabezado -->
       <header class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div>
+        <div class="min-w-0">
           <p class="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-emerald-700">
             FÓRMULAS DE PRODUCCIÓN
           </p>
 
-          <h1 class="text-3xl font-bold tracking-tight text-slate-900">Recetas</h1>
+          <h1 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Recetas</h1>
 
           <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
             Define porcentajes panaderos, identifica las harinas base y conserva el historial de las
             fórmulas publicadas.
           </p>
 
-          <p class="mt-2 text-xs text-slate-500">
+          <p class="mt-2 break-words text-xs text-slate-500">
             Negocio activo:
             <strong class="font-semibold text-slate-700">
               {{ auth.activeBusiness()?.name ?? 'Sin negocio seleccionado' }}
@@ -90,6 +91,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
           nz-button
           nzType="primary"
           type="button"
+          class="min-h-11 w-full shrink-0 sm:w-auto"
           [disabled]="!selectedProduct()"
           (click)="openDraftModal()"
         >
@@ -97,14 +99,22 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
         </button>
       </header>
 
+      <!-- Errores y carga -->
       @if (pageError()) {
         <nz-alert nzType="error" nzShowIcon [nzMessage]="pageError()!" />
       }
 
       @if (productsLoading() || ingredientsLoading()) {
-        <p class="text-sm text-slate-500">Cargando productos e ingredientes...</p>
+        <div class="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4">
+          <span
+            class="size-4 shrink-0 animate-spin rounded-full border-2 border-slate-300 border-t-blue-700"
+            aria-hidden="true"
+          ></span>
+          <p class="text-sm text-slate-600">Cargando productos e ingredientes...</p>
+        </div>
       }
 
+      <!-- Selector de producto -->
       <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
         <label for="recipeProduct" class="mb-2 block text-sm font-semibold text-slate-700">
           Producto
@@ -112,7 +122,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
 
         <nz-select
           id="recipeProduct"
-          class="w-full max-w-xl"
+          class="w-full sm:max-w-xl"
           [ngModel]="selectedProductId()"
           (ngModelChange)="selectProduct($event)"
           nzPlaceHolder="Selecciona un producto"
@@ -124,39 +134,51 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
         </nz-select>
 
         @if (products().length === 0 && !productsLoading()) {
-          <p class="mt-3 text-sm text-slate-500">
+          <p class="mt-3 text-sm leading-6 text-slate-500">
             Todavía no hay productos activos.
-            <a routerLink="/products" class="font-semibold text-blue-800"> Crear un producto </a>
+            <a routerLink="/products" class="font-semibold text-blue-800 hover:underline">
+              Crear un producto
+            </a>
           </p>
         }
 
         @if (ingredients().length === 0 && !ingredientsLoading()) {
-          <p class="mt-3 text-sm text-amber-700">
-            No hay ingredientes activos con unidad base de masa. Registra primero tus ingredientes
-            en el catálogo.
-          </p>
+          <nz-alert
+            class="mt-4 block"
+            nzType="warning"
+            nzShowIcon
+            nzMessage="No hay ingredientes activos con unidad base de masa."
+            nzDescription="Registra primero tus ingredientes en el catálogo."
+          />
         }
       </section>
 
+      <!-- Versiones de la receta -->
       @if (selectedProduct()) {
-        <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <section
+          class="min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+        >
           <div class="border-b border-slate-100 p-4 sm:p-5">
             <h2 class="font-semibold text-slate-900">Versiones de la receta</h2>
-            <p class="mt-1 text-xs text-slate-500">Producto: {{ selectedProduct()?.name }}</p>
+            <p class="mt-1 break-words text-xs text-slate-500">
+              Producto: {{ selectedProduct()?.name }}
+            </p>
           </div>
 
           @if (versionsLoading()) {
             <p class="p-5 text-sm text-slate-500">Cargando versiones...</p>
           } @else if (versions().length === 0) {
-            <div class="p-8 text-center">
+            <div class="p-6 text-center sm:p-8">
               <h3 class="font-semibold text-slate-800">Este producto todavía no tiene recetas</h3>
+
               <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">
                 Crea una versión en borrador para comenzar a definir su fórmula.
               </p>
+
               <button
                 nz-button
                 nzType="primary"
-                class="mt-4"
+                class="mt-4 min-h-11 w-full sm:w-auto"
                 type="button"
                 (click)="openDraftModal()"
               >
@@ -173,11 +195,11 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
             >
               <thead>
                 <tr>
-                  <th>Versión</th>
-                  <th>Estado</th>
-                  <th>Pérdida prevista</th>
-                  <th>Fecha de publicación</th>
-                  <th class="text-right">Acciones</th>
+                  <th class="min-w-[120px]">Versión</th>
+                  <th class="hidden sm:table-cell">Estado</th>
+                  <th class="hidden md:table-cell">Pérdida prevista</th>
+                  <th class="hidden lg:table-cell">Fecha de publicación</th>
+                  <th class="w-[125px] text-right">Acciones</th>
                 </tr>
               </thead>
 
@@ -185,23 +207,41 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 @for (version of versionTable.data; track version.id) {
                   <tr>
                     <td>
-                      <span class="font-semibold text-slate-900">
-                        v{{ version.versionNumber }}
-                      </span>
+                      <div class="font-semibold text-slate-900">v{{ version.versionNumber }}</div>
+
                       @if (selectedVersion()?.id === version.id) {
-                        <span class="ml-2 text-xs text-blue-700"> Seleccionada </span>
+                        <span class="mt-1 inline-block text-xs font-medium text-blue-700">
+                          Seleccionada
+                        </span>
                       }
+
+                      <!-- Datos resumidos para móvil -->
+                      <div class="mt-2 flex flex-wrap items-center gap-2 sm:hidden">
+                        <nz-tag [nzColor]="statusColor(version.status)">
+                          {{ statusLabel(version.status) }}
+                        </nz-tag>
+
+                        <span class="text-xs text-slate-600">
+                          Pérdida: {{ version.expectedBakeLossPercent }} %
+                        </span>
+
+                        @if (version.publishedAt) {
+                          <span class="text-xs text-slate-500">
+                            {{ version.publishedAt | date: 'shortDate' }}
+                          </span>
+                        }
+                      </div>
                     </td>
 
-                    <td>
+                    <td class="hidden sm:table-cell">
                       <nz-tag [nzColor]="statusColor(version.status)">
                         {{ statusLabel(version.status) }}
                       </nz-tag>
                     </td>
 
-                    <td>{{ version.expectedBakeLossPercent }} %</td>
+                    <td class="hidden md:table-cell">{{ version.expectedBakeLossPercent }} %</td>
 
-                    <td>
+                    <td class="hidden lg:table-cell">
                       {{ version.publishedAt ? (version.publishedAt | date: 'shortDate') : '—' }}
                     </td>
 
@@ -211,6 +251,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                         nzType="default"
                         nzSize="small"
                         type="button"
+                        class="w-full sm:w-auto"
                         (click)="openVersion(version)"
                       >
                         Ver / editar
@@ -224,19 +265,22 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
         </section>
       }
 
+      <!-- Editor de receta -->
       @if (selectedVersion(); as version) {
         <section
-          class="space-y-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6"
+          class="min-w-0 space-y-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:space-y-6 sm:p-6"
         >
-          <header class="flex flex-wrap items-start justify-between gap-3">
-            <div>
+          <header class="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div class="min-w-0">
               <p class="text-xs font-bold uppercase tracking-wider text-emerald-700">
                 {{ canEditVersion() ? 'EDITANDO BORRADOR' : 'CONSULTA DE VERSIÓN' }}
               </p>
-              <h2 class="mt-1 text-xl font-bold text-slate-900">
+
+              <h2 class="mt-1 break-words text-xl font-bold text-slate-900 sm:text-2xl">
                 {{ selectedProduct()?.name }} · Versión {{ version.versionNumber }}
               </h2>
-              <p class="mt-2 text-sm text-slate-500">
+
+              <p class="mt-2 text-sm leading-6 text-slate-500">
                 {{
                   canEditVersion()
                     ? 'Puedes modificar la fórmula antes de publicarla.'
@@ -245,7 +289,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
               </p>
             </div>
 
-            <nz-tag [nzColor]="statusColor(version.status)">
+            <nz-tag class="self-start" [nzColor]="statusColor(version.status)">
               {{ statusLabel(version.status) }}
             </nz-tag>
           </header>
@@ -258,16 +302,19 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
             <nz-alert
               nzType="warning"
               nzShowIcon
-              nzMessage="Esta receta contiene un ingrediente inactivo. Antes de publicar una nueva versión, sustitúyelo por un ingrediente activo."
+              nzMessage="Esta receta contiene un ingrediente inactivo."
+              nzDescription="Antes de publicar una nueva versión, sustitúyelo por un ingrediente activo."
             />
           }
 
           <form [formGroup]="recipeForm" (ngSubmit)="saveDraft()" class="space-y-6" novalidate>
+            <!-- Parámetros de elaboración -->
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div>
+              <div class="min-w-0">
                 <label for="bakeLoss" class="mb-2 block text-sm font-semibold text-slate-700">
                   Pérdida prevista de horneado y enfriamiento (%)
                 </label>
+
                 <input
                   nz-input
                   id="bakeLoss"
@@ -276,25 +323,29 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                   formControlName="expectedBakeLossPercent"
                   [readOnly]="!canEditVersion()"
                   placeholder="Introduce la pérdida medida"
+                  class="min-h-11 w-full"
                 />
+
                 @if (
                   recipeForm.controls.expectedBakeLossPercent.touched &&
                   recipeForm.controls.expectedBakeLossPercent.invalid
                 ) {
-                  <p class="mt-1 text-xs text-red-600">
+                  <p class="mt-2 text-xs leading-5 text-red-600">
                     Introduce una pérdida entre 0 y menos de 100 %, con hasta 4 decimales.
                   </p>
                 }
-                <p class="mt-1 text-xs text-slate-500">
+
+                <p class="mt-2 text-xs leading-5 text-slate-500">
                   No se asigna una pérdida predeterminada. Utiliza una medición o un supuesto
                   explícito.
                 </p>
               </div>
 
-              <div>
+              <div class="min-w-0">
                 <label for="recipeNotes" class="mb-2 block text-sm font-semibold text-slate-700">
                   Notas de elaboración
                 </label>
+
                 <textarea
                   nz-input
                   id="recipeNotes"
@@ -303,17 +354,19 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                   maxlength="1000"
                   rows="3"
                   placeholder="Procedimiento, amasado, fermentación..."
+                  class="w-full"
                 ></textarea>
               </div>
             </div>
 
-            <div class="overflow-hidden rounded-xl border border-slate-200">
+            <!-- Fórmula -->
+            <section class="min-w-0 overflow-hidden rounded-xl border border-slate-200">
               <div
-                class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-slate-50 p-4"
+                class="flex flex-col gap-3 border-b border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between"
               >
-                <div>
+                <div class="min-w-0">
                   <h3 class="font-semibold text-slate-900">Fórmula</h3>
-                  <p class="mt-1 text-xs text-slate-500">
+                  <p class="mt-1 text-xs leading-5 text-slate-500">
                     Los porcentajes se calculan respecto al total de harinas base.
                   </p>
                 </div>
@@ -322,6 +375,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                   nz-button
                   nzType="default"
                   type="button"
+                  class="min-h-11 w-full shrink-0 sm:w-auto"
                   [disabled]="!canEditVersion() || ingredientRows.length >= 200"
                   (click)="addIngredient()"
                 >
@@ -333,13 +387,19 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 @for (row of ingredientRows.controls; track row; let i = $index) {
                   <div
                     [formGroupName]="i"
-                    class="grid grid-cols-1 items-start gap-3 p-4 lg:grid-cols-[minmax(0,2fr)_minmax(120px,1fr)_minmax(140px,1fr)_auto]"
+                    class="grid min-w-0 grid-cols-1 items-start gap-4 p-4 sm:p-5 lg:grid-cols-2 xl:grid-cols-[minmax(0,2fr)_minmax(130px,1fr)_minmax(150px,1fr)_auto]"
                   >
-                    <div>
-                      <label class="mb-2 block text-xs font-semibold text-slate-600">
-                        Ingrediente
+                    <!-- Ingrediente -->
+                    <div class="min-w-0">
+                      <label
+                        [for]="'recipeIngredient-' + i"
+                        class="mb-2 block text-xs font-semibold text-slate-600"
+                      >
+                        Ingrediente {{ i + 1 }}
                       </label>
+
                       <nz-select
+                        [id]="'recipeIngredient-' + i"
                         class="w-full"
                         formControlName="ingredientId"
                         nzPlaceHolder="Selecciona un ingrediente"
@@ -352,60 +412,76 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                           />
                         }
                       </nz-select>
+
                       @if (row.controls.ingredientId.touched && row.controls.ingredientId.invalid) {
-                        <p class="mt-1 text-xs text-red-600">Selecciona un ingrediente.</p>
+                        <p class="mt-2 text-xs text-red-600">Selecciona un ingrediente.</p>
                       }
                     </div>
 
-                    <div>
-                      <label class="mb-2 block text-xs font-semibold text-slate-600">
-                        % panadero
+                    <!-- Porcentaje panadero -->
+                    <div class="min-w-0">
+                      <label
+                        [for]="'bakerPercentage-' + i"
+                        class="mb-2 block text-xs font-semibold text-slate-600"
+                      >
+                        Porcentaje panadero (%)
                       </label>
+
                       <input
                         nz-input
+                        [id]="'bakerPercentage-' + i"
                         type="text"
                         inputmode="decimal"
                         formControlName="bakerPercentage"
                         [readOnly]="!canEditVersion()"
                         placeholder="100"
+                        class="min-h-11 w-full"
                       />
+
                       @if (
                         row.controls.bakerPercentage.touched && row.controls.bakerPercentage.invalid
                       ) {
-                        <p class="mt-1 text-xs text-red-600">Introduce un porcentaje válido.</p>
+                        <p class="mt-2 text-xs text-red-600">Introduce un porcentaje válido.</p>
                       }
 
                       @if (ingredientAmountText(i); as amount) {
-                        <p class="mt-1 text-xs font-medium text-emerald-800">
+                        <p class="mt-2 text-xs font-medium leading-5 text-emerald-800">
                           Cantidad por producto: {{ amount }}
                         </p>
                       }
                     </div>
 
-                    <div class="pt-1">
-                      <label class="mb-2 block text-xs font-semibold text-slate-600">
+                    <!-- Harina base -->
+                    <div class="min-w-0">
+                      <span class="mb-2 block text-xs font-semibold text-slate-600">
                         Harina base
-                      </label>
-                      <label class="flex min-h-9 items-center gap-2 text-sm text-slate-700">
+                      </span>
+
+                      <label
+                        class="flex min-h-11 cursor-pointer items-center gap-3 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700"
+                      >
                         <input
                           type="checkbox"
                           formControlName="isFlourBase"
                           [disabled]="!canEditVersion()"
-                          class="size-4 accent-emerald-700"
+                          class="size-5 shrink-0 accent-emerald-700"
                         />
-                        Incluir en el 100 %
+
+                        <span>Incluir en el 100 %</span>
                       </label>
                     </div>
 
-                    <div class="flex items-end gap-2 lg:pt-6">
+                    <!-- Eliminar ingrediente -->
+                    <div class="flex min-w-0 items-end xl:pt-6">
                       <button
                         nz-button
                         nzType="default"
                         type="button"
+                        class="min-h-11 w-full sm:w-auto xl:w-auto"
                         [disabled]="!canEditVersion()"
                         (click)="removeIngredient(i)"
                       >
-                        Quitar
+                        Quitar ingrediente
                       </button>
                     </div>
                   </div>
@@ -413,19 +489,33 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
               </div>
 
               @if (canEditVersion() && ingredientRows.length === 0) {
-                <p class="p-6 text-center text-sm text-slate-500">
-                  Añade al menos un ingrediente para empezar la fórmula.
-                </p>
+                <div class="p-6 text-center">
+                  <p class="text-sm text-slate-500">
+                    Añade al menos un ingrediente para empezar la fórmula.
+                  </p>
+
+                  <button
+                    nz-button
+                    nzType="default"
+                    type="button"
+                    class="mt-3 min-h-11 w-full sm:w-auto"
+                    (click)="addIngredient()"
+                  >
+                    + Añadir ingrediente
+                  </button>
+                </div>
               }
-            </div>
+            </section>
           </form>
 
-          <section class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <!-- Resumen de cálculos -->
+          <section class="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
             <div class="rounded-xl border border-slate-200 p-4">
               <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">
                 Total de la fórmula
               </p>
-              <p class="mt-2 text-2xl font-bold text-slate-900">
+
+              <p class="mt-2 text-2xl font-bold tabular-nums text-slate-900">
                 {{ formatNumber(formulaTotals().total) }} %
               </p>
             </div>
@@ -434,34 +524,46 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
               <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">
                 Harinas base
               </p>
-              <p class="mt-2 text-2xl font-bold text-slate-900">
+
+              <p class="mt-2 text-2xl font-bold tabular-nums text-slate-900">
                 {{ formatNumber(formulaTotals().flour) }} %
               </p>
+
               @if (isFlourTotalValid()) {
-                <p class="mt-1 text-xs text-emerald-700">Base correctamente normalizada</p>
+                <p class="mt-2 text-xs leading-5 text-emerald-700">
+                  Base correctamente normalizada
+                </p>
               } @else {
-                <p class="mt-1 text-xs text-amber-700">
+                <p class="mt-2 text-xs leading-5 text-amber-700">
                   Debe sumar exactamente 100 % para publicar
                 </p>
               }
             </div>
 
-            <div class="rounded-xl border border-blue-100 bg-blue-50/50 p-4">
+            <div
+              class="rounded-xl border border-blue-100 bg-blue-50/50 p-4 sm:col-span-2 xl:col-span-1"
+            >
               <p class="text-xs font-semibold uppercase tracking-wide text-blue-800">
                 Masa teórica por 1 kg de harina
               </p>
-              <p class="mt-2 text-2xl font-bold text-slate-900">
+
+              <p class="mt-2 text-2xl font-bold tabular-nums text-slate-900">
                 {{ massForOneKgFlour() === null ? '—' : formatNumber(massForOneKgFlour()!) + ' g' }}
               </p>
-              <p class="mt-1 text-xs text-slate-500">Basada en los porcentajes introducidos.</p>
+
+              <p class="mt-2 text-xs leading-5 text-slate-500">
+                Basada en los porcentajes introducidos.
+              </p>
             </div>
           </section>
 
+          <!-- Referencia de peso terminado -->
           @if (estimatedRawDoughGrams() !== null) {
-            <section class="rounded-xl border border-emerald-100 bg-emerald-50/50 p-4">
+            <section class="rounded-xl border border-emerald-100 bg-emerald-50/50 p-4 sm:p-5">
               <h3 class="font-semibold text-slate-900">
                 Referencia para el peso terminado objetivo
               </h3>
+
               <p class="mt-2 text-sm leading-6 text-slate-700">
                 Para obtener {{ selectedProduct()?.targetFinishedWeight }}
                 {{ selectedProduct()?.targetWeightUnit?.symbol }} terminados, con una pérdida
@@ -469,7 +571,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 estimada sería <strong>{{ formatNumber(estimatedRawDoughGrams()!) }} g</strong>.
               </p>
 
-              <p class="mt-1 text-sm leading-6 text-slate-700">
+              <p class="mt-2 text-sm leading-6 text-slate-700">
                 @if (flourForTargetGrams() !== null) {
                   La harina total estimada sería
                   <strong>{{ formatNumber(flourForTargetGrams()!) }} g por unidad</strong>.
@@ -481,12 +583,16 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
             </section>
           }
 
+          <!-- Acciones de la versión -->
           @if (canEditVersion()) {
-            <div class="flex flex-wrap justify-end gap-3 border-t border-slate-100 pt-5">
+            <div
+              class="flex flex-col gap-2 border-t border-slate-100 pt-5 sm:flex-row sm:flex-wrap sm:justify-end"
+            >
               <button
                 nz-button
                 nzType="default"
                 type="button"
+                class="min-h-11 w-full sm:w-auto"
                 [disabled]="saving()"
                 (click)="discardEditorChanges()"
               >
@@ -497,7 +603,9 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 nz-button
                 nzType="default"
                 type="button"
+                class="min-h-11 w-full sm:w-auto"
                 [disabled]="saving() || recipeForm.invalid || ingredientRows.length === 0"
+                [nzLoading]="saving()"
                 (click)="saveDraft()"
               >
                 Guardar borrador
@@ -507,6 +615,7 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 nz-button
                 nzType="primary"
                 type="button"
+                class="min-h-11 w-full sm:w-auto"
                 [disabled]="saving() || !canPublishFormula()"
                 [nzLoading]="saving()"
                 (click)="saveDraft(true)"
@@ -518,10 +627,11 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
         </section>
       }
 
-      <!-- Modal: crear un borrador -->
+      <!-- Modal para crear un borrador -->
       <nz-modal
         [nzVisible]="createDraftVisible()"
         nzTitle="Nueva versión de receta"
+        [nzWidth]="'min(560px, calc(100vw - 24px))'"
         [nzFooter]="null"
         [nzMaskClosable]="false"
         [nzClosable]="!creatingDraft()"
@@ -537,11 +647,12 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
             <nz-alert class="mb-4 block" nzType="error" nzShowIcon [nzMessage]="draftError()!" />
           }
 
-          <form [formGroup]="draftForm" (ngSubmit)="createDraft()" class="space-y-4" novalidate>
+          <form [formGroup]="draftForm" (ngSubmit)="createDraft()" class="space-y-5" novalidate>
             <div>
               <label for="newRecipeLoss" class="mb-2 block text-sm font-semibold text-slate-700">
                 Pérdida prevista de horneado y enfriamiento (%)
               </label>
+
               <input
                 nz-input
                 id="newRecipeLoss"
@@ -549,14 +660,19 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 inputmode="decimal"
                 formControlName="expectedBakeLossPercent"
                 placeholder="Introduce un valor medido"
+                class="min-h-11 w-full"
               />
-              <p class="mt-1 text-xs text-slate-500">No se introduce una pérdida predeterminada.</p>
+
+              <p class="mt-2 text-xs leading-5 text-slate-500">
+                No se introduce una pérdida predeterminada.
+              </p>
             </div>
 
             <div>
               <label for="newRecipeNotes" class="mb-2 block text-sm font-semibold text-slate-700">
                 Notas (opcional)
               </label>
+
               <textarea
                 nz-input
                 id="newRecipeNotes"
@@ -564,22 +680,28 @@ const LOSS_PATTERN = /^(?:\d{1,2}(?:[.,]\d{1,4})?|100(?:[.,]0{1,4})?)$/;
                 rows="3"
                 maxlength="1000"
                 placeholder="Observaciones para esta versión"
+                class="w-full"
               ></textarea>
             </div>
 
-            <div class="flex justify-end gap-2 border-t border-slate-100 pt-4">
+            <div
+              class="flex flex-col-reverse gap-2 border-t border-slate-100 pt-4 sm:flex-row sm:justify-end"
+            >
               <button
                 nz-button
                 type="button"
+                class="min-h-11 w-full sm:w-auto"
                 [disabled]="creatingDraft()"
                 (click)="closeDraftModal()"
               >
                 Cancelar
               </button>
+
               <button
                 nz-button
                 nzType="primary"
                 type="submit"
+                class="min-h-11 w-full sm:w-auto"
                 [nzLoading]="creatingDraft()"
                 [disabled]="draftForm.invalid || creatingDraft()"
               >

@@ -33,14 +33,14 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
     NzTagModule,
   ],
   template: `
-    <main class="mx-auto w-full max-w-7xl space-y-6">
+    <main class="mx-auto w-full min-w-0 max-w-7xl space-y-5 sm:space-y-6">
       <header class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p class="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-emerald-700">
             CATÁLOGO DEL NEGOCIO
           </p>
 
-          <h1 class="text-3xl font-bold tracking-tight text-slate-900">Ingredientes</h1>
+          <h1 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Ingredientes</h1>
 
           <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
             Gestiona las materias primas, sus unidades y el historial de precios de compra para
@@ -59,6 +59,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
           nz-button
           nzType="primary"
           type="button"
+          class="min-h-11 w-full sm:w-auto"
           [disabled]="!auth.activeBusinessId() || loadingUnits()"
           (click)="openCreateModal()"
         >
@@ -76,34 +77,40 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
 
       <section class="rounded-2xl border border-slate-200 bg-white shadow-sm">
         <div
-          class="flex flex-col gap-3 border-b border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5"
+          class="grid gap-4 border-b border-slate-100 p-4 sm:p-5 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-center"
         >
-          <div>
+          <div class="min-w-0">
             <h2 class="font-semibold text-slate-900">Materias primas registradas</h2>
+
             <p class="mt-1 text-xs text-slate-500">
               {{ filteredIngredients().length }} ingrediente(s)
             </p>
           </div>
 
-          <div class="w-full sm:max-w-xs">
+          <div class="flex min-w-0 flex-col gap-3">
             <input
               nz-input
               type="search"
               aria-label="Buscar ingredientes"
               placeholder="Buscar por nombre..."
+              class="min-h-11 w-full"
               [value]="searchTerm()"
               (input)="setSearch($event)"
             />
+
+            <label
+              class="flex min-h-11 cursor-pointer items-center gap-3 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700"
+            >
+              <input
+                type="checkbox"
+                [checked]="includeInactive()"
+                (change)="setIncludeInactive($event)"
+                class="size-5 shrink-0 accent-emerald-700"
+              />
+
+              <span>Mostrar ingredientes archivados</span>
+            </label>
           </div>
-          <label class="mt-3 flex items-center gap-2 text-sm text-slate-600">
-            <input
-              type="checkbox"
-              [checked]="includeInactive()"
-              (change)="setIncludeInactive($event)"
-              class="size-4 accent-emerald-700"
-            />
-            Mostrar ingredientes archivados
-          </label>
         </div>
 
         <nz-table
@@ -112,6 +119,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
           [nzLoading]="loading()"
           [nzPageSize]="10"
           [nzShowPagination]="true"
+          [nzScroll]="{ x: '1000px' }"
           [nzNoResult]="
             searchTerm()
               ? 'No hay resultados para la búsqueda.'
@@ -121,10 +129,10 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
           <thead>
             <tr>
               <th>Ingrediente</th>
-              <th>Unidad base</th>
-              <th>Precio de compra</th>
+              <th class="hidden md:table-cell">Unidad base</th>
+              <th class="hidden lg:table-cell">Precio de compra</th>
               <th>Coste por unidad base</th>
-              <th>Estado</th>
+              <th class="hidden sm:table-cell">Estado</th>
               <th class="text-right">Acciones</th>
             </tr>
           </thead>
@@ -133,28 +141,57 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
             @for (ingredient of ingredientTable.data; track ingredient.id) {
               <tr>
                 <td>
-                  <div class="font-semibold text-slate-900">
-                    {{ ingredient.name }}
+                  <div class="min-w-[190px]">
+                    <div class="font-semibold text-slate-900">
+                      {{ ingredient.name }}
+                    </div>
+
+                    @if (ingredient.description) {
+                      <p class="mt-1 max-w-xs text-xs leading-5 text-slate-500">
+                        {{ ingredient.description }}
+                      </p>
+                    }
+
+                    <!-- Resumen adicional visible solo en móvil -->
+                    <div class="mt-3 flex flex-wrap items-center gap-2 md:hidden">
+                      <nz-tag [nzColor]="ingredient.isActive ? 'green' : 'default'">
+                        {{ ingredient.isActive ? 'Activo' : 'Inactivo' }}
+                      </nz-tag>
+
+                      <span
+                        class="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700"
+                      >
+                        Unidad: {{ ingredient.baseUnit.symbol }}
+                      </span>
+
+                      @if (ingredient.latestPrice; as price) {
+                        <span class="rounded-md bg-slate-50 px-2 py-1 text-xs text-slate-600">
+                          Compra: {{ formatMoney(price.totalPrice) }} CUP
+                        </span>
+
+                        <span class="rounded-md bg-slate-50 px-2 py-1 text-xs text-slate-600">
+                          {{ price.purchaseQuantity }} {{ price.purchaseUnit.symbol }}
+                        </span>
+                      } @else {
+                        <span class="text-xs text-orange-700"> Sin precio registrado </span>
+                      }
+                    </div>
                   </div>
-                  @if (ingredient.description) {
-                    <p class="mt-1 max-w-xs text-xs text-slate-500">
-                      {{ ingredient.description }}
-                    </p>
-                  }
                 </td>
 
-                <td>
+                <td class="hidden md:table-cell">
                   <span
                     class="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700"
                   >
                     {{ ingredient.baseUnit.symbol }}
                   </span>
+
                   <p class="mt-1 text-xs text-slate-500">
                     {{ ingredient.baseUnit.name }}
                   </p>
                 </td>
 
-                <td>
+                <td class="hidden lg:table-cell">
                   @if (ingredient.latestPrice; as price) {
                     <p class="font-semibold text-slate-900">
                       {{ formatMoney(price.totalPrice) }} CUP
@@ -189,40 +226,44 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
                 </td>
 
                 <td class="text-right">
-                  <button
-                    nz-button
-                    nzType="default"
-                    nzSize="small"
-                    type="button"
-                    [disabled]="!ingredient.isActive"
-                    (click)="openPriceModal(ingredient)"
-                  >
-                    Actualizar precio
-                  </button>
-
-                  @if (ingredient.baseUnit.dimension === 'VOLUME') {
+                  <div class="flex min-w-[280px] flex-wrap justify-end gap-2">
                     <button
                       nz-button
                       nzType="default"
                       nzSize="small"
                       type="button"
-                      (click)="openDensityModal(ingredient)"
+                      [disabled]="!ingredient.isActive"
+                      (click)="openPriceModal(ingredient)"
                     >
-                      {{ ingredient.densityGramsPerMl ? 'Editar densidad' : 'Configurar densidad' }}
+                      Actualizar precio
                     </button>
-                  }
 
-                  <button
-                    nz-button
-                    nzType="default"
-                    nzSize="small"
-                    type="button"
-                    [nzLoading]="isUpdatingIngredient(ingredient.id)"
-                    [disabled]="isUpdatingIngredient(ingredient.id)"
-                    (click)="toggleIngredientStatus(ingredient)"
-                  >
-                    {{ ingredient.isActive ? 'Archivar' : 'Reactivar' }}
-                  </button>
+                    @if (ingredient.baseUnit.dimension === 'VOLUME') {
+                      <button
+                        nz-button
+                        nzType="default"
+                        nzSize="small"
+                        type="button"
+                        (click)="openDensityModal(ingredient)"
+                      >
+                        {{
+                          ingredient.densityGramsPerMl ? 'Editar densidad' : 'Configurar densidad'
+                        }}
+                      </button>
+                    }
+
+                    <button
+                      nz-button
+                      nzType="default"
+                      nzSize="small"
+                      type="button"
+                      [nzLoading]="isUpdatingIngredient(ingredient.id)"
+                      [disabled]="isUpdatingIngredient(ingredient.id)"
+                      (click)="toggleIngredientStatus(ingredient)"
+                    >
+                      {{ ingredient.isActive ? 'Archivar' : 'Reactivar' }}
+                    </button>
+                  </div>
                 </td>
               </tr>
             }
@@ -235,7 +276,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
     <nz-modal
       [nzVisible]="createVisible()"
       nzTitle="Agregar ingrediente"
-      [nzWidth]="600"
+      [nzWidth]="'min(620px, calc(100vw - 24px))'"
       [nzFooter]="null"
       [nzMaskClosable]="false"
       [nzClosable]="!savingCreate()"
@@ -400,8 +441,11 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
             </div>
           </div>
 
-          <div class="flex justify-end gap-2 border-t border-slate-100 pt-4">
+          <div
+            class="flex flex-col-reverse gap-2 border-t border-slate-100 pt-4 sm:flex-row sm:justify-end"
+          >
             <button
+              class="w-full sm:w-auto"
               nz-button
               type="button"
               [disabled]="savingCreate()"
@@ -411,6 +455,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
             </button>
 
             <button
+              class="w-full sm:w-auto"
               nz-button
               nzType="primary"
               type="submit"
@@ -428,6 +473,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
       [nzVisible]="densityVisible()"
       nzTitle="Configurar densidad"
       [nzFooter]="null"
+      [nzWidth]="'min(620px, calc(100vw - 24px))'"
       [nzMaskClosable]="false"
       [nzClosable]="!savingDensity()"
       (nzOnCancel)="closeDensityModal()"
@@ -462,8 +508,11 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
               />
             </div>
 
-            <div class="flex justify-end gap-2 border-t border-slate-100 pt-4">
+            <div
+              class="flex flex-col-reverse gap-2 border-t border-slate-100 pt-4 sm:flex-row sm:justify-end"
+            >
               <button
+                class="w-full sm:w-auto"
                 nz-button
                 type="button"
                 [disabled]="savingDensity()"
@@ -473,6 +522,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
               </button>
 
               <button
+                class="w-full sm:w-auto"
                 nz-button
                 nzType="primary"
                 type="submit"
@@ -491,7 +541,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
     <nz-modal
       [nzVisible]="priceVisible()"
       nzTitle="Precios de compra"
-      [nzWidth]="620"
+      [nzWidth]="'min(620px, calc(100vw - 24px))'"
       [nzFooter]="null"
       [nzMaskClosable]="false"
       [nzClosable]="!savingPrice()"
@@ -568,8 +618,11 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
               </div>
             </div>
 
-            <div class="flex justify-end gap-2 border-t border-slate-100 pt-4">
+            <div
+              class="flex flex-col-reverse gap-2 border-t border-slate-100 pt-4 sm:flex-row sm:justify-end"
+            >
               <button
+                class="w-full sm:w-auto"
                 nz-button
                 type="button"
                 [disabled]="savingPrice()"
@@ -579,6 +632,7 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
               </button>
 
               <button
+                class="w-full sm:w-auto"
                 nz-button
                 nzType="primary"
                 type="submit"
