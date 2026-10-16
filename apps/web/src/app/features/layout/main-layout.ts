@@ -162,7 +162,7 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
           <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <!-- Zona superior: menú móvil, nombre de la app y sesión -->
             <div class="order-1 flex items-center justify-between gap-3 md:order-2">
-              <div class="flex min-w-0 items-center gap-3">
+              <div class="flex min-w-0 items-center gap-3 md:hidden">
                 <button
                   type="button"
                   [attr.aria-label]="
@@ -186,7 +186,7 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
                   </svg>
                 </button>
 
-                <span class="truncate text-sm font-bold text-slate-900 md:hidden">
+                <span class="truncate text-sm font-bold text-slate-900">
                   Panadería Gestión
                 </span>
               </div>
@@ -203,8 +203,7 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
                   class="app-btn app-btn-secondary"
                   (click)="logout()"
                 >
-                  <span class="md:hidden">Salir</span>
-                  <span class="hidden md:inline">Cerrar sesión</span>
+                  <span>Salir</span>
                 </button>
               </div>
             </div>
