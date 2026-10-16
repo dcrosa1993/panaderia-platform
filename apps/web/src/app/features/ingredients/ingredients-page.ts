@@ -121,164 +121,110 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
           </div>
         </div>
 
-        <nz-table
-          #ingredientTable
-          [nzData]="filteredIngredients()"
-          [nzLoading]="loading()"
-          [nzPageSize]="10"
-          [nzShowPagination]="true"
-          [nzScroll]="{ x: '1000px' }"
-          [nzNoResult]="
-            searchTerm()
-              ? 'No hay resultados para la búsqueda.'
-              : 'Todavía no hay ingredientes registrados.'
-          "
-        >
-          <thead>
-            <tr>
-              <th>Ingrediente</th>
-              <th class="hidden md:table-cell">Unidad base</th>
-              <th class="hidden lg:table-cell">Precio de compra</th>
-              <th>Coste por unidad base</th>
-              <th class="hidden sm:table-cell">Estado</th>
-              <th class="text-right">Acciones</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            @for (ingredient of ingredientTable.data; track ingredient.id) {
+        <div class="hidden md:block">
+          <nz-table
+            #ingredientTable
+            [nzData]="filteredIngredients()"
+            [nzLoading]="loading()"
+            [nzPageSize]="10"
+            [nzShowPagination]="true"
+            [nzScroll]="{ x: '1000px' }"
+            [nzNoResult]="
+              searchTerm()
+                ? 'No hay resultados para la búsqueda.'
+                : 'Todavía no hay ingredientes registrados.'
+            "
+          >
+            <thead>
               <tr>
-                <td>
-                  <div class="min-w-[190px]">
-                    <div class="font-semibold text-slate-900">
-                      {{ ingredient.name }}
-                    </div>
+                <th>Ingrediente</th>
+                <th class="hidden md:table-cell">Unidad base</th>
+                <th class="hidden lg:table-cell">Precio de compra</th>
+                <th>Coste por unidad base</th>
+                <th class="hidden sm:table-cell">Estado</th>
+                <th class="text-right">Acciones</th>
+              </tr>
+            </thead>
 
-                    @if (ingredient.description) {
-                      <p class="mt-1 max-w-xs text-xs leading-5 text-slate-500">
-                        {{ ingredient.description }}
-                      </p>
-                    }
+            <tbody>
+              @for (ingredient of ingredientTable.data; track ingredient.id) {
+                <tr>
+                  <td>
+                    <div class="min-w-[190px]">
+                      <div class="font-semibold text-slate-900">
+                        {{ ingredient.name }}
+                      </div>
 
-                    <!-- Resumen adicional visible solo en móvil -->
-                    <div class="mt-3 flex flex-wrap items-center gap-2 md:hidden">
-                      <nz-tag [nzColor]="ingredient.isActive ? 'green' : 'default'">
-                        {{ ingredient.isActive ? 'Activo' : 'Inactivo' }}
-                      </nz-tag>
-
-                      <span
-                        class="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700"
-                      >
-                        Unidad: {{ ingredient.baseUnit.symbol }}
-                      </span>
-
-                      @if (ingredient.latestPrice; as price) {
-                        <span class="rounded-md bg-slate-50 px-2 py-1 text-xs text-slate-600">
-                          Compra: {{ formatMoney(price.totalPrice) }} CUP
-                        </span>
-
-                        <span class="rounded-md bg-slate-50 px-2 py-1 text-xs text-slate-600">
-                          {{ price.purchaseQuantity }} {{ price.purchaseUnit.symbol }}
-                        </span>
-                      } @else {
-                        <span class="text-xs text-orange-700"> Sin precio registrado </span>
+                      @if (ingredient.description) {
+                        <p class="mt-1 max-w-xs text-xs leading-5 text-slate-500">
+                          {{ ingredient.description }}
+                        </p>
                       }
                     </div>
-                  </div>
-                </td>
+                  </td>
 
-                <td class="hidden md:table-cell">
-                  <span
-                    class="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700"
-                  >
-                    {{ ingredient.baseUnit.symbol }}
-                  </span>
-
-                  <p class="mt-1 text-xs text-slate-500">
-                    {{ ingredient.baseUnit.name }}
-                  </p>
-                </td>
-
-                <td class="hidden lg:table-cell">
-                  @if (ingredient.latestPrice; as price) {
-                    <p class="font-semibold text-slate-900">
-                      {{ formatMoney(price.totalPrice) }} CUP
-                    </p>
-                    <p class="mt-1 text-xs text-slate-500">
-                      {{ price.purchaseQuantity }}
-                      {{ price.purchaseUnit.symbol }}
-                    </p>
-                    <p class="mt-1 text-xs text-slate-400">
-                      {{ price.effectiveFrom | date: 'shortDate' }}
-                    </p>
-                  } @else {
-                    <nz-tag nzColor="orange">Sin precio</nz-tag>
-                  }
-                </td>
-
-                <td>
-                  @if (ingredient.latestPrice; as price) {
-                    <p class="font-semibold text-emerald-800">
-                      {{ formatMoney(price.costPerBaseUnit) }} CUP
-                    </p>
-                    <p class="mt-1 text-xs text-slate-500">por {{ ingredient.baseUnit.symbol }}</p>
-                  } @else {
-                    <span class="text-sm text-slate-400">—</span>
-                  }
-                </td>
-
-                <td>
-                  <nz-tag [nzColor]="ingredient.isActive ? 'green' : 'default'">
-                    {{ ingredient.isActive ? 'Activo' : 'Inactivo' }}
-                  </nz-tag>
-                </td>
-
-                <td class="text-right">
-                  <div class="flex flex-wrap justify-end gap-2">
-                    <button
-                      nz-button
-                      nzType="default"
-                      nzSize="small"
-                      type="button"
-                      class="app-btn app-btn-secondary app-btn-icon"
-                      aria-label="Actualizar precio"
-                      title="Actualizar precio"
-                      [disabled]="!ingredient.isActive"
-                      (click)="openPriceModal(ingredient)"
+                  <td class="hidden md:table-cell">
+                    <span
+                      class="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700"
                     >
-                      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path
-                          d="M12 3v18m4-14.5c-.8-1-2.1-1.5-4-1.5-2.2 0-3.5 1-3.5 2.5S10 10 12 10s3.5 1 3.5 2.5S14.2 15 12 15c-1.9 0-3.2-.5-4-1.5"
-                          stroke="currentColor"
-                          stroke-width="1.7"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </button>
+                      {{ ingredient.baseUnit.symbol }}
+                    </span>
 
-                    @if (ingredient.baseUnit.dimension === 'VOLUME') {
+                    <p class="mt-1 text-xs text-slate-500">
+                      {{ ingredient.baseUnit.name }}
+                    </p>
+                  </td>
+
+                  <td class="hidden lg:table-cell">
+                    @if (ingredient.latestPrice; as price) {
+                      <p class="font-semibold text-slate-900">
+                        {{ formatMoney(price.totalPrice) }} CUP
+                      </p>
+                      <p class="mt-1 text-xs text-slate-500">
+                        {{ price.purchaseQuantity }}
+                        {{ price.purchaseUnit.symbol }}
+                      </p>
+                      <p class="mt-1 text-xs text-slate-400">
+                        {{ price.effectiveFrom | date: 'shortDate' }}
+                      </p>
+                    } @else {
+                      <nz-tag nzColor="orange">Sin precio</nz-tag>
+                    }
+                  </td>
+
+                  <td>
+                    @if (ingredient.latestPrice; as price) {
+                      <p class="font-semibold text-emerald-800">
+                        {{ formatMoney(price.costPerBaseUnit) }} CUP
+                      </p>
+                      <p class="mt-1 text-xs text-slate-500">por {{ ingredient.baseUnit.symbol }}</p>
+                    } @else {
+                      <span class="text-sm text-slate-400">—</span>
+                    }
+                  </td>
+
+                  <td>
+                    <nz-tag [nzColor]="ingredient.isActive ? 'green' : 'default'">
+                      {{ ingredient.isActive ? 'Activo' : 'Inactivo' }}
+                    </nz-tag>
+                  </td>
+
+                  <td class="text-right">
+                    <div class="flex flex-wrap justify-end gap-2">
                       <button
                         nz-button
                         nzType="default"
                         nzSize="small"
                         type="button"
                         class="app-btn app-btn-secondary app-btn-icon"
-                        [attr.aria-label]="
-                          ingredient.densityGramsPerMl
-                            ? 'Editar densidad'
-                            : 'Configurar densidad'
-                        "
-                        [attr.title]="
-                          ingredient.densityGramsPerMl
-                            ? 'Editar densidad'
-                            : 'Configurar densidad'
-                        "
-                        (click)="openDensityModal(ingredient)"
+                        aria-label="Actualizar precio"
+                        title="Actualizar precio"
+                        [disabled]="!ingredient.isActive"
+                        (click)="openPriceModal(ingredient)"
                       >
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                           <path
-                            d="M9 3h6m-5 0v6l-5.5 9.2A1.8 1.8 0 0 0 6 21h12a1.8 1.8 0 0 0 1.5-2.8L14 9V3m-6.2 12h8.4"
+                            d="M12 3v18m4-14.5c-.8-1-2.1-1.5-4-1.5-2.2 0-3.5 1-3.5 2.5S10 10 12 10s3.5 1 3.5 2.5S14.2 15 12 15c-1.9 0-3.2-.5-4-1.5"
                             stroke="currentColor"
                             stroke-width="1.7"
                             stroke-linecap="round"
@@ -286,50 +232,270 @@ import { MeasurementUnitsService } from '../../core/measurement-units/measuremen
                           />
                         </svg>
                       </button>
-                    }
 
-                    <button
-                      nz-button
-                      nzType="default"
-                      nzSize="small"
-                      type="button"
-                      class="app-btn app-btn-icon"
-                      [attr.aria-label]="ingredient.isActive ? 'Archivar ingrediente' : 'Reactivar ingrediente'"
-                      [attr.title]="ingredient.isActive ? 'Archivar ingrediente' : 'Reactivar ingrediente'"
-                      [class.app-btn-danger]="ingredient.isActive"
-                      [class.app-btn-secondary]="!ingredient.isActive"
-                      [nzLoading]="isUpdatingIngredient(ingredient.id)"
-                      [disabled]="isUpdatingIngredient(ingredient.id)"
-                      (click)="toggleIngredientStatus(ingredient)"
-                    >
-                      @if (ingredient.isActive) {
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                          <path
-                            d="M4 8h16l-1.2 11H5.2L4 8Zm3 0 1-4h8l1 4m-5 4v3"
-                            stroke="currentColor"
-                            stroke-width="1.7"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      } @else {
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                          <path
-                            d="M4 12a8 8 0 1 0 2.3-5.7L4 8.5M4 4v4.5h4.5m3.5-1v5l3 2"
-                            stroke="currentColor"
-                            stroke-width="1.7"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
+                      @if (ingredient.baseUnit.dimension === 'VOLUME') {
+                        <button
+                          nz-button
+                          nzType="default"
+                          nzSize="small"
+                          type="button"
+                          class="app-btn app-btn-secondary app-btn-icon"
+                          [attr.aria-label]="
+                            ingredient.densityGramsPerMl
+                              ? 'Editar densidad'
+                              : 'Configurar densidad'
+                          "
+                          [attr.title]="
+                            ingredient.densityGramsPerMl
+                              ? 'Editar densidad'
+                              : 'Configurar densidad'
+                          "
+                          (click)="openDensityModal(ingredient)"
+                        >
+                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                              d="M9 3h6m-5 0v6l-5.5 9.2A1.8 1.8 0 0 0 6 21h12a1.8 1.8 0 0 0 1.5-2.8L14 9V3m-6.2 12h8.4"
+                              stroke="currentColor"
+                              stroke-width="1.7"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
                       }
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            }
-          </tbody>
-        </nz-table>
+
+                      <button
+                        nz-button
+                        nzType="default"
+                        nzSize="small"
+                        type="button"
+                        class="app-btn app-btn-icon"
+                        [attr.aria-label]="
+                          ingredient.isActive ? 'Archivar ingrediente' : 'Reactivar ingrediente'
+                        "
+                        [attr.title]="
+                          ingredient.isActive ? 'Archivar ingrediente' : 'Reactivar ingrediente'
+                        "
+                        [class.app-btn-danger]="ingredient.isActive"
+                        [class.app-btn-secondary]="!ingredient.isActive"
+                        [nzLoading]="isUpdatingIngredient(ingredient.id)"
+                        [disabled]="isUpdatingIngredient(ingredient.id)"
+                        (click)="toggleIngredientStatus(ingredient)"
+                      >
+                        @if (ingredient.isActive) {
+                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                              d="M4 8h16l-1.2 11H5.2L4 8Zm3 0 1-4h8l1 4m-5 4v3"
+                              stroke="currentColor"
+                              stroke-width="1.7"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        } @else {
+                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                              d="M4 12a8 8 0 1 0 2.3-5.7L4 8.5M4 4v4.5h4.5m3.5-1v5l3 2"
+                              stroke="currentColor"
+                              stroke-width="1.7"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        }
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </nz-table>
+        </div>
+
+        <div class="mobile-ingredient-table md:hidden">
+          <nz-table
+            #mobileIngredientTable
+            [nzData]="filteredIngredients()"
+            [nzLoading]="loading()"
+            [nzPageSize]="10"
+            [nzShowPagination]="true"
+            [nzNoResult]="
+              searchTerm()
+                ? 'No hay resultados para la búsqueda.'
+                : 'Todavía no hay ingredientes registrados.'
+            "
+          >
+            <thead class="sr-only">
+              <tr><th>Ingrediente</th></tr>
+            </thead>
+            <tbody>
+              @for (ingredient of mobileIngredientTable.data; track ingredient.id) {
+                <tr>
+                  <td>
+                    <article
+                      class="m-3 min-w-0 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+                    >
+                      <div class="flex min-w-0 items-start justify-between gap-3">
+                        <div class="min-w-0">
+                          <h3 class="break-words text-base font-semibold text-slate-900">
+                            {{ ingredient.name }}
+                          </h3>
+                          @if (ingredient.description) {
+                            <p class="mt-1 break-words text-xs leading-5 text-slate-500">
+                              {{ ingredient.description }}
+                            </p>
+                          }
+                        </div>
+
+                        <nz-tag
+                          class="!m-0 shrink-0"
+                          [nzColor]="ingredient.isActive ? 'green' : 'default'"
+                        >
+                          {{ ingredient.isActive ? 'Activo' : 'Archivado' }}
+                        </nz-tag>
+                      </div>
+
+                      <dl class="mt-4 grid grid-cols-2 gap-x-3 gap-y-3 border-t border-slate-100 pt-3">
+                        <div class="min-w-0">
+                          <dt class="text-[11px] font-medium text-slate-500">Unidad base</dt>
+                          <dd class="mt-1 break-words text-sm font-semibold text-slate-800">
+                            {{ ingredient.baseUnit.name }} ({{ ingredient.baseUnit.symbol }})
+                          </dd>
+                        </div>
+
+                        <div class="min-w-0">
+                          <dt class="text-[11px] font-medium text-slate-500">Compra más reciente</dt>
+                          @if (ingredient.latestPrice; as price) {
+                            <dd class="mt-1 break-words text-sm font-semibold text-slate-800">
+                              {{ formatMoney(price.totalPrice) }} CUP
+                            </dd>
+                            <dd class="mt-0.5 break-words text-xs text-slate-500">
+                              {{ price.purchaseQuantity }} {{ price.purchaseUnit.symbol }}
+                            </dd>
+                            <dd class="mt-0.5 text-xs text-slate-400">
+                              {{ price.effectiveFrom | date: 'shortDate' }}
+                            </dd>
+                          } @else {
+                            <dd class="mt-1 text-sm text-orange-700">Sin precio registrado</dd>
+                          }
+                        </div>
+
+                        <div class="col-span-2 rounded-lg bg-emerald-50 px-3 py-2">
+                          <dt class="text-[11px] font-medium text-emerald-800">
+                            Coste por unidad base
+                          </dt>
+                          @if (ingredient.latestPrice; as price) {
+                            <dd class="mt-0.5 font-semibold text-emerald-900">
+                              {{ formatMoney(price.costPerBaseUnit) }} CUP por
+                              {{ ingredient.baseUnit.symbol }}
+                            </dd>
+                          } @else {
+                            <dd class="mt-0.5 text-sm text-slate-500">
+                              Registra un precio para calcular el coste.
+                            </dd>
+                          }
+                        </div>
+                      </dl>
+
+                      <div class="mt-3 flex justify-end gap-2 border-t border-slate-100 pt-3">
+                        <button
+                          nz-button
+                          nzType="default"
+                          type="button"
+                          class="app-btn app-btn-secondary app-btn-icon"
+                          aria-label="Actualizar precio"
+                          title="Actualizar precio"
+                          [disabled]="!ingredient.isActive"
+                          (click)="openPriceModal(ingredient)"
+                        >
+                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                              d="M12 3v18m4-14.5c-.8-1-2.1-1.5-4-1.5-2.2 0-3.5 1-3.5 2.5S10 10 12 10s3.5 1 3.5 2.5S14.2 15 12 15c-1.9 0-3.2-.5-4-1.5"
+                              stroke="currentColor"
+                              stroke-width="1.7"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
+
+                        @if (ingredient.baseUnit.dimension === 'VOLUME') {
+                          <button
+                            nz-button
+                            nzType="default"
+                            type="button"
+                            class="app-btn app-btn-secondary app-btn-icon"
+                            [attr.aria-label]="
+                              ingredient.densityGramsPerMl
+                                ? 'Editar densidad'
+                                : 'Configurar densidad'
+                            "
+                            [attr.title]="
+                              ingredient.densityGramsPerMl
+                                ? 'Editar densidad'
+                                : 'Configurar densidad'
+                            "
+                            (click)="openDensityModal(ingredient)"
+                          >
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                              <path
+                                d="M9 3h6m-5 0v6l-5.5 9.2A1.8 1.8 0 0 0 6 21h12a1.8 1.8 0 0 0 1.5-2.8L14 9V3m-6.2 12h8.4"
+                                stroke="currentColor"
+                                stroke-width="1.7"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </button>
+                        }
+
+                        <button
+                          nz-button
+                          nzType="default"
+                          type="button"
+                          class="app-btn app-btn-icon"
+                          [attr.aria-label]="
+                            ingredient.isActive ? 'Archivar ingrediente' : 'Reactivar ingrediente'
+                          "
+                          [attr.title]="
+                            ingredient.isActive ? 'Archivar ingrediente' : 'Reactivar ingrediente'
+                          "
+                          [class.app-btn-danger]="ingredient.isActive"
+                          [class.app-btn-secondary]="!ingredient.isActive"
+                          [nzLoading]="isUpdatingIngredient(ingredient.id)"
+                          [disabled]="isUpdatingIngredient(ingredient.id)"
+                          (click)="toggleIngredientStatus(ingredient)"
+                        >
+                          @if (ingredient.isActive) {
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                              <path
+                                d="M4 8h16l-1.2 11H5.2L4 8Zm3 0 1-4h8l1 4m-5 4v3"
+                                stroke="currentColor"
+                                stroke-width="1.7"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          } @else {
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                              <path
+                                d="M4 12a8 8 0 1 0 2.3-5.7L4 8.5M4 4v4.5h4.5m3.5-1v5l3 2"
+                                stroke="currentColor"
+                                stroke-width="1.7"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          }
+                        </button>
+                      </div>
+                    </article>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </nz-table>
+        </div>
       </section>
     </main>
 

@@ -206,6 +206,23 @@ button.app-btn svg,
   box-shadow: 0 0 0 2px rgb(36 87 167 / 12%);
 }
 
+.mobile-ingredient-table .ant-table,
+.mobile-ingredient-table .ant-table-container,
+.mobile-ingredient-table .ant-table-content {
+  background: transparent;
+}
+
+.mobile-ingredient-table .ant-table table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.mobile-ingredient-table .ant-table-tbody > tr > td {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
 /* Color principal de los botones NG-ZORRO. */
 .ant-btn-primary {
   color: #fff !important;
