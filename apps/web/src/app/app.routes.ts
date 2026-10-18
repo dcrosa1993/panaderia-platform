@@ -68,6 +68,10 @@ export const routes: Routes = [
         component: AdministrationPage,
         title: 'Administración | Panadería',
       },
+      {
+        path: 'updates',
+        loadComponent: () => import('./features/updates/updates-page').then((m) => m.UpdatesPage),
+      },
     ],
   },
   {

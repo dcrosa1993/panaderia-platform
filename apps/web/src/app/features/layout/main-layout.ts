@@ -135,6 +135,16 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
             Estimaciones
           </a>
 
+          <a
+            routerLink="/updates"
+            routerLinkActive="bg-blue-50 font-semibold text-blue-800"
+            class="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-slate-600 no-underline transition-colors hover:bg-slate-100"
+            (click)="closeMobileMenu()"
+          >
+            <span aria-hidden="true">↻</span>
+            Acerca de / Actualizaciones
+          </a>
+
           <p class="px-3 pb-2 pt-5 text-[10px] font-bold tracking-widest text-slate-400">
             ADMINISTRACIÓN
           </p>
@@ -186,9 +196,7 @@ import { BusinessesService } from '../../core/businesses/businesses.service';
                   </svg>
                 </button>
 
-                <span class="truncate text-sm font-bold text-slate-900">
-                  Panadería Gestión
-                </span>
+                <span class="truncate text-sm font-bold text-slate-900"> Panadería Gestión </span>
               </div>
 
               <div class="flex shrink-0 items-center gap-2 md:gap-3">
