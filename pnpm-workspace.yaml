@@ -7,5 +7,6 @@ allowBuilds:
   esbuild: true
   lmdb: true
   msgpackr-extract: true
+  node-pty: true
   prisma: true
   sharp: true
