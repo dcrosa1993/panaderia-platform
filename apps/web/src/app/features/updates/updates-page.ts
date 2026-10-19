@@ -258,7 +258,7 @@ import {
             <button
               type="button"
               class="min-h-11 w-full rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-60 sm:w-auto"
-              [disabled]="isCheckingOta()"
+              [disabled]="isCheckingOta() || isDownloadingOta() || isApplyingOta()"
               (click)="checkForOtaUpdates()"
             >
               {{ isCheckingOta() ? 'Comprobando…' : 'Comprobar OTA' }}
@@ -412,9 +412,7 @@ import {
 
                 @if (isDownloadingOta()) {
                   <div class="mt-3 max-w-md" aria-live="polite">
-                    <div
-                      class="mb-1 flex justify-between text-xs font-medium text-slate-600"
-                    >
+                    <div class="mb-1 flex justify-between text-xs font-medium text-slate-600">
                       <span>Progreso de descarga</span>
                       <span>{{ otaProgress() ?? 0 }}%</span>
                     </div>
@@ -658,7 +656,12 @@ export class UpdatesPage implements OnInit {
   }
 
   async checkForOtaUpdates(): Promise<void> {
-    if (!this.isNativeApp || this.isCheckingOta()) {
+    if (
+      !this.isNativeApp ||
+      this.isCheckingOta() ||
+      this.isDownloadingOta() ||
+      this.isApplyingOta()
+    ) {
       return;
     }
 
@@ -709,6 +712,8 @@ export class UpdatesPage implements OnInit {
     let bundle: Awaited<ReturnType<typeof CapacitorUpdater.download>> | null = null;
     let failed = false;
     let failure: unknown;
+    let listenerCleanupFailed = false;
+    let listenerCleanupError: unknown;
 
     try {
       listener = await CapacitorUpdater.addListener('updaterEvent', (event) => {
@@ -737,10 +742,8 @@ export class UpdatesPage implements OnInit {
       try {
         await listener.remove();
       } catch (error: unknown) {
-        if (!failed) {
-          failed = true;
-          failure = error;
-        }
+        listenerCleanupFailed = true;
+        listenerCleanupError = error;
       }
     }
 
@@ -749,11 +752,22 @@ export class UpdatesPage implements OnInit {
     if (failed || !bundle) {
       this.otaProgress.set(null);
       this.otaError.set(
-        this.describeOtaError(
-          failed ? failure : new Error('La descarga no devolvió información del bundle OTA.'),
-        ),
+        [
+          this.describeOtaError(
+            failed ? failure : new Error('La descarga no devolvió información del bundle OTA.'),
+          ),
+          ...(listenerCleanupFailed
+            ? [`No se pudo limpiar el listener OTA: ${this.describeOtaError(listenerCleanupError)}`]
+            : []),
+        ].join(' '),
       );
       return;
+    }
+
+    if (listenerCleanupFailed) {
+      this.otaError.set(
+        `No se pudo limpiar el listener de progreso OTA: ${this.describeOtaError(listenerCleanupError)}`,
+      );
     }
 
     this.isApplyingOta.set(true);
