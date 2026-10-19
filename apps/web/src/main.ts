@@ -5,21 +5,15 @@ import { CapacitorUpdater } from '@capgo/capacitor-updater';
 import { appConfig } from './app/app.config';
 import { App } from './app/app';
 
-bootstrapApplication(App, appConfig)
-  .then(async (appRef) => {
-    // Confirm that the app started successfully on native platforms.
-    if (Capacitor.isNativePlatform()) {
-      try {
-        await CapacitorUpdater.notifyAppReady();
-        console.info('[OTA] App startup confirmed.');
-      } catch (error) {
-        // Do not prevent Angular from running if the updater fails.
-        console.error('[OTA] Could not confirm app readiness:', error);
-      }
-    }
+if (Capacitor.isNativePlatform()) {
+  // Confirm the new bundle before Angular starts making application requests.
+  void CapacitorUpdater.notifyAppReady()
+    .then(() => console.info('[OTA] App startup confirmed.'))
+    .catch((error: unknown) => {
+      console.error('[OTA] Could not confirm app readiness:', error);
+    });
+}
 
-    return appRef;
-  })
-  .catch((error) => {
-    console.error('Angular bootstrap failed:', error);
-  });
+bootstrapApplication(App, appConfig).catch((error) => {
+  console.error('Angular bootstrap failed:', error);
+});

@@ -3,16 +3,16 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { App } from '@capacitor/app';
 import { Browser } from '@capacitor/browser';
-import { Capacitor } from '@capacitor/core';
+import { Capacitor, type PluginListenerHandle } from '@capacitor/core';
 import { firstValueFrom } from 'rxjs';
 
+import { CapacitorUpdater } from '@capgo/capacitor-updater';
 import {
   AppUpdateManifest,
   AppUpdateService,
   OtaUpdateManifest,
   PANADERIA_APP_ID,
 } from '../../core/updates/app-update.service';
-import { CapacitorUpdater } from '@capgo/capacitor-updater';
 
 @Component({
   selector: 'app-updates-page',
@@ -395,28 +395,43 @@ import { CapacitorUpdater } from '@capgo/capacitor-updater';
               }
 
               @if (otaUpdateAvailable()) {
-                @if (downloadedOta(); as downloaded) {
-                  @if (downloaded.version === release.version) {
-                    <button
-                      type="button"
-                      class="mt-5 min-h-12 w-full rounded-xl bg-emerald-700 px-5 py-3 text-sm font-bold text-white hover:bg-emerald-800 disabled:opacity-60 sm:w-auto"
-                      [disabled]="isApplyingOta()"
-                      (click)="applyOtaUpdate()"
-                    >
-                      {{ isApplyingOta() ? 'Aplicando…' : 'Aplicar actualización y reiniciar' }}
-                    </button>
+                <button
+                  type="button"
+                  class="mt-5 min-h-12 w-full rounded-xl bg-blue-800 px-5 py-3 text-sm font-bold text-white hover:bg-blue-900 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+                  [disabled]="isDownloadingOta() || isApplyingOta()"
+                  (click)="installOtaUpdate()"
+                >
+                  @if (isDownloadingOta()) {
+                    Descargando actualización… {{ otaProgress() ?? 0 }}%
+                  } @else if (isApplyingOta()) {
+                    Aplicando actualización…
+                  } @else {
+                    Descargar e instalar actualización
                   }
-                } @else {
-                  <button
-                    type="button"
-                    class="mt-5 min-h-12 w-full rounded-xl bg-blue-800 px-5 py-3 text-sm font-bold text-white hover:bg-blue-900 disabled:opacity-60 sm:w-auto"
-                    [disabled]="isDownloadingOta()"
-                    (click)="downloadOtaUpdate()"
-                  >
-                    {{
-                      isDownloadingOta() ? 'Descargando paquete…' : 'Descargar actualización web'
-                    }}
-                  </button>
+                </button>
+
+                @if (isDownloadingOta()) {
+                  <div class="mt-3 max-w-md" aria-live="polite">
+                    <div
+                      class="mb-1 flex justify-between text-xs font-medium text-slate-600"
+                    >
+                      <span>Progreso de descarga</span>
+                      <span>{{ otaProgress() ?? 0 }}%</span>
+                    </div>
+                    <div
+                      class="h-2 overflow-hidden rounded-full bg-slate-200"
+                      role="progressbar"
+                      aria-label="Progreso de descarga OTA"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      [attr.aria-valuenow]="otaProgress() ?? 0"
+                    >
+                      <div
+                        class="h-full rounded-full bg-blue-700 transition-all"
+                        [style.width.%]="otaProgress() ?? 0"
+                      ></div>
+                    </div>
+                  </div>
                 }
               }
             </div>
@@ -462,8 +477,7 @@ export class UpdatesPage implements OnInit {
   readonly isCheckingOta = signal(false);
   readonly isDownloadingOta = signal(false);
   readonly isApplyingOta = signal(false);
-
-  readonly downloadedOta = signal<{ id: string; version: string } | null>(null);
+  readonly otaProgress = signal<number | null>(null);
 
   readonly otaError = signal<string | null>(null);
   readonly otaMessage = signal<string | null>(null);
@@ -666,12 +680,6 @@ export class UpdatesPage implements OnInit {
 
       this.latestOta.set(release);
       this.lastOtaChecked.set(new Date());
-
-      const pending = this.downloadedOta();
-
-      if (pending && pending.version !== release.version) {
-        this.downloadedOta.set(null);
-      }
     } catch (error: unknown) {
       this.otaError.set(this.describeOtaError(error));
     } finally {
@@ -679,70 +687,86 @@ export class UpdatesPage implements OnInit {
     }
   }
 
-  async downloadOtaUpdate(): Promise<void> {
-    const release = this.latestOta();
-
-    if (!this.isNativeApp || !release || !this.otaUpdateAvailable() || this.isDownloadingOta()) {
-      return;
-    }
-
-    this.isDownloadingOta.set(true);
-    this.otaError.set(null);
-    this.otaMessage.set(null);
-
-    try {
-      const bundle = await CapacitorUpdater.download({
-        url: release.bundleUrl,
-        version: release.version,
-        checksum: release.checksum,
-      });
-
-      this.downloadedOta.set({
-        id: bundle.id,
-        version: bundle.version,
-      });
-
-      this.otaMessage.set(
-        `La versión web ${release.version} se descargó correctamente. Puedes aplicarla cuando estés listo.`,
-      );
-    } catch (error: unknown) {
-      this.otaError.set(this.describeOtaError(error));
-    } finally {
-      this.isDownloadingOta.set(false);
-    }
-  }
-
-  async applyOtaUpdate(): Promise<void> {
-    const pending = this.downloadedOta();
+  async installOtaUpdate(): Promise<void> {
     const release = this.latestOta();
 
     if (
       !this.isNativeApp ||
-      !pending ||
       !release ||
-      pending.version !== release.version ||
+      !this.otaUpdateAvailable() ||
+      this.isDownloadingOta() ||
       this.isApplyingOta()
     ) {
       return;
     }
 
-    const confirmed = window.confirm(
-      `¿Aplicar la actualización web ${pending.version}? La aplicación se reiniciará.`,
-    );
+    this.isDownloadingOta.set(true);
+    this.otaProgress.set(0);
+    this.otaError.set(null);
+    this.otaMessage.set(null);
 
-    if (!confirmed) {
+    let listener: PluginListenerHandle | null = null;
+    let bundle: Awaited<ReturnType<typeof CapacitorUpdater.download>> | null = null;
+    let failed = false;
+    let failure: unknown;
+
+    try {
+      listener = await CapacitorUpdater.addListener('updaterEvent', (event) => {
+        if (event.type === 'download' && event.data.bundle.version === release.version) {
+          if (Number.isFinite(event.data.percent)) {
+            this.otaProgress.set(Math.max(0, Math.min(100, event.data.percent)));
+          }
+        }
+      });
+
+      bundle = await CapacitorUpdater.download({
+        url: release.bundleUrl,
+        version: release.version,
+        checksum: release.checksum,
+      });
+
+      if (bundle.version !== release.version || bundle.id.length === 0) {
+        throw new Error('El plugin devolvió un bundle OTA que no coincide con el manifiesto.');
+      }
+    } catch (error: unknown) {
+      failed = true;
+      failure = error;
+    }
+
+    if (listener) {
+      try {
+        await listener.remove();
+      } catch (error: unknown) {
+        if (!failed) {
+          failed = true;
+          failure = error;
+        }
+      }
+    }
+
+    this.isDownloadingOta.set(false);
+
+    if (failed || !bundle) {
+      this.otaProgress.set(null);
+      this.otaError.set(
+        this.describeOtaError(
+          failed ? failure : new Error('La descarga no devolvió información del bundle OTA.'),
+        ),
+      );
       return;
     }
 
     this.isApplyingOta.set(true);
-    this.otaError.set(null);
+    this.otaMessage.set(
+      `La versión web ${release.version} se descargó correctamente. Se está aplicando y la aplicación se reiniciará.`,
+    );
 
     try {
-      // Capgo activates the bundle and reloads the application.
-      // Do not depend on statements after this call executing.
-      await CapacitorUpdater.set({ id: pending.id });
+      await CapacitorUpdater.set({ id: bundle.id });
     } catch (error: unknown) {
       this.isApplyingOta.set(false);
+      this.otaProgress.set(null);
+      this.otaMessage.set(null);
       this.otaError.set(this.describeOtaError(error));
     }
   }
