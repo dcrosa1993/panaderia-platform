@@ -21,6 +21,7 @@
     "@capacitor/app": "^8.1.2",
     "@capacitor/browser": "^8.0.5",
     "@capacitor/core": "^8.5.3",
+    "@capgo/capacitor-updater": "^8.53.0",
     "ng-zorro-antd": "^22.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
