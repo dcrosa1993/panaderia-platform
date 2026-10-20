@@ -675,11 +675,22 @@ export class UpdatesPage implements OnInit {
         firstValueFrom(this.updateService.getLatestOtaManifest()),
       ]);
 
-      const activeVersion = current.bundle?.version;
+      const activeBundle = current.bundle;
 
-      this.currentOtaVersion.set(
-        typeof activeVersion === 'string' && activeVersion.length > 0 ? activeVersion : 'builtin',
-      );
+      if (activeBundle.id === 'builtin') {
+        this.currentOtaVersion.set('builtin');
+      } else if (
+        typeof activeBundle.id === 'string' &&
+        activeBundle.id.length > 0 &&
+        typeof activeBundle.version === 'string' &&
+        activeBundle.version.trim().length > 0
+      ) {
+        this.currentOtaVersion.set(activeBundle.version);
+      } else {
+        throw new Error(
+          'CapacitorUpdater.current() devolvió un bundle activo sin identificador o versión válida.',
+        );
+      }
 
       this.latestOta.set(release);
       this.lastOtaChecked.set(new Date());
